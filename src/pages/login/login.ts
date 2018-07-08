@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthProvider } from '../../shared/providers/auth-provider';
+import { Register } from '../register/register';
 
 @IonicPage()
 @Component({
@@ -8,45 +9,53 @@ import { AuthProvider } from '../../shared/providers/auth-provider';
   templateUrl: 'login.html'
 })
 export class Login {
-    loading: Loading;
-    registerCredentials = { email: '', password: '' };
 
-    constructor(private nav: NavController, private auth: AuthProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+    loading: any;
+    registerCredentials = {_username: '', _password: ''};
+    data: any;
 
-    public createAccount() {
-        this.nav.push('RegisterPage');
+    constructor(public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
     }
 
-    public login() {
-        this.showLoading()
-        this.auth.login(this.registerCredentials).subscribe(allowed => {
-                if (allowed) {
-                    this.nav.setRoot('HomePage');
-                } else {
-                    this.showError("Access Denied");
-                }
-            },
-            error => {
-                this.showError(error);
-            });
-    }
-
-    showLoading() {
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...',
-            dismissOnPageChange: true
+    doLogin() {
+        this.showLoader();
+        this.authService.login(this.registerCredentials).then((result) => {
+            this.loading.dismiss();
+            this.data = result;
+            localStorage.setItem('token', this.data.token);
+            this.navCtrl.setRoot('Home');
+        }, (err) => {
+            this.loading.dismiss();
+            this.presentToast(err);
         });
+    }
+
+    register() {
+        this.navCtrl.push(Register);
+    }
+
+    showLoader() {
+        this.loading = this.loadingCtrl.create({
+            content: 'Connexion...'
+        });
+
         this.loading.present();
     }
 
-    showError(text) {
-        this.loading.dismiss();
+    presentToast(msg) {
 
-        let alert = this.alertCtrl.create({
-            title: 'Fail',
-            subTitle: text,
-            buttons: ['OK']
+        let msgText = msg.status == 401 ? 'L\'email et/ou le mot de passe est/sont incorrect(s)' : msg;
+        let toast = this.toastCtrl.create({
+            message: msgText,
+            duration: 3000,
+            position: 'bottom',
+            dismissOnPageChange: true
         });
-        alert.present(prompt);
+
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
+
+        toast.present();
     }
 }
