@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: 'page-search',
+  templateUrl: 'search.html'
 })
-export class Login {
+export class Search {
     loading: Loading;
     registerCredentials = { email: '', password: '' };
 
