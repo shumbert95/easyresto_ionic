@@ -1,56 +1,46 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Headers } from '@angular/http';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-export class User {
-    name: string;
-    email: string;
-
-    constructor(name: string, email: string) {
-        this.name = name;
-        this.email = email;
-    }
-}
+let apiUrl = 'http://jeremyfsmoreau.fr/app_dev.php/';
 
 @Injectable()
 export class AuthProvider {
-    currentUser: User;
 
-    public login(credentials) {
-        if (credentials.email === null || credentials.password === null) {
-            return Observable.throw("Please insert credentials");
-        } else {
-            return Observable.create(observer => {
-                // At this point make a request to your backend to make a real check!
-                let access = (credentials.password === "pass" && credentials.email === "email");
-                this.currentUser = new User('Simon', 'saimon@devdactic.com');
-                observer.next(access);
-                observer.complete();
-            });
-        }
-    }
+    constructor(public http: Http) {}
 
-    public register(credentials) {
-        if (credentials.email === null || credentials.password === null) {
-            return Observable.throw("Please insert credentials");
-        } else {
-            // At this point store the credentials to your backend!
-            return Observable.create(observer => {
-                observer.next(true);
-                observer.complete();
-            });
-        }
-    }
+    login(credentials) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
 
-    public getUserInfo() : User {
-        return this.currentUser;
-    }
-
-    public logout() {
-        return Observable.create(observer => {
-            this.currentUser = null;
-            observer.next(true);
-            observer.complete();
+            this.http.post(apiUrl+'login_check', JSON.stringify(credentials), {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
         });
     }
+
+    register(data) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            this.http.post(apiUrl+'register/client', JSON.stringify(data), {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
+
+    logout(){
+        localStorage.clear();
+        return true;
+    }
+
 }
