@@ -3,15 +3,16 @@ import { NavController, App, LoadingController, ToastController } from 'ionic-an
 import { ClientProvider } from '../../shared/providers/client-provider';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Login } from '../login/login';
+import { EditProfilePage } from '../edit-profile/edit-profile';
+
 import {Http} from '@angular/http';
-import {ClientPage} from "../client/client";
 
 @IonicPage()
 @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html'
+    selector: 'page-profile',
+    templateUrl: 'profile.html'
 })
-export class Home {
+export class ProfilePage {
 
     loading: any;
     isLoggedIn: boolean = false;
@@ -22,7 +23,8 @@ export class Home {
         if(localStorage.getItem("token")) {
             this.isLoggedIn = true;
         }
-        this.title = "Home";
+        this.title = "Profile";
+        this.doGetProfile()
     }
 
     logout() {
@@ -57,10 +59,23 @@ export class Home {
         toast.present();
     }
 
-    goToProfile(){
-        this.navCtrl.setRoot(ClientPage);
+    toEdit(){
+      this.navCtrl.setRoot(EditProfilePage);
     }
 
-    ngOnInit(){
+    doGetProfile(){     
+        this.showLoader();
+        this.clientService.getProfile().then((data) => {
+            this.loading.dismiss();
+            this.profile = data.result;
+        }, (err) => {
+            this.loading.dismiss();
+            this.presentToast(err);
+        });
     }
+
+
+
+    ngOnInit(){
+            }
 }
