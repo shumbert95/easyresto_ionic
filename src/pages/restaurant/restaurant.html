@@ -1,4 +1,15 @@
 <ion-content>
-    <app-header title="Commander" menu="false"></app-header>
-
+    <app-header title="{{restaurantData?.name}}" menu="false"></app-header>
+    <div class="header">
+        <img src="{{restaurantData?.picture}}" />
+        <div class="infos">
+            <h1>{{restaurantData?.name}}</h1>
+            <p><ion-icon name="pin"></ion-icon> {{restaurantData?.addressFormatted}}</p>
+            <span *ngFor="let category of restaurantData?.categories">{{category.name}}</span>
+        </div>
+        <div class="more-infos">
+            <span>Lieu et horaires</span>
+            <span>Voir les informations <ion-icon name="arrow-forward"></ion-icon></span>
+        </div>
+    </div>
 </ion-content>
