@@ -10,6 +10,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 // Pages
 import { Login } from '../pages/login/login';
 import { Register } from "../pages/register/register";
+import { Restaurant } from "../pages/restaurant/restaurant";
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { Search } from '../pages/search/search';
@@ -22,6 +23,7 @@ import { HistoryPage } from "../pages/client/history/history";
 
 import { AuthProvider } from "../shared/providers/auth-provider";
 import { ClientProvider } from "../shared/providers/client-provider";
+import { RestaurantProvider } from "../shared/providers/restaurant-provider";
 
 // Components
 import {ComponentsModule} from "../shared/components/components.module";
@@ -33,6 +35,7 @@ import {HeaderComponent} from "../shared/components/header/header";
     MyApp,
     Login,
     Register,
+    Restaurant,
     ItemDetailsPage,
     ListPage,
     Search,
@@ -51,6 +54,7 @@ import {HeaderComponent} from "../shared/components/header/header";
   entryComponents: [
     MyApp,
     Login,
+    Restaurant,
     ItemDetailsPage,
     ListPage,
     HeaderComponent,
@@ -67,7 +71,8 @@ import {HeaderComponent} from "../shared/components/header/header";
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    ClientProvider
+    ClientProvider,
+    RestaurantProvider
   ]
 })
 export class AppModule {

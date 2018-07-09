@@ -14,9 +14,11 @@
 </ion-header>
 
 <ion-content padding>
-
     <button ion-button clear (click)="goToSearch()">
-      Search
+        Search
     </button>
-
+      <button ion-button clear (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+      <button ion-button (click)="goToRestaurantPage()">Go To restaurant page</button>
 </ion-content>
