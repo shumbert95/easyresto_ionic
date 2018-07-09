@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Search } from './search'
 import { IonicPageModule } from 'ionic-angular';
+import { Register } from './register';
 import {ComponentsModule} from "../../shared/components/components.module";
 
 @NgModule({
     declarations: [
-        Search,
+        Register,
     ],
     imports: [
+        IonicPageModule.forChild(Register),
         ComponentsModule
     ],
-    entryComponents: [
-    ],
 })
-export class AccountPageModule {}
+export class RegisterModule {}
