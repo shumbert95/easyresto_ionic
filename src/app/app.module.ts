@@ -11,8 +11,10 @@ import { Login } from '../pages/login/login';
 import { Register } from "../pages/register/register";
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
-import { ProfilePage } from '../pages/profile/profile';
-import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { ProfilePage } from '../pages/client/profile/profile';
+import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
+import { ClientPage } from "../pages/client/client";
+import { HistoryPage } from "../pages/client/history/history";
 
 // Providers
 import { AuthProvider } from "../shared/providers/auth-provider";
@@ -31,7 +33,9 @@ import {HeaderComponent} from "../shared/components/header/header";
     ItemDetailsPage,
     ListPage,
     ProfilePage,
-    EditProfilePage
+    EditProfilePage,
+    ClientPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import {HeaderComponent} from "../shared/components/header/header";
     HeaderComponent,
     Register,
     ProfilePage,
-    EditProfilePage
+    EditProfilePage,
+    ClientPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,

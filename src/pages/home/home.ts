@@ -3,8 +3,8 @@ import { NavController, App, LoadingController, ToastController } from 'ionic-an
 import { ClientProvider } from '../../shared/providers/client-provider';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Login } from '../login/login';
-import { ProfilePage } from '../profile/profile';
 import {Http} from '@angular/http';
+import {ClientPage} from "../client/client";
 
 @IonicPage()
 @Component({
@@ -58,7 +58,7 @@ export class Home {
     }
 
     goToProfile(){
-        this.navCtrl.setRoot(ProfilePage);
+        this.navCtrl.setRoot(ClientPage);
     }
 
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, App, NavParams, LoadingController, ToastController } from 'ionic-angular';
-import { ClientProvider } from '../../shared/providers/client-provider';
-import { AuthProvider } from '../../shared/providers/auth-provider';
+import {NavController, App, NavParams, LoadingController, ToastController, IonicPage} from 'ionic-angular';
+import { ClientProvider } from '../../../shared/providers/client-provider';
+import { AuthProvider} from "../../../shared/providers/auth-provider";
 import {Http} from '@angular/http';
 import { ProfilePage } from '../profile/profile';
 
@@ -15,10 +15,8 @@ export class EditProfilePage {
 
   loading: any;
   isLoggedIn: boolean = false;
-  profile: any;
+  profile = {email: '', civility: '', firstName: '', lastName: '', phoneNumber: '', postalCode: ''};
   title: string;
-  editInformations = { email:'', firstName:'', lastName: '', passwordConfirmation: '', civility: '', phoneNumber: '', postalCode: '', birthDate: '' };
-
 
   constructor(public app: App, public navCtrl: NavController,public authService: AuthProvider, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public http: Http) {
     if(localStorage.getItem("token")) {
@@ -41,7 +39,7 @@ export class EditProfilePage {
         message: msg,
         duration: 3000,
         position: 'bottom',
-        dismissOnPageChange: true
+        dismissOnPageChange: false
     });
 
     toast.onDidDismiss(() => {
@@ -64,13 +62,12 @@ export class EditProfilePage {
 
   doEditProfile() {
     this.showLoader();
-    this.clientService.editProfile(this.editInformations).then((result) => {
+    this.clientService.editProfile(this.profile).then((result) => {
         this.loading.dismiss();
         this.navCtrl.setRoot(ProfilePage);
     }, (err) => {
         this.loading.dismiss();
         this.presentToast(err);
     });
-}
-
+  }
 }

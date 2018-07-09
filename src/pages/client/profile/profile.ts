@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController, ToastController } from 'ionic-angular';
-import { ClientProvider } from '../../shared/providers/client-provider';
-import { AuthProvider } from '../../shared/providers/auth-provider';
-import { Login } from '../login/login';
+import { NavController, App, LoadingController, ToastController, ModalController } from 'ionic-angular';
+import { ClientProvider } from '../../../shared/providers/client-provider';
+import { AuthProvider } from "../../../shared/providers/auth-provider";
+import { Login } from '../../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 
 import {Http} from '@angular/http';
@@ -19,7 +19,7 @@ export class ProfilePage {
     profile: any;
     title: string;
 
-    constructor(public app: App, public navCtrl: NavController,public authService: AuthProvider, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public http: Http) {
+    constructor(public app: App, public navCtrl: NavController,public authService: AuthProvider, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public http: Http, public modalCtrl: ModalController) {
         if(localStorage.getItem("token")) {
             this.isLoggedIn = true;
         }
