@@ -1,0 +1,56 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>{{title}}</ion-title>
+      <button ion-button clear (click)="logout()">
+        <ion-icon name="log-out"></ion-icon> Logout
+      </button>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+    <form (ngSubmit)="doEditProfile()" #registerForm="ngForm" >
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="text" name="email" placeholder="{{profile?.email}}" [(ngModel)]="editInformations.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Civilité</ion-label>
+        <ion-select name="civility" [(ngModel)]="editInformations.civility">
+          <ion-option *ngIf="profile?.civility == 1" value="1" selected=true>Mr.</ion-option>
+          <ion-option *ngIf="profile?.civility != 1" value="1">Mr.</ion-option>
+          <ion-option *ngIf="profile?.civility == 2" value="2" selected=true>Mme.</ion-option>
+          <ion-option *ngIf="profile?.civility != 2" value="2">Mme.</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Prénom</ion-label>
+        <ion-input type="text" name="firstName" placeholder="{{profile?.firstName}}" [(ngModel)]="editInformations.firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nom</ion-label>
+        <ion-input type="text" name="lastName" placeholder="{{profile?.lastName}}" [(ngModel)]="editInformations.lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Téléphone</ion-label>
+        <ion-input type="text" name="phoneNumber" placeholder="{{profile?.phoneNumber}}" [(ngModel)]="editInformations.phoneNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Code Postal</ion-label>
+        <ion-input type="text"  name="postalCode" placeholder="{{profile?.postalCode}}" [(ngModel)]="editInformations.postalCode"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label stacked>Mot de passe</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="editInformations.password"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label stacked>Confirmation mot de passe</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item> 
+
+      <button ion-button>
+        Valider
+      </button>
+    </form>
+  </ion-content>
