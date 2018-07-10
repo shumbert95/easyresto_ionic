@@ -60,14 +60,14 @@ export class ProfilePage {
     }
 
     toEdit(){
-      this.navCtrl.setRoot(EditProfilePage);
+      this.navCtrl.push(EditProfilePage);
     }
 
     doGetProfile(){     
         this.showLoader();
         this.clientService.getProfile().then((data) => {
             this.loading.dismiss();
-            this.profile = data.result;
+            this.profile = data.result.user;
         }, (err) => {
             this.loading.dismiss();
             this.presentToast(err);

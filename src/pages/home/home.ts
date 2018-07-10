@@ -65,10 +65,6 @@ export class Home {
         toast.present();
     }
 
-    goToProfile(){
-        this.navCtrl.setRoot(ClientPage);
-    }
-
     goToSearch(){
         this.navCtrl.setRoot(Search);
     }

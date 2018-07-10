@@ -18,6 +18,7 @@ import { ProfilePage } from '../pages/client/profile/profile';
 import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
 import { ClientPage } from "../pages/client/client";
 import { HistoryPage } from "../pages/client/history/history";
+import { CartPage } from "../pages/cart/cart";
 
 // Providers
 
@@ -35,6 +36,7 @@ import {HeaderComponent} from "../shared/components/header/header";
     MyApp,
     Login,
     Register,
+    CartPage,
     Restaurant,
     ItemDetailsPage,
     ListPage,
@@ -55,6 +57,7 @@ import {HeaderComponent} from "../shared/components/header/header";
     MyApp,
     Login,
     Restaurant,
+    Search,
     ItemDetailsPage,
     ListPage,
     HeaderComponent,
@@ -63,6 +66,7 @@ import {HeaderComponent} from "../shared/components/header/header";
     ProfilePage,
     EditProfilePage,
     ClientPage,
+    CartPage,
     HistoryPage
   ],
   providers: [

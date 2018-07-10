@@ -16,6 +16,7 @@ import { RestaurantProvider } from '../../shared/providers/restaurant-provider';
 export class Restaurant {
   public restaurantId;
   public restaurantData: any;
+  public restaurantMenu: any;
   loading: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restaurantProvider: RestaurantProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
@@ -33,11 +34,16 @@ export class Restaurant {
   ionViewDidLoad() {
       this.showLoader();
       this.restaurantProvider.getRestaurantInfos(this.restaurantId).then((result) => {
-          console.log(result.result);
           this.restaurantData = result.result;
           this.restaurantData.addressFormatted = this.formattedAddress();
-          console.log(this.restaurantData);
+      }, (err) => {
           this.loading.dismiss();
+          this.presentToast(err);
+      });
+
+      this.restaurantProvider.getRestaurantMenu(this.restaurantId).then((result) => {
+          this.restaurantMenu = result.result;
+          this.loading.dismiss()
       }, (err) => {
           this.loading.dismiss();
           this.presentToast(err);
