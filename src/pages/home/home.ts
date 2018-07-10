@@ -4,7 +4,6 @@ import { ClientProvider } from '../../shared/providers/client-provider';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Login } from '../login/login';
 import {Http} from '@angular/http';
-import { Login } from "../login/login";
 import {Search} from "../search/search";
 import { Restaurant } from '../restaurant/restaurant'
 import {HistoryPage} from "../client/history/history";
@@ -26,13 +25,11 @@ export class Home {
     tabHistory: HistoryPage = HistoryPage;
 
     constructor(public app: App, public navCtrl: NavController,public authService: AuthProvider, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public http: Http) {
-        if(localStorage.getItem("token")) {
-            this.isLoggedIn = true;
-        } else {
+        if(!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') {
             this.navCtrl.setRoot(Login)
+        } else {
+            this.isLoggedIn = true;
         }
-        // this.tabProfile = ProfilePage;
-        // this.tabHistory = HistoryPage;
     }
 
     logout() {

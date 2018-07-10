@@ -44,12 +44,28 @@ export class ClientProvider {
         });
     }
 
-    getHistory() {
+    addToFavorite(restaurantId) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
-            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"))
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
 
-            this.http.get(apiUrl+'history', {headers: headers})
+            this.http.get(apiUrl+'restaurants/' + restaurantId + '/favorites/add', {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
+
+    getReservations() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+
+            this.http.get(apiUrl+'profile/reservations', {headers: headers})
                 .subscribe(res => {
                     resolve(res.json());
                 }, (err) => {

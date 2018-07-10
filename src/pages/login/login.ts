@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Register } from '../register/register';
+import {Home} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -15,6 +16,9 @@ export class Login {
     data: any;
 
     constructor(public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+        if (localStorage.getItem('token') && localStorage.getItem('token') !== 'undefined') {
+            this.navCtrl.setRoot(Home);
+        }
     }
 
     doLogin() {

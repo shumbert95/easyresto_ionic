@@ -28,7 +28,7 @@ export class EditProfilePage {
 
   showLoader(){
     this.loading = this.loadingCtrl.create({
-        content: 'Authenticating...'
+        content: 'Chargement...'
     });
 
     this.loading.present();

@@ -13,10 +13,8 @@ import { Register } from "../pages/register/register";
 import { Restaurant } from "../pages/restaurant/restaurant";
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
-import { Search } from '../pages/search/search';
 import { ProfilePage } from '../pages/client/profile/profile';
 import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
-import { ClientPage } from "../pages/client/client";
 import { HistoryPage } from "../pages/client/history/history";
 import { CartPage } from "../pages/cart/cart";
 
@@ -29,6 +27,7 @@ import { RestaurantProvider } from "../shared/providers/restaurant-provider";
 // Components
 import {ComponentsModule} from "../shared/components/components.module";
 import {HeaderComponent} from "../shared/components/header/header";
+import {Home} from "../pages/home/home";
 
 
 @NgModule({
@@ -40,11 +39,10 @@ import {HeaderComponent} from "../shared/components/header/header";
     Restaurant,
     ItemDetailsPage,
     ListPage,
-    Search,
     ProfilePage,
     EditProfilePage,
-    ClientPage,
-    HistoryPage
+    HistoryPage,
+    Home
   ],
   imports: [
     BrowserModule,
@@ -57,7 +55,6 @@ import {HeaderComponent} from "../shared/components/header/header";
     MyApp,
     Login,
     Restaurant,
-    Search,
     ItemDetailsPage,
     ListPage,
     HeaderComponent,
@@ -65,8 +62,8 @@ import {HeaderComponent} from "../shared/components/header/header";
     Register,
     ProfilePage,
     EditProfilePage,
-    ClientPage,
     CartPage,
+    Home,
     HistoryPage
   ],
   providers: [

@@ -1,24 +1,19 @@
 <ion-content>
-  <app-header title="Mon profile" cart="true" account="false"></app-header>
-  <h2><b>Email</b></h2>
-  {{profile?.email}}
-  <hr>
-  <h2><b>Civilité</b></h2>
-  {{profile?.civility == 1 ? 'Mr.' : 'Mme.'}}
-  <hr>
-  <h2><b>Prénom</b></h2>
-  {{profile?.firstName}}
-  <hr>
-  <h2><b>Nom</b></h2>
-  {{profile?.lastName}}
-  <hr>
-  <h2><b>Téléphone</b></h2>
-  {{profile?.phoneNumber}}
-  <hr>
-  <h2><b>Code postal</b></h2>
-  {{profile?.postalCode}}
-  <hr>
-  <button ion-button (click)="toEdit()">
-    Editer
-  </button>
+  <h1 class="client-name">
+    {{profile?.firstName}} {{profile?.lastName}}
+  </h1>
+  <ion-list>
+    <ion-item (click)="toEdit()">
+      <ion-icon name="person" item-start></ion-icon>
+      Mes informations
+    </ion-item>
+    <ion-item>
+      <ion-icon name="heart-outline" item-start></ion-icon>
+      Mes favoris
+    </ion-item>
+    <ion-item>
+      <ion-icon name="exit" item-start></ion-icon>
+      Se déconnecter
+    </ion-item>
+  </ion-list>
 </ion-content>
