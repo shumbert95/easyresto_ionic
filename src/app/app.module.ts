@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import {Http, HttpModule} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -12,9 +12,14 @@ import { Register } from "../pages/register/register";
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { Search } from '../pages/search/search';
+import { ProfilePage } from '../pages/client/profile/profile';
+import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
+import { ClientPage } from "../pages/client/client";
+import { HistoryPage } from "../pages/client/history/history";
 
 // Providers
 import { AuthProvider } from "../shared/providers/auth-provider";
+import { ClientProvider } from "../shared/providers/client-provider";
 
 // Components
 import {ComponentsModule} from "../shared/components/components.module";
@@ -28,7 +33,11 @@ import {HeaderComponent} from "../shared/components/header/header";
     Register,
     ItemDetailsPage,
     ListPage,
-    Search
+    Search,
+    ProfilePage,
+    EditProfilePage,
+    ClientPage,
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -45,13 +54,18 @@ import {HeaderComponent} from "../shared/components/header/header";
     Search,
     HeaderComponent,
     HeaderComponent,
-    Register
+    Register,
+    ProfilePage,
+    EditProfilePage,
+    ClientPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    ClientProvider
   ]
 })
 export class AppModule {

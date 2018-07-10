@@ -6,26 +6,9 @@ import 'rxjs/add/operator/map';
 let apiUrl = 'http://jeremyfsmoreau.fr/app_dev.php/';
 
 @Injectable()
-export class AuthProvider {
+export class ClientProvider {
 
     constructor(public http: Http) {}
-
-    login(credentials) {
-        return new Promise((resolve, reject) => {
-            let headers = new Headers();
-            headers.append('Content-Type', 'application/json');
-
-            this.http.post(apiUrl+'login_check', JSON.stringify(credentials), {headers: headers})
-                .subscribe(res => {
-                    resolve(res.json());
-                }, (err) => {
-                    reject(err);
-                });
-        }).catch(function(error){
-            return error;
-        });
-    }
-
 
     getProfile() {
         return new Promise((resolve, reject) => {
@@ -43,12 +26,14 @@ export class AuthProvider {
         });
     }
 
-    register(data) {
+    editProfile(data) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
-
-            this.http.post(apiUrl+'register/client', JSON.stringify(data), {headers: headers})
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+            headers.append('Access-Control-Allow-Origin', '*');      
+            console.log(JSON.stringify(data));
+            this.http.put(apiUrl+'profile', JSON.stringify(data), {headers: headers})
                 .subscribe(res => {
                     resolve(res.json());
                 }, (err) => {
@@ -59,9 +44,19 @@ export class AuthProvider {
         });
     }
 
-    logout(){
-        localStorage.clear();
-        return true;
-    }
+    getHistory() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"))
 
+            this.http.get(apiUrl+'history', {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
 }

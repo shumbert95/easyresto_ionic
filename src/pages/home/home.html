@@ -1,24 +1,22 @@
-<!--
-  Generated template for the HomePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>home</ion-title>
+    <ion-title>{{title}}</ion-title>
+    <button ion-button clear (click)="logout()">
+      <ion-icon name="log-out"></ion-icon> Logout
+    </button>
+    <button ion-button clear (click)="goToProfile()">
+      Profile
+    </button>
+
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <ion-header>
-    <ion-navbar>
-      <button ion-button clear (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-      <ion-title>Home</ion-title>
-    </ion-navbar>
-  </ion-header>
+
+    <button ion-button clear (click)="goToSearch()">
+      Search
+    </button>
+
 </ion-content>
