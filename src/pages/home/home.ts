@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, App, LoadingController, ToastController, IonicPage} from 'ionic-angular';
 import { ClientProvider } from '../../shared/providers/client-provider';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Login } from '../login/login';
 import {Http} from '@angular/http';
 import {ClientPage} from "../client/client";
 import {Search} from "../search/search";
+import { Restaurant } from '../restaurant/restaurant'
 
 @IonicPage()
 @Component({
@@ -34,6 +35,12 @@ export class Home {
         nav.setRoot(Login);
     }
 
+    goToRestaurantPage() {
+        this.navCtrl.push(Restaurant, {
+            restaurantId: 2
+        })
+    }
+
     showLoader(){
         this.loading = this.loadingCtrl.create({
             content: 'Authenticating...'
@@ -56,10 +63,6 @@ export class Home {
         });
 
         toast.present();
-    }
-
-    goToProfile(){
-        this.navCtrl.setRoot(ClientPage);
     }
 
     goToSearch(){

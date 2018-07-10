@@ -26,7 +26,7 @@ export class Register {
 
     showLoader(){
         this.loading = this.loadingCtrl.create({
-            content: 'Authenticating...'
+            content: 'Chargement...'
         });
 
         this.loading.present();

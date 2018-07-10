@@ -1,7 +1,9 @@
 <ion-navbar>
-    <button ion-button menuToggle="left" icon-only *ngIf="menu !== 'false'">
-        <ion-icon name='menu'></ion-icon>
+    <button ion-button icon-only *ngIf="account !== 'false'" (click)="goToProfile()">
+        <ion-icon name="person"></ion-icon>
     </button>
     <ion-title>{{title}}</ion-title>
-
+    <button ion-button icon-only *ngIf="cart !== 'false'" (click)="goToCart()">
+        <ion-icon name="cart"></ion-icon>
+    </button>
 </ion-navbar>

@@ -1,22 +1,17 @@
-<ion-header>
+<ion-content >
+  <app-header title="Home" account="true" cart="true"></app-header>
 
-  <ion-navbar>
-    <ion-title>{{title}}</ion-title>
-    <button ion-button clear (click)="logout()">
-      <ion-icon name="log-out"></ion-icon> Logout
+  <button ion-button clear (click)="goToSearch()">
+        Search
     </button>
-    <button ion-button clear (click)="goToProfile()">
-      Profile
-    </button>
-
-  </ion-navbar>
-
-</ion-header>
-
-<ion-content padding>
-
-    <button ion-button clear (click)="goToSearch()">
-      Search
-    </button>
-
+  <button ion-button clear (click)="logout()">
+    <ion-icon name="log-out"></ion-icon> Logout
+  </button>
+  <button ion-button clear (click)="goToProfile()">
+    Profile
+  </button>
+      <button ion-button clear (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+      <button ion-button (click)="goToRestaurantPage()">Go To restaurant page</button>
 </ion-content>
