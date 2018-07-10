@@ -15,7 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CartPage {
 
+  cart: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.cart = localStorage.cart;
   }
 
   ionViewDidLoad() {

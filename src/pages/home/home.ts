@@ -4,9 +4,12 @@ import { ClientProvider } from '../../shared/providers/client-provider';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Login } from '../login/login';
 import {Http} from '@angular/http';
-import {ClientPage} from "../client/client";
+import { Login } from "../login/login";
 import {Search} from "../search/search";
 import { Restaurant } from '../restaurant/restaurant'
+import {HistoryPage} from "../client/history/history";
+import {ClientPage} from "../client/client";
+import {ProfilePage} from "../client/profile/profile";
 
 @IonicPage()
 @Component({
@@ -19,12 +22,17 @@ export class Home {
     isLoggedIn: boolean = false;
     profile: any;
     title: string;
+    tabProfile: ProfilePage = ProfilePage;
+    tabHistory: HistoryPage = HistoryPage;
 
     constructor(public app: App, public navCtrl: NavController,public authService: AuthProvider, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public http: Http) {
         if(localStorage.getItem("token")) {
             this.isLoggedIn = true;
+        } else {
+            this.navCtrl.setRoot(Login)
         }
-        this.title = "Home";
+        // this.tabProfile = ProfilePage;
+        // this.tabHistory = HistoryPage;
     }
 
     logout() {
