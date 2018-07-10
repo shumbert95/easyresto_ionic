@@ -8,11 +8,11 @@
       Mes informations
     </ion-item>
     <ion-item>
-      <ion-icon name="heart-outline" item-start></ion-icon>
+      <ion-icon name="heart-outline" item-start (click)="toFavorites()"></ion-icon>
       Mes favoris
     </ion-item>
     <ion-item>
-      <ion-icon name="exit" item-start></ion-icon>
+      <ion-icon name="exit" item-start (click)="logout()"></ion-icon>
       Se déconnecter
     </ion-item>
   </ion-list>

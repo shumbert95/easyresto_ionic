@@ -27,7 +27,7 @@
 
         <ion-row>
             <ion-col>
-                <div (click)="addToFavorite(reservation.restaurant.id)">
+                <div class="favorite-{{reservation.restaurant.favorite}}" (click)="manageFavorite(reservation.id)">
                     <ion-icon name='star'></ion-icon>
                     Favoris
                 </div>

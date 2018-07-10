@@ -25,12 +25,26 @@ export class HistoryPage {
       this.loading.present();
   }
 
-  addToFavorite(restaurantId) {
-      console.log('test');
+  manageFavorite(reservationId) {
       this.showLoader();
-      this.clientService.addToFavorite(restaurantId).then((data) => {
-          this.loading.dismiss();
-          this.presentToast('Ce restaurant a été ajouté à vos favoris.');
+      this.userReservations.forEach((reservation) => {
+        if (reservation.id == reservationId) {
+            console.log(reservation.restaurant.favorite);
+            if (reservation.restaurant.favorite == true) {
+                console.log('toto');
+                this.clientService.removeFromFavorites(reservation.restaurant.id).then((data) => {
+                    this.loading.dismiss();
+                    this.presentToast('Ce restaurant a été supprimé de vos favoris.');
+                    this.userReservations = this.getReservations();
+                });
+            } else {
+                this.clientService.addToFavorites(reservation.restaurant.id).then((data) => {
+                    this.loading.dismiss();
+                    this.presentToast('Ce restaurant a été ajouté à vos favoris.');
+                    this.userReservations = this.getReservations();
+                });
+            }
+        }
       });
   }
 

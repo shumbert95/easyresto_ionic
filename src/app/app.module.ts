@@ -17,6 +17,7 @@ import { ProfilePage } from '../pages/client/profile/profile';
 import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
 import { HistoryPage } from "../pages/client/history/history";
 import { CartPage } from "../pages/cart/cart";
+import { FavoritesPage } from "../pages/favorites/favorites";
 
 // Providers
 
@@ -42,7 +43,8 @@ import {Home} from "../pages/home/home";
     ProfilePage,
     EditProfilePage,
     HistoryPage,
-    Home
+    Home,
+    FavoritesPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import {Home} from "../pages/home/home";
     EditProfilePage,
     CartPage,
     Home,
-    HistoryPage
+    HistoryPage,
+    FavoritesPage
   ],
   providers: [
     StatusBar,

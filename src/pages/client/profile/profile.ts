@@ -4,6 +4,7 @@ import { ClientProvider } from '../../../shared/providers/client-provider';
 import { AuthProvider } from "../../../shared/providers/auth-provider";
 import { Login } from '../../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { FavoritesPage } from "../../favorites/favorites";
 
 import {Http} from '@angular/http';
 
