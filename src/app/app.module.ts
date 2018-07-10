@@ -53,7 +53,6 @@ import {HeaderComponent} from "../shared/components/header/header";
     Login,
     ItemDetailsPage,
     ListPage,
-    Search,
     HeaderComponent,
     HeaderComponent,
     Register,
