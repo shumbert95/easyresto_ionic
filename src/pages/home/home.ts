@@ -5,6 +5,7 @@ import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Login } from '../login/login';
 import {Http} from '@angular/http';
 import {ClientPage} from "../client/client";
+import {Search} from "../search/search";
 
 @IonicPage()
 @Component({
@@ -59,6 +60,10 @@ export class Home {
 
     goToProfile(){
         this.navCtrl.setRoot(ClientPage);
+    }
+
+    goToSearch(){
+        this.navCtrl.setRoot(Search);
     }
 
     ngOnInit(){

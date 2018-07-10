@@ -20,8 +20,8 @@ export class ClientPage {
   tabHistory: HistoryPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.tabProfile = ProfilePage;
-      this.tabHistory = HistoryPage;
+      // this.tabProfile = ProfilePage;
+      // this.tabHistory = HistoryPage;
   }
 
   ionViewDidLoad() {

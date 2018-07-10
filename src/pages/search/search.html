@@ -1,0 +1,23 @@
+<ion-content class="search-content">
+    <app-header title="Search" menu="false"></app-header>
+
+    <div class="search-box">
+      <form (ngSubmit)="login()" #registerForm="ngForm">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+  
+              <ion-item>
+                <ion-input type="text" placeholder="Chercher un restaurant" name="search" [(ngModel)]="registerCredentials.search" required></ion-input>
+              </ion-item>
+  
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </form>
+
+      <div #map id="map" style="height:100%"></div>
+
+    </div>
+  </ion-content>
+  

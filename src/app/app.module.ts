@@ -5,18 +5,21 @@ import { MyApp } from './app.component';
 import {HttpModule} from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 // Pages
 import { Login } from '../pages/login/login';
 import { Register } from "../pages/register/register";
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
+import { Search } from '../pages/search/search';
 import { ProfilePage } from '../pages/client/profile/profile';
 import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
 import { ClientPage } from "../pages/client/client";
 import { HistoryPage } from "../pages/client/history/history";
 
 // Providers
+
 import { AuthProvider } from "../shared/providers/auth-provider";
 import { ClientProvider } from "../shared/providers/client-provider";
 
@@ -32,6 +35,7 @@ import {HeaderComponent} from "../shared/components/header/header";
     Register,
     ItemDetailsPage,
     ListPage,
+    Search,
     ProfilePage,
     EditProfilePage,
     ClientPage,
@@ -49,6 +53,8 @@ import {HeaderComponent} from "../shared/components/header/header";
     Login,
     ItemDetailsPage,
     ListPage,
+    Search,
+    HeaderComponent,
     HeaderComponent,
     Register,
     ProfilePage,
@@ -59,6 +65,7 @@ import {HeaderComponent} from "../shared/components/header/header";
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     ClientProvider

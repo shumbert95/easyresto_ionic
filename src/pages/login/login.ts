@@ -23,7 +23,7 @@ export class Login {
             this.loading.dismiss();
             this.data = result;
             localStorage.setItem('token', this.data.token);
-            this.navCtrl.setRoot('Home');
+            this.navCtrl.setRoot('Search');
         }, (err) => {
             this.loading.dismiss();
             this.presentToast(err);
