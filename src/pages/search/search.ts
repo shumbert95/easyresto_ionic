@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthProvider } from '../../shared/providers/auth-provider';
 import { Register } from '../register/register';
+
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions, Marker} from '@ionic-native/google-maps';
+
 
 @IonicPage()
 @Component({
@@ -10,52 +13,65 @@ import { Register } from '../register/register';
 })
 export class Search {
 
-    loading: any;
-    registerCredentials = {_username: '', _password: ''};
-    data: any;
+    // @ViewChild('map') mapElement: ElementRef;
+    map: GoogleMap;
 
-    constructor(public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+
+    constructor(public navCtrl: NavController,
+        private _googleMaps: GoogleMaps,
+        public authService: AuthProvider,
+        public loadingCtrl: LoadingController,
+        private toastCtrl: ToastController) {
+
     }
 
-    doLogin() {
-        this.showLoader();
-        this.authService.login(this.registerCredentials).then((result) => {
-            this.loading.dismiss();
-            this.data = result;
-            localStorage.setItem('token', this.data.token);
-            this.navCtrl.setRoot('Home');
-        }, (err) => {
-            this.loading.dismiss();
-            this.presentToast(err);
+    ionViewDidLoad(){
+        this.loadMap();
+    }
+
+    // loadMap() {
+    //     this.map = GoogleMaps.create('map_canvas');  
+    //     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+    //     
+    // });
+
+    loadMap() {
+        
+        let mapOptions: GoogleMapOptions = {
+            camera: {
+                target: {
+                lat: 43.0741904,
+                lng: -89.3809802
+                },
+                zoom: 18,
+                tilt: 30
+            }
+        };
+    
+        this.map = GoogleMaps.create('map_canvas', mapOptions);
+    
+        let marker: Marker = this.map.addMarkerSync({
+            title: 'Ionic',
+            icon: 'blue',
+            animation: 'DROP',
+            position: {
+            lat: 43.0741904,
+            lng: -89.3809802
+            }
+        });
+        marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+            alert('clicked');
         });
     }
+      
 
-    register() {
-        this.navCtrl.push(Register);
-    }
+    // ngAfterViewInit() {
+    //     this.initMap();
+    // }
 
-    showLoader() {
-        this.loading = this.loadingCtrl.create({
-            content: 'Connexion...'
-        });
+    // initMap(){
+    //     let element = this.mapElement.nativeElement;
+    //     this.map = this._googleMaps.create(element);        
+    // }
 
-        this.loading.present();
-    }
-
-    presentToast(msg) {
-
-        let msgText = msg.status == 401 ? 'L\'email et/ou le mot de passe est/sont incorrect(s)' : msg;
-        let toast = this.toastCtrl.create({
-            message: msgText,
-            duration: 3000,
-            position: 'bottom',
-            dismissOnPageChange: true
-        });
-
-        toast.onDidDismiss(() => {
-            console.log('Dismissed toast');
-        });
-
-        toast.present();
-    }
 }
