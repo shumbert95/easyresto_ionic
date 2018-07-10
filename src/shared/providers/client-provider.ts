@@ -76,6 +76,22 @@ export class ClientProvider {
         });
     }
 
+    getFavorites() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+
+            this.http.get(apiUrl+'profile/favorites', {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
+
     getReservations() {
         return new Promise((resolve, reject) => {
             let headers = new Headers();

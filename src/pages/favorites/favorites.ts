@@ -1,25 +1,43 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FavoritesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, App, LoadingController, ToastController, IonicPage} from 'ionic-angular';
+import { ClientProvider } from "../../shared/providers/client-provider";
+import {Restaurant} from "../restaurant/restaurant";
 
 @IonicPage()
 @Component({
-  selector: 'page-favorites',
-  templateUrl: 'favorites.html',
+    selector: 'page-favorites',
+    templateUrl: 'favorites.html',
 })
 export class FavoritesPage {
+    public userFavorites: any = null;
+    public loading: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(public app: App, public navCtrl: NavController, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+        this.getFavorites();
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
-  }
+    showLoader(){
+        this.loading = this.loadingCtrl.create({
+            content: 'Chargement...'
+        });
 
+        this.loading.present();
+    }
+
+    toRestaurant(restaurantId) {
+        this.navCtrl.push(Restaurant, {
+            restaurantId: restaurantId
+        })
+    }
+
+    getFavorites(){
+        this.showLoader();
+        this.clientService.getFavorites().then((data) => {
+            this.loading.dismiss();
+            this.userFavorites = data.result;
+        }, (err) => {
+            this.loading.dismiss();
+            this.presentToast(err);
+        });
+    }
 }

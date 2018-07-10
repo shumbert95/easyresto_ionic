@@ -29,6 +29,7 @@ export class ProfilePage {
     }
 
     logout() {
+        console.log('toto');
         this.showLoader();
         this.authService.logout();
         this.loading.dismiss();
@@ -62,6 +63,10 @@ export class ProfilePage {
 
     toEdit(){
       this.navCtrl.push(EditProfilePage);
+    }
+
+    toFavorites() {
+        this.navCtrl.push(FavoritesPage);
     }
 
     doGetProfile(){     
