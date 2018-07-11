@@ -83,7 +83,11 @@ export class ClientProvider {
 
             this.http.get(apiUrl+'profile/favorites', {headers: headers})
                 .subscribe(res => {
-                    resolve(res.json());
+                    if (res._body){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
                 }, (err) => {
                     reject(err);
                 });
