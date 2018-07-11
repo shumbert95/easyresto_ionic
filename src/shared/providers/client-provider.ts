@@ -107,4 +107,8 @@ export class ClientProvider {
             return error;
         });
     }
+
+    logout() {
+        localStorage.clear();
+    }
 }

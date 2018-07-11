@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, App, LoadingController, ToastController, IonicPage} from 'ionic-angular';
 import { ClientProvider } from "../../../shared/providers/client-provider";
+import {Login} from "../../login/login";
+import {Restaurant} from "../../restaurant/restaurant";
 
 
 @IonicPage()
@@ -25,13 +27,17 @@ export class HistoryPage {
       this.loading.present();
   }
 
+    toRestaurant(restaurantId) {
+        this.navCtrl.push(Restaurant, {
+            restaurantId: restaurantId
+        })
+    }
+
   manageFavorite(reservationId) {
       this.showLoader();
       this.userReservations.forEach((reservation) => {
         if (reservation.id == reservationId) {
-            console.log(reservation.restaurant.favorite);
             if (reservation.restaurant.favorite == true) {
-                console.log('toto');
                 this.clientService.removeFromFavorites(reservation.restaurant.id).then((data) => {
                     this.loading.dismiss();
                     this.presentToast('Ce restaurant a été supprimé de vos favoris.');
@@ -67,6 +73,10 @@ export class HistoryPage {
       this.showLoader();
       this.clientService.getReservations().then((data) => {
           this.loading.dismiss();
+          if (!data.result) {
+              this.clientService.logout();
+              this.navCtrl.setRoot(Login);
+          }
           this.userReservations = data.result;
       }, (err) => {
           this.loading.dismiss();
