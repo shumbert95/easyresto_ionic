@@ -1,10 +1,17 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
-import { AuthProvider } from '../../shared/providers/auth-provider';
-import { Register } from '../register/register';
+import { NavController, Platform } from 'ionic-angular';
+import {SearchProvider} from "../../shared/providers/search-provider";
+import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/google-maps";
+import { Restaurant } from "../restaurant/restaurant";
 
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPosition, MarkerOptions, Marker} from '@ionic-native/google-maps';
-
+declare var google;
+let map: any;
+let infowindow: any;
+let options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
 
 @IonicPage()
 @Component({
@@ -12,66 +19,46 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, CameraPositio
   templateUrl: 'search.html'
 })
 export class Search {
-
-    // @ViewChild('map') mapElement: ElementRef;
     map: GoogleMap;
 
-
-    constructor(public navCtrl: NavController,
-        private _googleMaps: GoogleMaps,
-        public authService: AuthProvider,
-        public loadingCtrl: LoadingController,
-        private toastCtrl: ToastController) {
-
+    @ViewChild('map') mapElement: ElementRef;
+    constructor(public navCtrl: NavController, public searchService: SearchProvider) {
+        this.initMap();
     }
 
-    ionViewDidLoad(){
-        this.loadMap();
+    initMap() {
+        navigator.geolocation.getCurrentPosition((location) => {
+            map = new google.maps.Map(this.mapElement.nativeElement, {
+                center: {lat: 48.8311081, lng: 2.374514},
+                // center: {lat: location.coords.latitude, lng: location.coords.longitude},
+                zoom: 15
+            });
+
+            this.searchService.search(location.coords.latitude, location.coords.longitude).then((data: any) => {
+                console.log(data);
+                for (var i = 0; i < data.result.length; i++) {
+                    this.createMarker(data.result[i]);
+                }
+            }, (err) => {
+                console.log(err);
+            });
+
+            infowindow = new google.maps.InfoWindow();
+        }, (error) => {
+            console.log(error);
+        }, options);
     }
 
-    // loadMap() {
-    //     this.map = GoogleMaps.create('map_canvas');  
-    //     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-    //     
-    // });
-
-    loadMap() {
-        
-        let mapOptions: GoogleMapOptions = {
-            camera: {
-                target: {
-                lat: 43.0741904,
-                lng: -89.3809802
-                },
-                zoom: 18,
-                tilt: 30
-            }
-        };
-    
-        this.map = GoogleMaps.create('map_canvas', mapOptions);
-    
-        let marker: Marker = this.map.addMarkerSync({
-            title: 'Ionic',
-            icon: 'blue',
-            animation: 'DROP',
-            position: {
-            lat: 43.0741904,
-            lng: -89.3809802
-            }
+    createMarker(place) {
+        var placeLoc = new google.maps.LatLng(parseFloat(place.latitude),parseFloat(place.longitude));
+        var marker = new google.maps.Marker({
+            map: map,
+            position: placeLoc
         });
-        marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-            alert('clicked');
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
         });
     }
-      
-
-    // ngAfterViewInit() {
-    //     this.initMap();
-    // }
-
-    // initMap(){
-    //     let element = this.mapElement.nativeElement;
-    //     this.map = this._googleMaps.create(element);        
-    // }
-
 }

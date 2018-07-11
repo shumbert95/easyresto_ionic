@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {HomeModule} from "../pages/home/home.module";
+import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
 
 // Pages
 import { Login } from '../pages/login/login';
@@ -19,12 +20,14 @@ import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
 import { HistoryPage } from "../pages/client/history/history";
 import { CartPage } from "../pages/cart/cart";
 import { FavoritesPage } from "../pages/favorites/favorites";
+import { Search } from "../pages/search/search";
 
 // Providers
 
 import { AuthProvider } from "../shared/providers/auth-provider";
 import { ClientProvider } from "../shared/providers/client-provider";
 import { RestaurantProvider } from "../shared/providers/restaurant-provider";
+import { SearchProvider } from "../shared/providers/search-provider";
 
 // Components
 import {ComponentsModule} from "../shared/components/components.module";
@@ -44,6 +47,7 @@ import {Home} from "../pages/home/home";
     ProfilePage,
     EditProfilePage,
     HistoryPage,
+    Search,
     FavoritesPage
   ],
   imports: [
@@ -51,6 +55,7 @@ import {Home} from "../pages/home/home";
     IonicModule.forRoot(MyApp),
     ComponentsModule,
     HomeModule,
+    GooglePlacesAutocompleteComponentModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -68,6 +73,7 @@ import {Home} from "../pages/home/home";
     CartPage,
     Home,
     HistoryPage,
+    Search,
     FavoritesPage
   ],
   providers: [
@@ -77,7 +83,8 @@ import {Home} from "../pages/home/home";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     ClientProvider,
-    RestaurantProvider
+    RestaurantProvider,
+    SearchProvider
   ]
 })
 export class AppModule {

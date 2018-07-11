@@ -8,6 +8,7 @@ import {ComponentsModule} from "../../shared/components/components.module";
         Search,
     ],
     imports: [
+        IonicPageModule.forChild(Search),
         ComponentsModule
     ],
     entryComponents: [

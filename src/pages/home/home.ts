@@ -3,6 +3,7 @@ import { NavController, App, LoadingController, ToastController, IonicPage} from
 import { Login } from '../login/login';
 import {HistoryPage} from "../client/history/history";
 import {ProfilePage} from "../client/profile/profile";
+import { Search } from "../search/search";
 
 @IonicPage()
 @Component({
@@ -14,6 +15,7 @@ export class Home {
     isLoggedIn: boolean = false;
     tabProfile = ProfilePage;
     tabHistory = HistoryPage;
+    tabSearch = Search;
 
     constructor(public app: App, public navCtrl: NavController) {
         if(!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') {
