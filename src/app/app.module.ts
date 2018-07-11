@@ -6,6 +6,7 @@ import {HttpModule} from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import {HomeModule} from "../pages/home/home.module";
 
 // Pages
 import { Login } from '../pages/login/login';
@@ -43,13 +44,13 @@ import {Home} from "../pages/home/home";
     ProfilePage,
     EditProfilePage,
     HistoryPage,
-    Home,
     FavoritesPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ComponentsModule,
+    HomeModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
