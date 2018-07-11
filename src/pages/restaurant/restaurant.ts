@@ -33,16 +33,20 @@ export class Restaurant {
 
   ionViewDidLoad() {
       this.showLoader();
-      this.restaurantProvider.getRestaurantInfos(this.restaurantId).then((result) => {
-          this.restaurantData = result.result;
+      this.restaurantProvider.getRestaurantInfos(this.restaurantId).then((result: any) => {
+          if (result) {
+            this.restaurantData = result.result;
+          }
           this.restaurantData.addressFormatted = this.formattedAddress();
       }, (err) => {
           this.loading.dismiss();
           this.presentToast(err);
       });
 
-      this.restaurantProvider.getRestaurantMenu(this.restaurantId).then((result) => {
-          this.restaurantMenu = result.result;
+      this.restaurantProvider.getRestaurantMenu(this.restaurantId).then((result: any) => {
+          if (result.result) {
+            this.restaurantMenu = result.result;
+          }
           this.loading.dismiss()
       }, (err) => {
           this.loading.dismiss();

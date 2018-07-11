@@ -30,7 +30,11 @@ export class RestaurantProvider {
             headers.append('Content-Type', 'application/json');
             this.http.get(apiUrl+'restaurants/'+id+'/menu', {headers: headers})
                 .subscribe(res => {
-                    resolve(res.json());
+                    if (res){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
                 }, (err) => {
                     reject(err);
                 });
