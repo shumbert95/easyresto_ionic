@@ -3,7 +3,6 @@ import { NavController, App, LoadingController, ToastController, IonicPage} from
 import { ClientProvider } from "../../../shared/providers/client-provider";
 import {Login} from "../../login/login";
 import {Restaurant} from "../../restaurant/restaurant";
-import { ChangeDetectorRef } from "@angular/core";
 
 
 
@@ -16,9 +15,8 @@ export class HistoryPage {
 
   public userReservations: any;
   public loading: any;
-  public rerender: boolean;
 
-    constructor(private changeDetectorRef: ChangeDetectorRef,public app: App, public navCtrl: NavController, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+    constructor(public app: App, public navCtrl: NavController, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
     this.getReservations();
   }
 
