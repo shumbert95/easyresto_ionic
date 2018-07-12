@@ -32,17 +32,22 @@
         </ion-card-content>
 
         <ion-row>
-            <ion-col>
-                <div class="favorite-{{reservation.restaurant.favorite}}" (click)="manageFavorite(reservation.id)">
-                    <ion-icon name='star'></ion-icon>
-                    Favoris
-                </div>
-            </ion-col>
             <ion-col text-right>
-                <button ion-button clear small color="danger" icon-start>
-                    <ion-icon name='share-alt'></ion-icon>
-                    Noter
-                </button>
+                <ng-container *ngIf="!rerender">
+                    <div *ngIf="reservation.hasNote; else noteTemplate">
+                        Merci d'avoir noté
+                    </div>
+                    <ng-template #noteTemplate>
+                        <ion-select #N (ionChange)="manageNote(reservation.restaurant.id,reservation.id,N.value)">
+                            <ion-option selected disabled>Note</ion-option>
+                            <ion-option value=1>1</ion-option>
+                            <ion-option value=2>2</ion-option>
+                            <ion-option value=3>3</ion-option>
+                            <ion-option value=4>4</ion-option>
+                            <ion-option value=5>5</ion-option>
+                        </ion-select>
+                    </ng-template>
+                </ng-container>
             </ion-col>
         </ion-row>
 
