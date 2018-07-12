@@ -10,7 +10,7 @@ export class SearchProvider {
 
     constructor(public http: Http) {}
 
-    search(latitude, longitude, filters) {
+    search(latitude, longitude, filters, searchText) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
@@ -21,9 +21,16 @@ export class SearchProvider {
                     endpoint += '&categories[]='+filters[i];
                 }
             }
+            if (searchText.length > 4) {
+                endpoint += '&name='+searchText;
+            }
             this.http.get(endpoint, {headers: headers})
                 .subscribe(res => {
-                    resolve(res.json());
+                    if (res._body){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
                 }, (err) => {
                     reject(err);
                 });

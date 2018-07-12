@@ -26,12 +26,30 @@ export class Search {
     public latitude: any;
     public longitude: any;
     public markers = [];
+    searchText: string = '';
 
 
     @ViewChild('map') mapElement: ElementRef;
     constructor(public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider) {
         this.initMap();
         this.getCategories();
+    }
+
+    onInputChange() {
+        if (this.searchText.length >= 4) {
+            this.searchService.search(this.latitude, this.longitude, this.filters, this.searchText).then((data: any) => {
+                if (data.result.length) {
+                    this.setMapOnAll(null);
+                    this.markers = [];
+                    for (var i = 0; i < data.result.length; i++) {
+                        this.createMarker(data.result[i]);
+                    }
+                }
+            }, (err) => {
+                console.log(err);
+            });
+        }
+        console.log(this.searchText.length);
     }
 
     initMap() {
@@ -41,10 +59,10 @@ export class Search {
             this.map = new google.maps.Map(this.mapElement.nativeElement, {
                 // center: {lat: 48.8311081,  lng: 2.374514},
                 center: {lat: location.coords.latitude, lng: location.coords.longitude},
-                zoom: 15
+                zoom: 11
             });
 
-            this.searchService.search(location.coords.latitude, location.coords.longitude, this.filters).then((data: any) => {
+            this.searchService.search(location.coords.latitude, location.coords.longitude, this.filters, this.searchText).then((data: any) => {
                 for (var i = 0; i < data.result.length; i++) {
                     this.createMarker(data.result[i]);
                 }
@@ -71,7 +89,7 @@ export class Search {
             this.filters.splice(this.filters.indexOf(categoryId), 1);
         }
 
-        this.searchService.search(this.latitude, this.longitude, this.filters).then((data: any) => {
+        this.searchService.search(this.latitude, this.longitude, this.filters, this.searchText).then((data: any) => {
             this.setMapOnAll(null);
             this.markers = [];
             for (var i = 0; i < data.result.length; i++) {
@@ -90,7 +108,7 @@ export class Search {
         });
         this.markers.push(marker);
     }
-
+a
     setMapOnAll(map) {
         for (var i = 0; i < this.markers.length; i++) {
             this.markers[i].setMap(map);

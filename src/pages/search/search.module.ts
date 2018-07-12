@@ -14,4 +14,4 @@ import {ComponentsModule} from "../../shared/components/components.module";
     entryComponents: [
     ],
 })
-export class AccountPageModule {}
+export class SearchModule {}
