@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import {SearchProvider} from "../../shared/providers/search-provider";
+import { RestaurantProvider } from "../../shared/providers/restaurant-provider";
 import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/google-maps";
 import { Restaurant } from "../restaurant/restaurant";
 
@@ -20,22 +21,30 @@ let options = {
 })
 export class Search {
     map: GoogleMap;
+    public categories: any;
+    public filters = [];
+    public latitude: any;
+    public longitude: any;
+    public markers = [];
+
 
     @ViewChild('map') mapElement: ElementRef;
-    constructor(public navCtrl: NavController, public searchService: SearchProvider) {
+    constructor(public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider) {
         this.initMap();
+        this.getCategories();
     }
 
     initMap() {
         navigator.geolocation.getCurrentPosition((location) => {
-            map = new google.maps.Map(this.mapElement.nativeElement, {
-                center: {lat: 48.8311081, lng: 2.374514},
-                // center: {lat: location.coords.latitude, lng: location.coords.longitude},
+            this.latitude =  location.coords.latitude;
+            this.longitude =  location.coords.longitude;
+            this.map = new google.maps.Map(this.mapElement.nativeElement, {
+                // center: {lat: 48.8311081,  lng: 2.374514},
+                center: {lat: location.coords.latitude, lng: location.coords.longitude},
                 zoom: 15
             });
 
-            this.searchService.search(location.coords.latitude, location.coords.longitude).then((data: any) => {
-                console.log(data);
+            this.searchService.search(location.coords.latitude, location.coords.longitude, this.filters).then((data: any) => {
                 for (var i = 0; i < data.result.length; i++) {
                     this.createMarker(data.result[i]);
                 }
@@ -49,16 +58,42 @@ export class Search {
         }, options);
     }
 
+    getCategories() {
+        this.restaurantService.getCategories().then((data: any) => {
+            this.categories = data.result;
+        })
+    }
+
+    updateFilters(categoryId){
+        if (this.filters.indexOf(categoryId) == -1) {
+            this.filters.push(categoryId);
+        } else {
+            this.filters.splice(this.filters.indexOf(categoryId), 1);
+        }
+
+        this.searchService.search(this.latitude, this.longitude, this.filters).then((data: any) => {
+            this.setMapOnAll(null);
+            this.markers = [];
+            for (var i = 0; i < data.result.length; i++) {
+                this.createMarker(data.result[i]);
+            }
+        }, (err) => {
+            console.log(err);
+        });
+    }
+
     createMarker(place) {
         var placeLoc = new google.maps.LatLng(parseFloat(place.latitude),parseFloat(place.longitude));
         var marker = new google.maps.Marker({
-            map: map,
+            map: this.map,
             position: placeLoc
         });
+        this.markers.push(marker);
+    }
 
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(place.name);
-            infowindow.open(map, this);
-        });
+    setMapOnAll(map) {
+        for (var i = 0; i < this.markers.length; i++) {
+            this.markers[i].setMap(map);
+        }
     }
 }
