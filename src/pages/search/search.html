@@ -1,7 +1,11 @@
 <ion-content class="search-content">
     <app-header title="Search" menu="false"></app-header>
 
-    <ion-input type="text" class="" [(ngModel)]='searchText' (ionChange)='onInputChange()'><ion-icon name="search"></ion-icon></ion-input>
+    <ion-item>
+        <ion-label><ion-icon name="search"></ion-icon></ion-label>
+        <ion-input type="text" class="" [(ngModel)]='searchText' (ionChange)='onInputChange()'></ion-input>
+    </ion-item>
+
 
     <div #map id="map"></div>
     <ng-container *ngIf="categories">
