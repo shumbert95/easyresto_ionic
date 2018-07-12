@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { RestaurantProvider } from '../../shared/providers/restaurant-provider';
+import { ClientProvider } from "../../shared/providers/client-provider";
+
 
 /**
  * Generated class for the RestaurantPage page.
@@ -19,7 +21,7 @@ export class Restaurant {
   public restaurantMenu: any;
   loading: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restaurantProvider: RestaurantProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public clientService: ClientProvider, public restaurantProvider: RestaurantProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
       this.restaurantId = navParams.get("restaurantId");
   }
 
@@ -70,6 +72,27 @@ export class Restaurant {
 
       toast.present();
   }
+
+  /*manageFavorite(reservationId) {
+      this.showLoader();
+      this.userReservations.forEach((reservation) => {
+        if (reservation.id == reservationId) {
+            if (reservation.restaurant.favorite == true) {
+                this.clientService.removeFromFavorites(reservation.restaurant.id).then((data) => {
+                    this.loading.dismiss();
+                    this.presentToast('Ce restaurant a été supprimé de vos favoris.');
+                    this.userReservations = this.getReservations();
+                });
+            } else {
+                this.clientService.addToFavorites(reservation.restaurant.id).then((data) => {
+                    this.loading.dismiss();
+                    this.presentToast('Ce restaurant a été ajouté à vos favoris.');
+                    this.userReservations = this.getReservations();
+                });
+            }
+        }
+      });
+  }*/
 
   formattedAddress() {
     return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''

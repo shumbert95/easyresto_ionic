@@ -48,7 +48,6 @@ export class ClientProvider {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
-
             this.http.get(apiUrl+'restaurants/' + restaurantId + '/favorites/remove', {headers: headers})
                 .subscribe(res => {
                     resolve(res.json());
@@ -66,6 +65,24 @@ export class ClientProvider {
             headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
 
             this.http.get(apiUrl+'restaurants/' + restaurantId + '/favorites/add', {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
+
+    addNote(restaurantId,reservationId,note) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+            headers.append('Access-Control-Allow-Origin', '*');      
+            let data = '{"note" : '+note+'}';
+            this.http.post(apiUrl+'restaurants/' + restaurantId + '/reservations/' + reservationId +'/note',data, {headers: headers})
                 .subscribe(res => {
                     resolve(res.json());
                 }, (err) => {
