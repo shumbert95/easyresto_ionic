@@ -31,7 +31,7 @@ export class Login {
                 this.loading.dismiss();
                 this.data = result;
                 localStorage.setItem('token', this.data.token);
-                this.navCtrl.setRoot('Search');
+                this.navCtrl.setRoot('Home');
             }
 
         }, (err) => {
