@@ -26,7 +26,17 @@
     background-color : $violet;
 }
 
-.toolbar-title{
+.toolbar-title,
+.back-button-icon-md{
     color: #FFFFFF;
+}
+
+.toolbar-title{
+    text-align: center;
+}
+
+.back-button.show-back-button{
+    position: absolute;
+    z-index: 2;
 }
 
