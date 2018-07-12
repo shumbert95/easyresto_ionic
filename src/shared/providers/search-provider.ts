@@ -26,7 +26,7 @@ export class SearchProvider {
             }
             this.http.get(endpoint, {headers: headers})
                 .subscribe(res => {
-                    if (res._body){
+                    if (res.status == 200){
                         resolve(res.json());
                     } else {
                         resolve({'result': []});

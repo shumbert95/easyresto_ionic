@@ -36,7 +36,7 @@ export class Search {
     }
 
     onInputChange() {
-        if (this.searchText.length >= 4) {
+        if (this.searchText.length >= 4 || this.searchText.length == 0) {
             this.searchService.search(this.latitude, this.longitude, this.filters, this.searchText).then((data: any) => {
                 if (data.result.length) {
                     this.setMapOnAll(null);
@@ -49,7 +49,6 @@ export class Search {
                 console.log(err);
             });
         }
-        console.log(this.searchText.length);
     }
 
     initMap() {
