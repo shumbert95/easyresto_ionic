@@ -6,6 +6,8 @@ import {HttpModule} from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import {HomeModule} from "../pages/home/home.module";
+import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
 
 // Pages
 import { Login } from '../pages/login/login';
@@ -17,12 +19,15 @@ import { ProfilePage } from '../pages/client/profile/profile';
 import { EditProfilePage } from '../pages/client/edit-profile/edit-profile';
 import { HistoryPage } from "../pages/client/history/history";
 import { CartPage } from "../pages/cart/cart";
+import { FavoritesPage } from "../pages/favorites/favorites";
+import { Search } from "../pages/search/search";
 
 // Providers
 
 import { AuthProvider } from "../shared/providers/auth-provider";
 import { ClientProvider } from "../shared/providers/client-provider";
 import { RestaurantProvider } from "../shared/providers/restaurant-provider";
+import { SearchProvider } from "../shared/providers/search-provider";
 
 // Components
 import {ComponentsModule} from "../shared/components/components.module";
@@ -42,12 +47,15 @@ import {Home} from "../pages/home/home";
     ProfilePage,
     EditProfilePage,
     HistoryPage,
-    Home
+    Search,
+    FavoritesPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ComponentsModule,
+    HomeModule,
+    GooglePlacesAutocompleteComponentModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -64,7 +72,9 @@ import {Home} from "../pages/home/home";
     EditProfilePage,
     CartPage,
     Home,
-    HistoryPage
+    HistoryPage,
+    Search,
+    FavoritesPage
   ],
   providers: [
     StatusBar,
@@ -73,7 +83,8 @@ import {Home} from "../pages/home/home";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     ClientProvider,
-    RestaurantProvider
+    RestaurantProvider,
+    SearchProvider
   ]
 })
 export class AppModule {

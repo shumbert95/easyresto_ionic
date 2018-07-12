@@ -44,7 +44,23 @@ export class ClientProvider {
         });
     }
 
-    addToFavorite(restaurantId) {
+    removeFromFavorites(restaurantId) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+
+            this.http.get(apiUrl+'restaurants/' + restaurantId + '/favorites/remove', {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
+
+    addToFavorites(restaurantId) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
@@ -52,6 +68,26 @@ export class ClientProvider {
             this.http.get(apiUrl+'restaurants/' + restaurantId + '/favorites/add', {headers: headers})
                 .subscribe(res => {
                     resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
+
+    getFavorites() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+
+            this.http.get(apiUrl+'profile/favorites', {headers: headers})
+                .subscribe(res => {
+                    if (res){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
                 }, (err) => {
                     reject(err);
                 });
@@ -74,5 +110,9 @@ export class ClientProvider {
         }).catch(function(error){
             return error;
         });
+    }
+
+    logout() {
+        localStorage.clear();
     }
 }

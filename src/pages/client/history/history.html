@@ -2,7 +2,7 @@
     <app-header title="Mes commandes"></app-header>
     <ion-card *ngFor="let reservation of userReservations">
         <img src="assets/img/nin-live.png"/>
-        <ion-card-content>
+        <ion-card-content (click)="toRestaurant(reservation.restaurant.id)">
             <ion-card-title>
                 {{reservation.restaurant.name}}
             </ion-card-title>
@@ -27,7 +27,7 @@
 
         <ion-row>
             <ion-col>
-                <div (click)="addToFavorite(reservation.restaurant.id)">
+                <div class="favorite-{{reservation.restaurant.favorite}}" (click)="manageFavorite(reservation.id)">
                     <ion-icon name='star'></ion-icon>
                     Favoris
                 </div>

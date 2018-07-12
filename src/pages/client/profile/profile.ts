@@ -4,6 +4,7 @@ import { ClientProvider } from '../../../shared/providers/client-provider';
 import { AuthProvider } from "../../../shared/providers/auth-provider";
 import { Login } from '../../login/login';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { FavoritesPage } from "../../favorites/favorites";
 
 import {Http} from '@angular/http';
 
@@ -28,6 +29,7 @@ export class ProfilePage {
     }
 
     logout() {
+        console.log('toto');
         this.showLoader();
         this.authService.logout();
         this.loading.dismiss();
@@ -61,6 +63,10 @@ export class ProfilePage {
 
     toEdit(){
       this.navCtrl.push(EditProfilePage);
+    }
+
+    toFavorites() {
+        this.navCtrl.push(FavoritesPage);
     }
 
     doGetProfile(){     
