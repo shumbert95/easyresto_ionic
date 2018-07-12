@@ -33,7 +33,6 @@
 
         <ion-row>
             <ion-col text-right>
-                <ng-container *ngIf="!rerender">
                     <div *ngIf="reservation.hasNote; else noteTemplate">
                         Merci d'avoir noté
                     </div>
@@ -47,7 +46,6 @@
                             <ion-option value=5>5</ion-option>
                         </ion-select>
                     </ng-template>
-                </ng-container>
             </ion-col>
         </ion-row>
 
