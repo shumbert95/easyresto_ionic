@@ -2,8 +2,8 @@
   <app-header title="Connexion" account="false" cart="false"></app-header>
   <ion-row class="logo-row">
     <ion-col></ion-col>
-    <ion-col width-67>
-      <img src="http://placehold.it/300x200"/>
+    <ion-col>
+      <h1>Easy Resto</h1>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
@@ -18,20 +18,28 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="_password" [(ngModel)]="registerCredentials._password" required></ion-input>
+              <ion-input type="password" placeholder="Mot de passe" name="_password" [(ngModel)]="registerCredentials._password" required></ion-input>
             </ion-item>
+
+            <ion-row>
+              <ion-col class="signup-col">
+                <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Se connecter</button>
+              </ion-col>
+            </ion-row>
+            
+            <button ion-button class="register-btn" block clear (click)="register()">S'inscrire</button>            
 
           </ion-list>
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <!-- <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Se connecter</button>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </form>
-    <button ion-button class="register-btn" block clear (click)="register()">Create New Account</button>
+    <!-- <button ion-button class="register-btn" block clear (click)="register()">S'inscrire</button> -->
 
   </div>
 </ion-content>
