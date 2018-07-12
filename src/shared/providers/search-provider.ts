@@ -24,9 +24,10 @@ export class SearchProvider {
             if (searchText.length > 4) {
                 endpoint += '&name='+searchText;
             }
+            console.log(endpoint);
             this.http.get(endpoint, {headers: headers})
                 .subscribe(res => {
-                    if (res.status == 200){
+                    if (res){
                         resolve(res.json());
                     } else {
                         resolve({'result': []});

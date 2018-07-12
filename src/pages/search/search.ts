@@ -4,6 +4,7 @@ import {SearchProvider} from "../../shared/providers/search-provider";
 import { RestaurantProvider } from "../../shared/providers/restaurant-provider";
 import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/google-maps";
 import { Restaurant } from "../restaurant/restaurant";
+import {Login} from "../login/login";
 
 declare var google;
 let map: any;
@@ -94,10 +95,13 @@ export class Search {
         }
 
         this.searchService.search(this.latitude, this.longitude, this.filters, this.searchText).then((data: any) => {
-            this.setMapOnAll(null);
-            this.markers = [];
-            for (var i = 0; i < data.result.length; i++) {
-                this.createMarker(data.result[i]);
+            console.log(data);
+            if (typeof(data.result) !== 'undefined') {
+                this.setMapOnAll(null);
+                this.markers = [];
+                for (var i = 0; i < data.result.length; i++) {
+                    this.createMarker(data.result[i]);
+                }
             }
         }, (err) => {
             console.log(err);
