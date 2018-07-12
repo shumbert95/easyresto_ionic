@@ -24,10 +24,16 @@ export class Login {
     doLogin() {
         this.showLoader();
         this.authService.login(this.registerCredentials).then((result) => {
-            this.loading.dismiss();
-            this.data = result;
-            localStorage.setItem('token', this.data.token);
-            this.navCtrl.setRoot('Search');
+            if (result.status == 401) {
+                this.loading.dismiss();
+                this.presentToast('Vos identifiants ne sont pas corrects.');
+            } else {
+                this.loading.dismiss();
+                this.data = result;
+                localStorage.setItem('token', this.data.token);
+                this.navCtrl.setRoot('Home');
+            }
+
         }, (err) => {
             this.loading.dismiss();
             this.presentToast(err);

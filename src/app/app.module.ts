@@ -33,6 +33,7 @@ import { SearchProvider } from "../shared/providers/search-provider";
 import {ComponentsModule} from "../shared/components/components.module";
 import {HeaderComponent} from "../shared/components/header/header";
 import {Home} from "../pages/home/home";
+import {SearchModule} from "../pages/search/search.module";
 
 
 @NgModule({
@@ -47,7 +48,6 @@ import {Home} from "../pages/home/home";
     ProfilePage,
     EditProfilePage,
     HistoryPage,
-    Search,
     FavoritesPage
   ],
   imports: [
@@ -56,7 +56,8 @@ import {Home} from "../pages/home/home";
     ComponentsModule,
     HomeModule,
     GooglePlacesAutocompleteComponentModule,
-    HttpModule
+    HttpModule,
+    SearchModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

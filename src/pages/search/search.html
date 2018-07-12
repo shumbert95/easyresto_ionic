@@ -1,8 +1,12 @@
 <ion-content class="search-content">
     <app-header title="Search" menu="false"></app-header>
-    <google-places-autocomplete (callback)="detail($event[0])" key="AIzaSyCSgxI3yJ_8ke4cRCa7gX2ZdhQUfqQh7pk"></google-places-autocomplete>
 
-    <!--<ion-input #places type="text" name="search"></ion-input>-->
+    <ion-item>
+        <ion-label><ion-icon name="search"></ion-icon></ion-label>
+        <ion-input type="text" class="" [(ngModel)]='searchText' (ionChange)='onInputChange()'></ion-input>
+    </ion-item>
+
+
     <div #map id="map"></div>
     <ng-container *ngIf="categories">
         <ion-list>
