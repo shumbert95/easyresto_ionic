@@ -12,10 +12,7 @@
           <span *ngFor="let category of favorite.restaurant.categories" class="restaurant-tag">{{category.name}} </span>
         </div>
         <div class="restaurant-orders">
-          {{favorite.ordersCount}} Commande<span *ngIf="favorite.restaurant.ordersCount > 1">s</span>
-        </div>
-        <div class="star">
-          <ion-icon name="star" (click)="removeFromFavorites(favorite.restaurant.id)"></ion-icon>
+          {{favorite.ordersCount}} Commande<span *ngIf="favorite.ordersCount > 1">s</span>
         </div>
       </div>
     </ion-item>

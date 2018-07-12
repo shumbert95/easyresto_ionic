@@ -27,6 +27,7 @@ export class Search {
     public latitude: any;
     public longitude: any;
     public markers = [];
+    isLoggedId: boolean;
     searchText: string = '';
 
 

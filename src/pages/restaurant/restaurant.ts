@@ -73,27 +73,6 @@ export class Restaurant {
       toast.present();
   }
 
-  /*manageFavorite(reservationId) {
-      this.showLoader();
-      this.userReservations.forEach((reservation) => {
-        if (reservation.id == reservationId) {
-            if (reservation.restaurant.favorite == true) {
-                this.clientService.removeFromFavorites(reservation.restaurant.id).then((data) => {
-                    this.loading.dismiss();
-                    this.presentToast('Ce restaurant a été supprimé de vos favoris.');
-                    this.userReservations = this.getReservations();
-                });
-            } else {
-                this.clientService.addToFavorites(reservation.restaurant.id).then((data) => {
-                    this.loading.dismiss();
-                    this.presentToast('Ce restaurant a été ajouté à vos favoris.');
-                    this.userReservations = this.getReservations();
-                });
-            }
-        }
-      });
-  }*/
-
   formattedAddress() {
     return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''
   }
