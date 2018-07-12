@@ -1,8 +1,16 @@
 <ion-content class="search-content">
     <app-header title="Search" menu="false"></app-header>
-    <google-places-autocomplete (callback)="detail($event[0])" key="AIzaSyDPweSoTIOQZLaSLzObQHBGKiXOSjcx0fs"></google-places-autocomplete>
+    <google-places-autocomplete (callback)="detail($event[0])" key="AIzaSyCSgxI3yJ_8ke4cRCa7gX2ZdhQUfqQh7pk"></google-places-autocomplete>
 
     <!--<ion-input #places type="text" name="search"></ion-input>-->
     <div #map id="map"></div>
+    <ng-container *ngIf="categories">
+        <ion-list>
+            <button ion-item *ngFor="let category of categories">
+                <ion-label>{{category.name}}</ion-label>
+                <ion-checkbox  (click)="updateFilters(category.id)"></ion-checkbox>
+            </button>
+        </ion-list>
+    </ng-container>
 </ion-content>
   

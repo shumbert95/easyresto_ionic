@@ -40,4 +40,21 @@ export class RestaurantProvider {
                 });
         });
     }
+
+    getCategories() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            this.http.get(apiUrl+'restaurants/categories', {headers: headers})
+                .subscribe(res => {
+                    if (res){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
 }
