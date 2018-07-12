@@ -34,6 +34,26 @@ export class HistoryPage {
         })
     }
 
+    manageFavorite(reservationId) {
+      this.showLoader();
+      this.userReservations.forEach((reservation) => {
+        if (reservation.id == reservationId) {
+            if (reservation.restaurant.favorite == true) {
+                this.clientService.removeFromFavorites(reservation.restaurant.id).then((data) => {
+                    this.loading.dismiss();
+                    this.presentToast('Ce restaurant a été supprimé de vos favoris.');
+                    this.userReservations = this.getReservations();
+                });
+            } else {
+                this.clientService.addToFavorites(reservation.restaurant.id).then((data) => {
+                    this.loading.dismiss();
+                    this.presentToast('Ce restaurant a été ajouté à vos favoris.');
+                    this.userReservations = this.getReservations();
+                });
+            }
+        }
+      });
+  }
   
 
     presentToast(msg) {
