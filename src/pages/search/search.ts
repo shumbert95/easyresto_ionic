@@ -75,7 +75,6 @@ export class Search {
             }, (err) => {
                 console.log(err);
             });
-
             infowindow = new google.maps.InfoWindow();
         }, (error) => {
             console.log(error);
@@ -116,11 +115,33 @@ export class Search {
             position: placeLoc
         });
         this.markers.push(marker);
+        console.log(place);
+        let content = this.getMarkerInfo(place);
+        let infoWindow = new google.maps.InfoWindow(
+            {
+                closeBoxURL: "",
+                content: content
+            }
+        );
+        google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
+            document.getElementById('tap').addEventListener('click', () => {
+                console.log("touch");
+                this.navCtrl.push();
+            });
+        });
+        infoWindow.open(this.map, marker);
     }
 a
     setMapOnAll(map) {
         for (var i = 0; i < this.markers.length; i++) {
             this.markers[i].setMap(map);
         }
+    }
+
+    getMarkerInfo(place) {
+       return '<div class="infowindow">'
+                    +place.name+
+                    '   <p id="tap">your text here</p>' +
+                '</div>';
     }
 }

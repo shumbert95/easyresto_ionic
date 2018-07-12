@@ -1,7 +1,7 @@
 <ion-content>
     <app-header title="Mes commandes"></app-header>
     <ion-card *ngFor="let reservation of userReservations">
-        <img src="assets/img/nin-live.png"/>
+        <img src="{{reservation?.restaurant.picture}}"/>
         <ion-card-content (click)="toRestaurant(reservation.restaurant.id)">
             <ion-card-title>
                 {{reservation.restaurant.name}}
