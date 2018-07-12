@@ -31,6 +31,11 @@ export class Search {
 
     @ViewChild('map') mapElement: ElementRef;
     constructor(public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider) {
+        if(!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') {
+            this.navCtrl.setRoot(Login)
+        } else {
+            this.isLoggedIn = true;
+        }
         this.initMap();
         this.getCategories();
     }
