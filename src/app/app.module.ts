@@ -21,6 +21,8 @@ import { HistoryPage } from "../pages/client/history/history";
 import { CartPage } from "../pages/cart/cart";
 import { FavoritesPage } from "../pages/favorites/favorites";
 import { Search } from "../pages/search/search";
+import { DetailPage } from "../pages/restaurant/detail/detail";
+
 
 // Providers
 
@@ -48,7 +50,8 @@ import {SearchModule} from "../pages/search/search.module";
     ProfilePage,
     EditProfilePage,
     HistoryPage,
-    FavoritesPage
+    FavoritesPage,
+    DetailPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import {SearchModule} from "../pages/search/search.module";
     Home,
     HistoryPage,
     Search,
-    FavoritesPage
+    FavoritesPage,
+    DetailPage
   ],
   providers: [
     StatusBar,

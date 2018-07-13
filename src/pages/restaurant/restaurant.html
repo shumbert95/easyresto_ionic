@@ -5,18 +5,33 @@
         <div class="infos">
             <h1>{{restaurantData?.name}}</h1>
             <p><ion-icon name="pin"></ion-icon> {{restaurantData?.addressFormatted}}</p>
-            <span *ngFor="let category of restaurantData?.categories">{{category.name}}</span>
+            <p><ion-icon name="call"></ion-icon> {{restaurantData?.phone}}</p>
+
+            {{restaurantData?.averageNote}} <ion-icon name="star"></ion-icon><br><br>
+            <span *ngFor="let category of restaurantData?.categories"><ion-badge>{{category.name}}</ion-badge></span>
+            <br><br><a href="{{restaurantData?.website">Site web</a><br>
         </div>
         <div class="more-infos">
             <span>Lieu et horaires</span>
-            <span>Voir les informations <ion-icon name="arrow-forward"></ion-icon></span>
+            <span (click)="detailsPage(restaurantData)" >Voir les informations <ion-icon  name="arrow-forward"></ion-icon></span>
         </div>
         <div class="menu">
             <ion-item-group *ngFor="let tab of restaurantMenu">
                 <ion-item-divider color="light">{{tab.name}}</ion-item-divider>
                 <ion-item *ngFor="let content of tab.content" class="{{content.type == 1 ? 'meal' : 'category'}}">
-                    {{content.name}}
-                    <ion-icon name="add"></ion-icon>
+                    <div *ngIf="content.type == 1">
+                        {{content.name}} {{content.price}}
+                        <p>{{content.description}}</p>
+                        <button ion-button clear small color="danger" icon-start>              
+                            <ion-icon name="add"></ion-icon>
+                            Add
+                        </button>
+                    </div>
+                    <div *ngIf="content.type == 2">
+                            <hr>
+                            <b>{{content.name}}</b>  
+                            <hr>     
+                        </div>
                 </ion-item>
             </ion-item-group>
         </div>

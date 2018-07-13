@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { RestaurantProvider } from '../../shared/providers/restaurant-provider';
 import { ClientProvider } from "../../shared/providers/client-provider";
+import { DetailPage } from "./detail/detail";
+
 
 
 /**
@@ -48,6 +50,7 @@ export class Restaurant {
       this.restaurantProvider.getRestaurantMenu(this.restaurantId).then((result: any) => {
           if (result.result) {
             this.restaurantMenu = result.result;
+            console.log(result);
           }
           this.loading.dismiss()
       }, (err) => {
@@ -75,5 +78,11 @@ export class Restaurant {
 
   formattedAddress() {
     return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''
+  }
+
+  detailsPage(restaurant){
+    this.navCtrl.push(DetailPage, {
+        restaurantData: restaurant
+    });
   }
 }
