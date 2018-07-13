@@ -13,7 +13,7 @@
             <ion-badge *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>
         </div>
         <div class="card-address">
-            <ion-icon class="icon-pin" name="pin"></ion-icon><span>{{formattedAddress(currentRestaurant.address, currentRestaurant.postalCode, currentRestaurant.city)}}</span>
+        <span><i class="zmdi zmdi-pin icon-pin"></i>{{formattedAddress(currentRestaurant.address, currentRestaurant.postalCode, currentRestaurant.city)}}</span>
         </div>
         <ion-icon name="arrow-forward" class="go-to-page"></ion-icon>
     </ion-card>

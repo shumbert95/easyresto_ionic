@@ -32,8 +32,9 @@
     font-size: 0.8em;
     display: inline-block;
     max-width:40%;
-    ion-icon.icon-pin {
-      font-size: 15px;
+    .icon-pin {
+      font-size: 1.1em;
+      margin-right:2px;
     }
   }
 
@@ -51,6 +52,7 @@
     color: black;
     display: inline-block;
     max-width: 40%;
+    margin-bottom: 5px;
   }
 
 }
