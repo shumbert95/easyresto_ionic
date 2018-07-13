@@ -71,4 +71,21 @@ export class RestaurantProvider {
                 });
         });
     }
+
+    getMoments() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            this.http.get(apiUrl+'restaurants/moments', {headers: headers})
+                .subscribe(res => {
+                    if (res){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
 }

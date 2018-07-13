@@ -8,15 +8,26 @@
 
 
     <div #map id="map"></div>
-    <!--<ng-container *ngIf="categories">-->
-        <!--<ion-list>-->
-            <!--<button ion-item *ngFor="let category of categories">-->
-                <!--<ion-label>{{category.name}}</ion-label>-->
-                <!--<ion-checkbox  (click)="updateFilters(category.id)"></ion-checkbox>-->
-            <!--</button>-->
-        <!--</ion-list>-->
-    <!--</ng-container>-->
-        <ion-grid *ngIf="showDetails" class="detailsModale" (click)="toRestaurant(1)">
+
+    <ng-container *ngIf="categories">
+        <ion-list>
+            <button ion-item *ngFor="let category of categories">
+                <ion-label>{{category.name}}</ion-label>
+                <ion-checkbox  (click)="updateFilters(category.id,1)"></ion-checkbox>
+            </button>
+        </ion-list>
+    </ng-container>
+
+    <ng-container *ngIf="moments">
+        <ion-list>
+            <button ion-item *ngFor="let moment of moments">
+                <ion-label>{{moment.name}}</ion-label>
+                <ion-checkbox  (click)="updateFilters(moment.id,2)"></ion-checkbox>
+            </button>
+        </ion-list>
+    </ng-container>
+
+        <ion-grid *ngIf="showDetails" class="detailsModale" (click)="toRestaurant(2)">
             <ion-row>
                 <ion-col>
                     <!--<img id="modale-picture" src="{{currentRestaurant?.picture}}" />-->
