@@ -10,6 +10,11 @@
   z-index: 2;
   vertical-align: middle;
 
+  .card-close {
+    float: right;
+    margin-right: 5px;
+    font-size: 20px;
+  }
   .go-to-page {
     float: right;
     font-size: 30px;

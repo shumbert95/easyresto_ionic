@@ -1,23 +1,13 @@
 <ion-content class="search-content">
     <app-header title="Recherche" menu="false"></app-header>
-
     <ion-item>
         <ion-label><ion-icon name="search"></ion-icon></ion-label>
         <ion-input type="text" class="" [(ngModel)]='searchText' (ionChange)='onInputChange()'></ion-input>
     </ion-item>
-
-
     <div #map id="map"></div>
-    <!--<ng-container *ngIf="categories">-->
-        <!--<ion-list>-->
-            <!--<button ion-item *ngFor="let category of categories">-->
-                <!--<ion-label>{{category.name}}</ion-label>-->
-                <!--<ion-checkbox  (click)="updateFilters(category.id)"></ion-checkbox>-->
-            <!--</button>-->
-        <!--</ion-list>-->
-    <!--</ng-container>-->
-    <ion-card *ngIf="showDetails && currentRestaurant"  class="detailsModale">
+    <ion-card *ngIf="showDetails && currentRestaurant"  (click)="toRestaurant(currentRestaurant.id)" class="detailsModale">
         <img class="card-image" src="{{currentRestaurant.picture}}" />
+        <ion-icon class="card-close" name="close" (click)="closeModale()"></ion-icon>
         <div class="card-title">{{currentRestaurant.name}}</div>
         <div class="card-tags">
             <ion-badge *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>
@@ -27,29 +17,5 @@
         </div>
         <ion-icon name="arrow-forward" class="go-to-page"></ion-icon>
     </ion-card>
-        <!--<ion-grid *ngIf="showDetails && currentRestaurant" class="detailsModale" (click)="toRestaurant(1)">-->
-            <!--<ion-row>-->
-                <!--<ion-col>-->
-                    <!--<img id="modale-picture" src="{{currentRestaurant?.picture}}" />-->
-                <!--</ion-col>-->
-                <!--<ion-col>-->
-                    <!--<span id="modale-name">{{currentRestaurant?.name}}</span>-->
-                <!--</ion-col>-->
-                <!--<ion-col (click)="closeModale()">-->
-                    <!--<ion-icon name="close"></ion-icon>-->
-                <!--</ion-col>-->
-            <!--</ion-row>-->
-            <!--<ion-row>-->
-                <!--<ion-col>-->
-                <!--</ion-col>-->
-                <!--<ion-col>-->
-                    <!--<ion-badge color="secondary" *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>-->
-                    <!--<ion-icon name="star"></ion-icon>-->
-                <!--</ion-col>-->
-                <!--<ion-col col-2>-->
-                    <!--<ion-icon name="arrow-dropright"></ion-icon>-->
-                <!--</ion-col>-->
-            <!--</ion-row>-->
-        <!--</ion-grid>-->
 </ion-content>
   
