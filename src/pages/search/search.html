@@ -8,13 +8,48 @@
 
 
     <div #map id="map"></div>
-    <ng-container *ngIf="categories">
-        <ion-list>
-            <button ion-item *ngFor="let category of categories">
-                <ion-label>{{category.name}}</ion-label>
-                <ion-checkbox  (click)="updateFilters(category.id)"></ion-checkbox>
-            </button>
-        </ion-list>
-    </ng-container>
+    <!--<ng-container *ngIf="categories">-->
+        <!--<ion-list>-->
+            <!--<button ion-item *ngFor="let category of categories">-->
+                <!--<ion-label>{{category.name}}</ion-label>-->
+                <!--<ion-checkbox  (click)="updateFilters(category.id)"></ion-checkbox>-->
+            <!--</button>-->
+        <!--</ion-list>-->
+    <!--</ng-container>-->
+        <ion-grid *ngIf="showDetails" class="detailsModale" (click)="toRestaurant(1)">
+            <ion-row>
+                <ion-col>
+                    <!--<img id="modale-picture" src="{{currentRestaurant?.picture}}" />-->
+                </ion-col>
+                <ion-col>
+                    <!--<span id="modale-name">{{currentRestaurant?.name}}</span>-->
+                </ion-col>
+                <ion-col (click)="closeModale()">
+                    <ion-icon name="close"></ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    1 of 3
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="star"></ion-icon>
+                </ion-col>
+                <ion-col col-2>
+                    3 of 3
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    1 of 3
+                </ion-col>
+                <ion-col>
+                    <!--<span class="modale-category" *ngFor="let category of currentRestaurant.categories">{{category.name}}</span>-->
+                </ion-col>
+                <ion-col col-2>
+                   <ion-icon name="arrow-dropright"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 </ion-content>
   

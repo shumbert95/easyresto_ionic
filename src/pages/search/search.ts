@@ -6,7 +6,7 @@ import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/goog
 import { Restaurant } from "../restaurant/restaurant";
 import {Login} from "../login/login";
 
-declare var google;
+declare let google;
 let map: any;
 let infowindow: any;
 let options = {
@@ -28,6 +28,8 @@ export class Search {
     public longitude: any;
     public markers = [];
     isLoggedIn: boolean;
+    public currentRestaurant: any;
+    public showDetails: boolean = true;
     searchText: string = '';
 
 
@@ -48,7 +50,7 @@ export class Search {
                 if (data.result.length) {
                     this.setMapOnAll(null);
                     this.markers = [];
-                    for (var i = 0; i < data.result.length; i++) {
+                    for (let i = 0; i < data.result.length; i++) {
                         this.createMarker(data.result[i]);
                     }
                 }
@@ -69,7 +71,7 @@ export class Search {
             });
 
             this.searchService.search(location.coords.latitude, location.coords.longitude, this.filters, this.searchText).then((data: any) => {
-                for (var i = 0; i < data.result.length; i++) {
+                for (let i = 0; i < data.result.length; i++) {
                     this.createMarker(data.result[i]);
                 }
             }, (err) => {
@@ -99,7 +101,7 @@ export class Search {
             if (typeof(data.result) !== 'undefined') {
                 this.setMapOnAll(null);
                 this.markers = [];
-                for (var i = 0; i < data.result.length; i++) {
+                for (let i = 0; i < data.result.length; i++) {
                     this.createMarker(data.result[i]);
                 }
             }
@@ -109,8 +111,8 @@ export class Search {
     }
 
     createMarker(place) {
-        var placeLoc = new google.maps.LatLng(parseFloat(place.latitude),parseFloat(place.longitude));
-        var marker = new google.maps.Marker({
+        let placeLoc = new google.maps.LatLng(parseFloat(place.latitude),parseFloat(place.longitude));
+        let marker = new google.maps.Marker({
             map: this.map,
             position: placeLoc
         });
@@ -122,28 +124,30 @@ export class Search {
                 content: content
             }
         );
-        google.maps.event.addListener(infoWindow, 'domready', () => {
-            document.getElementById(place.id).addEventListener('click', () => {
-                   this.navCtrl.push(Restaurant, {
-                       restaurantId: place.id
-                   });
-           });
-        });
         google.maps.event.addListener(marker, 'click', () => {
-            infowindow.setContent(content);
-            infowindow.open(map, marker);
-            document.getElementById(place.id).addEventListener('click', () => {
-                this.navCtrl.push(Restaurant, {
-                    restaurantId: place.id
-                });
-            });
+           this.currentRestaurant = place;
+           console.log(this);
+           this.showDetails = true;
+
+           console.log(this);
         });
     }
 
     setMapOnAll(map) {
-        for (var i = 0; i < this.markers.length; i++) {
+        for (let i = 0; i < this.markers.length; i++) {
             this.markers[i].setMap(map);
         }
+    }
+
+    closeModale() {
+        this.showDetails = false;
+        console.log(this);
+    }
+
+    toRestaurant(restaurantId) {
+        this.navCtrl.push(Restaurant, {
+            restaurantId: restaurantId
+        })
     }
 
     getMarkerInfo(place) {
