@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {Component, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import {SearchProvider} from "../../shared/providers/search-provider";
 import { RestaurantProvider } from "../../shared/providers/restaurant-provider";
@@ -29,12 +29,12 @@ export class Search {
     public markers = [];
     isLoggedIn: boolean;
     public currentRestaurant: any;
-    public showDetails: boolean = true;
+    public showDetails: boolean = false;
     searchText: string = '';
 
 
     @ViewChild('map') mapElement: ElementRef;
-    constructor(public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider) {
+    constructor(public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider, private zone: NgZone) {
         if(!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') {
             this.navCtrl.setRoot(Login)
         } else {
@@ -117,20 +117,12 @@ export class Search {
             position: placeLoc
         });
         this.markers.push(marker);
-        let content = this.getMarkerInfo(place);
-        let infoWindow = new google.maps.InfoWindow(
-            {
-                closeBoxURL: "",
-                content: content
-            }
-        );
-        google.maps.event.addListener(marker, 'click', () => {
-           this.currentRestaurant = place;
-           console.log(this);
-           this.showDetails = true;
 
-           console.log(this);
-        });
+        google.maps.event.addListener(marker, 'click',
+            (e) => this.zone.run(() => {
+                this.currentRestaurant = place;
+                this.showDetails = true;
+            }));
     }
 
     setMapOnAll(map) {
@@ -148,16 +140,5 @@ export class Search {
         this.navCtrl.push(Restaurant, {
             restaurantId: restaurantId
         })
-    }
-
-    getMarkerInfo(place) {
-        let tags = '';
-        for (let i = 0; i<place.categories.length; i++) {
-            tags += place.categories[i].name + ' '
-        }
-       return '<div class="infowindow" id="'+place.id+'">'
-                    +place.name
-                    +'<p id="tap">' + tags + '</p>'
-                +'</div>';
     }
 }
