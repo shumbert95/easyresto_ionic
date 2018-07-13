@@ -47,6 +47,10 @@ export class Search {
         this.getMoments();
     }
 
+    formattedAddress(address, postalCode, city) {
+        return address ? address + ', ' + postalCode + ', ' + city : ''
+    }
+
     onInputChange() {
         if (this.searchText.length >= 4 || this.searchText.length == 0) {
             this.searchService.search(this.latitude, this.longitude, this.categoriesFilters,this.momentsFilters, this.searchText).then((data: any) => {

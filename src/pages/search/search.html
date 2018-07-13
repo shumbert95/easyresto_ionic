@@ -16,43 +16,17 @@
             <!--</button>-->
         <!--</ion-list>-->
     <!--</ng-container>-->
-    <div class="box" *ngIf="showDetails && currentRestaurant">
-        <article class="media">
-            <div class="media-left">
-                <figure class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                </figure>
-            </div>
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-                    </p>
-                </div>
-                <nav class="level is-mobile">
-                    <div class="level-left">
-                        <a class="level-item" aria-label="reply">
-            <span class="icon is-small">
-              <i class="fas fa-reply" aria-hidden="true"></i>
-            </span>
-                        </a>
-                        <a class="level-item" aria-label="retweet">
-            <span class="icon is-small">
-              <i class="fas fa-retweet" aria-hidden="true"></i>
-            </span>
-                        </a>
-                        <a class="level-item" aria-label="like">
-            <span class="icon is-small">
-              <i class="fas fa-heart" aria-hidden="true"></i>
-            </span>
-                        </a>
-                    </div>
-                </nav>
-            </div>
-        </article>
-    </div>
+    <ion-card *ngIf="showDetails && currentRestaurant"  class="detailsModale">
+        <img class="card-image" src="{{currentRestaurant.picture}}" />
+        <div class="card-title">{{currentRestaurant.name}}</div>
+        <div class="card-tags">
+            <ion-badge *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>
+        </div>
+        <div class="card-address">
+            <ion-icon class="icon-pin" name="pin"></ion-icon><span>{{formattedAddress(currentRestaurant.address, currentRestaurant.postalCode, currentRestaurant.city)}}</span>
+        </div>
+        <ion-icon name="arrow-forward" class="go-to-page"></ion-icon>
+    </ion-card>
         <!--<ion-grid *ngIf="showDetails && currentRestaurant" class="detailsModale" (click)="toRestaurant(1)">-->
             <!--<ion-row>-->
                 <!--<ion-col>-->
@@ -69,19 +43,11 @@
                 <!--<ion-col>-->
                 <!--</ion-col>-->
                 <!--<ion-col>-->
+                    <!--<ion-badge color="secondary" *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>-->
                     <!--<ion-icon name="star"></ion-icon>-->
                 <!--</ion-col>-->
                 <!--<ion-col col-2>-->
-                <!--</ion-col>-->
-            <!--</ion-row>-->
-            <!--<ion-row>-->
-                <!--<ion-col>-->
-                <!--</ion-col>-->
-                <!--<ion-col>-->
-                    <!--<ion-badge color="secondary" *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>-->
-                <!--</ion-col>-->
-                <!--<ion-col col-2>-->
-                   <!--<ion-icon name="arrow-dropright"></ion-icon>-->
+                    <!--<ion-icon name="arrow-dropright"></ion-icon>-->
                 <!--</ion-col>-->
             <!--</ion-row>-->
         <!--</ion-grid>-->

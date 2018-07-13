@@ -1,8 +1,51 @@
 #map {
-  height:60%;
+  height:85%;
+  z-index: 1;
 }
 
-.grid.detailsModale {
+.detailsModale {
   height: 15%;
-  border: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  vertical-align: middle;
+
+  .go-to-page {
+    float: right;
+    font-size: 30px;
+    margin-right: 5px;
+    position: relative;
+    bottom: 5px;
+  }
+  .card-image{
+    max-width:50%;
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+  }
+  .card-address {
+    font-size: 0.8em;
+    display: inline-block;
+    max-width:40%;
+    ion-icon.icon-pin {
+      font-size: 15px;
+    }
+  }
+
+  .card-title {
+    font-size: 1.3em;
+    width: 100%;
+    font-weight: bold;
+    width: auto;
+    margin-bottom: 2px;
+    color: black;
+  }
+
+  .card-tags {
+    font-size: 1.0em;
+    color: black;
+    display: inline-block;
+    max-width: 40%;
+  }
+
 }
