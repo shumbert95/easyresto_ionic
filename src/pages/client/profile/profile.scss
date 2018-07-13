@@ -1,11 +1,21 @@
-page-profil{
+page-profile{
 
-    // ion-list .list.list-md{
-    //     margin-right: 20px;
-    // }
+    .list-md .item-block .item-inner{
+        border-bottom: 0px;
+    }
 
     item-inner{
         margin-right: 20px;
+    }
+
+    .avatar{
+        margin-top: 10px;
+        border-bottom: solid 1px #dedede;
+        padding-bottom: 10px;
+    }
+
+    .item-md ion-icon[item-start]{
+        color: #7957d5;
     }
 
 }
