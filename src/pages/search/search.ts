@@ -122,16 +122,24 @@ export class Search {
                 content: content
             }
         );
-        google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
+        google.maps.event.addListener(infoWindow, 'domready', () => {
             document.getElementById(place.id).addEventListener('click', () => {
                    this.navCtrl.push(Restaurant, {
                        restaurantId: place.id
                    });
            });
         });
-        infoWindow.open(this.map, marker);
+        google.maps.event.addListener(marker, 'click', () => {
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+            document.getElementById(place.id).addEventListener('click', () => {
+                this.navCtrl.push(Restaurant, {
+                    restaurantId: place.id
+                });
+            });
+        });
     }
-a
+
     setMapOnAll(map) {
         for (var i = 0; i < this.markers.length; i++) {
             this.markers[i].setMap(map);
@@ -139,9 +147,13 @@ a
     }
 
     getMarkerInfo(place) {
+        let tags = '';
+        for (let i = 0; i<place.categories.length; i++) {
+            tags += place.categories[i].name + ' '
+        }
        return '<div class="infowindow" id="'+place.id+'">'
-                    +place.name+
-                    '   <p id="tap">your text here</p>' +
-                '</div>';
+                    +place.name
+                    +'<p id="tap">' + tags + '</p>'
+                +'</div>';
     }
 }
