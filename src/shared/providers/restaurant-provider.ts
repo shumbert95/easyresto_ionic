@@ -24,6 +24,20 @@ export class RestaurantProvider {
         });
     }
 
+    getRestaurantSchedule(id) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            this.http.get(apiUrl+'restaurants/'+id+'/schedule', {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
+
     getRestaurantMenu(id) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
