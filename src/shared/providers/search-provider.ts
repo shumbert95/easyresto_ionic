@@ -10,15 +10,20 @@ export class SearchProvider {
 
     constructor(public http: Http) {}
 
-    search(latitude, longitude, filters, searchText) {
+    search(latitude, longitude, categoriesFilters, momentsFilters, searchText) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
             var endpoint = apiUrl+'restaurants?latitude=' + latitude + '&longitude=' + longitude + '&exact=0';
 
-            if (filters.length > 0) {
-                for (var i = 0; i<filters.length; i++) {
-                    endpoint += '&categories[]='+filters[i];
+            if (categoriesFilters.length > 0) {
+                for (var i = 0; i<categoriesFilters.length; i++) {
+                    endpoint += '&categories[]='+categoriesFilters[i];
+                }
+            }
+            if (momentsFilters.length > 0) {
+                for (var i = 0; i<momentsFilters.length; i++) {
+                    endpoint += '&moments[]='+momentsFilters[i];
                 }
             }
             if (searchText.length > 4) {

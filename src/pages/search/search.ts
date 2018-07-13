@@ -1,5 +1,5 @@
+import { NavController, Platform, ModalController, } from 'ionic-angular';
 import {Component, ViewChild, ElementRef, NgZone} from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
 import {SearchProvider} from "../../shared/providers/search-provider";
 import { RestaurantProvider } from "../../shared/providers/restaurant-provider";
 import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/google-maps";
@@ -23,7 +23,9 @@ let options = {
 export class Search {
     map: GoogleMap;
     public categories: any;
-    public filters = [];
+    public moments: any;
+    public categoriesFilters = [];
+    public momentsFilters = [];
     public latitude: any;
     public longitude: any;
     public markers = [];
@@ -42,11 +44,12 @@ export class Search {
         }
         this.initMap();
         this.getCategories();
+        this.getMoments();
     }
 
     onInputChange() {
         if (this.searchText.length >= 4 || this.searchText.length == 0) {
-            this.searchService.search(this.latitude, this.longitude, this.filters, this.searchText).then((data: any) => {
+            this.searchService.search(this.latitude, this.longitude, this.categoriesFilters,this.momentsFilters, this.searchText).then((data: any) => {
                 if (data.result.length) {
                     this.setMapOnAll(null);
                     this.markers = [];
@@ -70,7 +73,7 @@ export class Search {
                 zoom: 12
             });
 
-            this.searchService.search(location.coords.latitude, location.coords.longitude, this.filters, this.searchText).then((data: any) => {
+            this.searchService.search(location.coords.latitude, location.coords.longitude, this.categoriesFilters,this.momentsFilters, this.searchText).then((data: any) => {
                 for (let i = 0; i < data.result.length; i++) {
                     this.createMarker(data.result[i]);
                 }
@@ -89,14 +92,29 @@ export class Search {
         })
     }
 
-    updateFilters(categoryId){
-        if (this.filters.indexOf(categoryId) == -1) {
-            this.filters.push(categoryId);
-        } else {
-            this.filters.splice(this.filters.indexOf(categoryId), 1);
+    getMoments() {
+        this.restaurantService.getMoments().then((data: any) => {
+            this.moments = data.result;
+        })
+    }
+
+    updateFilters(filterId,typeFilter){
+        if(typeFilter==1){
+            if (this.categoriesFilters.indexOf(filterId) == -1) {
+                this.categoriesFilters.push(filterId);
+            } else {
+                this.categoriesFilters.splice(this.categoriesFilters.indexOf(filterId), 1);
+            }
+        }
+        if(typeFilter==2){
+            if (this.momentsFilters.indexOf(filterId) == -1) {
+                this.momentsFilters.push(filterId);
+            } else {
+                this.momentsFilters.splice(this.momentsFilters.indexOf(filterId), 1);
+            }
         }
 
-        this.searchService.search(this.latitude, this.longitude, this.filters, this.searchText).then((data: any) => {
+        this.searchService.search(this.latitude, this.longitude, this.categoriesFilters,this.momentsFilters, this.searchText).then((data: any) => {
             console.log(data);
             if (typeof(data.result) !== 'undefined') {
                 this.setMapOnAll(null);
