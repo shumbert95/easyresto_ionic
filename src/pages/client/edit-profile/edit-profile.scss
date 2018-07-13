@@ -1,0 +1,24 @@
+page-edit-profile{
+
+    .edit-profile-box{
+        margin: 10px;
+    }
+
+    .scroll-content{
+        padding: 0px;
+    }
+
+    .list-md[inset] .item:nth-child(2){
+        padding-left: 0px;
+    }
+
+    .col.validate-col{
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .item-inner .input-wrapper .label{
+        margin-left: 8px;
+    }
+
+}
