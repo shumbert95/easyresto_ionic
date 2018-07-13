@@ -16,24 +16,25 @@
             <span (click)="detailsPage(restaurantData)" >Voir les informations <ion-icon  name="arrow-forward"></ion-icon></span>
         </div>
         <div class="menu">
-            <ion-item-group *ngFor="let tab of restaurantMenu">
-                <ion-item-divider color="light">{{tab.name}}</ion-item-divider>
-                <ion-item *ngFor="let content of tab.content" class="{{content.type == 1 ? 'meal' : 'category'}}">
-                    <div *ngIf="content.type == 1">
-                        {{content.name}} {{content.price}}
-                        <p>{{content.description}}</p>
-                        <button ion-button clear small color="danger" icon-start>              
-                            <ion-icon name="add"></ion-icon>
-                            Add
-                        </button>
-                    </div>
-                    <div *ngIf="content.type == 2">
+            <ion-list class="menu">
+                <ion-item-group *ngFor="let tab of restaurantMenu">
+                    <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
+                    <ion-item *ngFor="let content of tab.content" class="{{content.type == 1 ? 'meal' : 'category'}}">
+                            <ion-thumbnail item-start>
+                                <img style="max-width: 60px;" src="https://lehanout-apero.com/wp-content/uploads/2017/02/Produit-H-Burger.jpg">
+                            </ion-thumbnail>
+                            <h2>{{content.name}}</h2>
+                            <p> {{content.price}}</p>
+                            <button ion-button clear item-end>View</button>
+                        <div *ngIf="content.type == 2">
                             <hr>
-                            <b>{{content.name}}</b>  
-                            <hr>     
+                            <b>{{content.name}}</b>
+                            <hr>
                         </div>
-                </ion-item>
-            </ion-item-group>
+                    </ion-item>
+                </ion-item-group>
+            </ion-list>
+
         </div>
     </div>
 </ion-content>
