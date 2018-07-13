@@ -27,7 +27,7 @@ export class Search {
     public latitude: any;
     public longitude: any;
     public markers = [];
-    isLoggedId: boolean;
+    isLoggedIn: boolean;
     searchText: string = '';
 
 
@@ -115,7 +115,6 @@ export class Search {
             position: placeLoc
         });
         this.markers.push(marker);
-        console.log(place);
         let content = this.getMarkerInfo(place);
         let infoWindow = new google.maps.InfoWindow(
             {
@@ -124,10 +123,11 @@ export class Search {
             }
         );
         google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
-            document.getElementById('tap').addEventListener('click', () => {
-                console.log("touch");
-                this.navCtrl.push();
-            });
+            document.getElementById(place.id).addEventListener('click', () => {
+                   this.navCtrl.push(Restaurant, {
+                       restaurantId: place.id
+                   });
+           });
         });
         infoWindow.open(this.map, marker);
     }
@@ -139,7 +139,7 @@ a
     }
 
     getMarkerInfo(place) {
-       return '<div class="infowindow">'
+       return '<div class="infowindow" id="'+place.id+'">'
                     +place.name+
                     '   <p id="tap">your text here</p>' +
                 '</div>';
