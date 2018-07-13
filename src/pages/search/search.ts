@@ -65,7 +65,7 @@ export class Search {
             this.map = new google.maps.Map(this.mapElement.nativeElement, {
                 // center: {lat: 48.8311081,  lng: 2.374514},
                 center: {lat: location.coords.latitude, lng: location.coords.longitude},
-                zoom: 11
+                zoom: 12
             });
 
             this.searchService.search(location.coords.latitude, location.coords.longitude, this.filters, this.searchText).then((data: any) => {
