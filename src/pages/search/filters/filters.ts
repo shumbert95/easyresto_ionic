@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Pipe } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 
 /**
@@ -24,6 +24,8 @@ export class FiltersPage {
     this.moments = this.navParams.get('moments');
     this.categoriesFilters = this.navParams.get('categoriesFilters');
     this.momentsFilters = this.navParams.get('momentsFilters');
+    this.sortArray(this.categories);
+    this.sortArray(this.moments);
   }
 
   ionViewDidLoad() {
@@ -69,4 +71,18 @@ export class FiltersPage {
     }
   }
 
+  sortArray(array,args="name"){
+      array.sort((a: any, b: any) => {
+        if ( a[args] < b[args] ){
+          return -1;
+        }else if( a[args] > b[args] ){
+            return 1;
+        }else{
+          return 0;	
+        }
+      });
+      return array;
+    }
 }
+
+

@@ -164,7 +164,7 @@ export class Search {
         });
         modal.present();
         modal.onDidDismiss(data => {
-            if(data !== null){
+            if(data !== null && data !== undefined){
                 this.categoriesFilters = data.categoriesFilters;
                 this.momentsFilters = data.momentsFilters;
                 this.updateFilters();
