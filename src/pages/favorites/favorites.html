@@ -9,7 +9,7 @@
         <div class="restaurant-name">{{favorite.restaurant.name}}</div>
         <p class="restaurant-address">{{favorite.restaurant.address}}, {{favorite.restaurant.postalCode}}, {{favorite.restaurant.city}}</p>
         <div class="restaurant-tags">
-          <p *ngFor="let category of favorite.restaurant.categories" class="restaurant-tag">{{category.name}} </p>
+          <ion-badge *ngFor="let category of favorite.restaurant.categories" class="restaurant-tag">{{category.name}} </ion-badge>
         </div>
         <p class="restaurant-orders">
           {{favorite.ordersCount}} Commande<span *ngIf="favorite.ordersCount > 1">s</span>

@@ -19,6 +19,7 @@
     float: right;
     font-size: 30px;
     position: relative;
+    left: 10px;
     top: 35%;
   }
   .card-image{
@@ -38,7 +39,7 @@
   }
 
   .card-title {
-    font-size: 1.3em;
+    font-size: 1.0em;
     width: 100%;
     font-weight: bold;
     width: auto;
@@ -47,11 +48,14 @@
   }
 
   .card-tags {
-    font-size: 1.0em;
     color: black;
     display: inline-block;
     max-width: 40%;
     margin-bottom: 5px;
+
+    ion-badge {
+      font-size: 0.7em;
+    }
   }
 
 }
