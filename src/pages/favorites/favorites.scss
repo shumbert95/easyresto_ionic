@@ -45,4 +45,21 @@ page-favorites {
         padding-top: 16px;
     }
 
+    .favorites-empty-container{
+        display: flex;
+        flex-direction: column;
+        margin-top: 30vh;
+        transform: translateY(-50%);
+
+        ion-icon{
+            margin: auto;
+            font-size: 5em;
+        }
+    }
+
+    .favorites-empty{
+        text-align: center;
+        color: #666;
+    }
+
 }

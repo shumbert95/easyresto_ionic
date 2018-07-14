@@ -3,13 +3,44 @@ page-detail {
         height:40%;
     }
 
-    .detail-container{
+    .detail-container .details .block-infos,
+    .detail-container .details .block-horaires{
         margin-left: 16px;
         margin-right: 16px;
     }
 
+    .detail-container .details .block-infos{
+        border-bottom: 1px solid #dedede;
+    }
+
+    .detail-container .details .description{
+        color: #666;
+    }
+
+    .detail-container .details .block-horaires .schedule{
+        color: #666;
+    }
+
+    .detail-container .details .block-horaires p{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
     .adress{
         display: flex;
-        justify-content: space-between;
     }
+
+    .adress p:last-child{
+        margin-left: 20px;
+    }
+
+    h2{
+        font-weight: 100;
+    }
+
+    .adress p,
+    .adress a{
+        margin-top: 0px;
+    }
+
 }
