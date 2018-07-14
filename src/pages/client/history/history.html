@@ -43,8 +43,8 @@
 
         <ion-row>
             <ion-col text-right>
-                    <div *ngIf="reservation.hasNote; else noteTemplate" class="">
-                        Merci d'avoir noté
+                    <div *ngIf="reservation.hasNote; else noteTemplate" class="hasnote">
+                        <!-- Merci d'avoir noté -->
                     </div>
                     <ng-template #noteTemplate>
                         <ion-item>
