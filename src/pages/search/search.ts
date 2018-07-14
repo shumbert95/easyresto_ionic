@@ -34,6 +34,7 @@ export class Search {
     public currentRestaurant: any;
     public showDetails: boolean = false;
     searchText: string = '';
+    public cart: any;
 
 
     @ViewChild('map') mapElement: ElementRef;
@@ -46,6 +47,7 @@ export class Search {
         this.initMap();
         this.getCategories();
         this.getMoments();
+        this.cart = this.getCart();
     }
 
     formattedAddress(address, postalCode, city) {
@@ -131,6 +133,7 @@ export class Search {
             (e) => this.zone.run(() => {
                 this.currentRestaurant = place;
                 this.showDetails = true;
+                this.cart = null;
             }));
     }
 
@@ -140,9 +143,16 @@ export class Search {
         }
     }
 
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
+    ionViewWillEnter() {
+        this.cart = this.getCart();
+    }
+
     closeModale() {
         this.showDetails = false;
-        console.log(this);
+        this.cart = this.getCart();
     }
 
     openFiltersModal(){
@@ -154,7 +164,7 @@ export class Search {
         });
         modal.present();
         modal.onDidDismiss(data => {
-            if(data !== null){
+            if(data !== null && data !== undefined){
                 this.categoriesFilters = data.categoriesFilters;
                 this.momentsFilters = data.momentsFilters;
                 this.updateFilters();

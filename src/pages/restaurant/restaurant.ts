@@ -3,6 +3,7 @@ import {NavController, NavParams, LoadingController, ToastController, Events} fr
 import { RestaurantProvider } from '../../shared/providers/restaurant-provider';
 import { DetailPage } from "./detail/detail";
 import {ContentDetailsPage} from "../content-details/content-details";
+import {CartPage} from "../cart/cart";
 
 
 
@@ -86,24 +87,16 @@ export class Restaurant {
     }
 
     toProduct(contentId){
-        this.events.subscribe('custom-user-events', (paramsVar) => {
+        this.events.subscribe('custom-user-events', () => {
             this.cart = this.getCart();
-            console.log(this.cart);
-            this.events.unsubscribe('custom-user-events'); // unsubscribe this event
+            this.events.unsubscribe('custom-user-events');
         });
 
         this.navCtrl.push(ContentDetailsPage, {
             restaurantId: this.restaurantId,
             contentId: contentId
-        }); // Push your "OtherPage"
+        });
     }
-    // toProduct(contentId) {
-    //     this.navCtrl.push(ContentDetailsPage, {
-    //         restaurantId: this.restaurantId,
-    //         contentId: contentId,
-    //         callback: this.getData()
-    //     });
-    // }
 
     detailsPage(restaurant){
         this.navCtrl.push(DetailPage, {
