@@ -19,12 +19,14 @@ export class ProfilePage {
     isLoggedIn: boolean = false;
     profile: any;
     title: string;
+    public cart: any;
 
     constructor(public app: App, public navCtrl: NavController,public authService: AuthProvider, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public http: Http, public modalCtrl: ModalController) {
         if(localStorage.getItem("token")) {
             this.isLoggedIn = true;
         }
         this.title = "Profile";
+        this.cart = this.getCart();
         this.doGetProfile()
     }
 
@@ -80,7 +82,12 @@ export class ProfilePage {
         });
     }
 
-
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
+    ionViewWillEnter() {
+        this.cart = this.getCart();
+    }
 
     ngOnInit(){
             }

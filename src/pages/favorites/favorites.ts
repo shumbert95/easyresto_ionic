@@ -12,9 +12,11 @@ export class FavoritesPage {
     public userFavorites: any = null;
     public loading: any;
     public hasFavorites: boolean;
+    public cart: any;
 
     constructor(public app: App, public navCtrl: NavController, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
         this.getFavorites();
+        this.cart = this.getCart();
     }
 
     showLoader(){
@@ -52,6 +54,13 @@ export class FavoritesPage {
         });
 
         toast.present();
+    }
+
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
+    ionViewWillEnter() {
+        this.cart = this.getCart();
     }
 
     getFavorites(){

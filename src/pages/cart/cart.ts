@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
 
 /**
  * Generated class for the CartPage page.
@@ -16,13 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class CartPage {
 
   cart: any;
+  loading: any;
+  public restaurantData: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.cart = localStorage.cart;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private restaurantService: RestaurantProvider) {
+    this.cart = this.getCart();
+    this.getRestaurantData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CartPage');
-  }
+    getRestaurantData() {
+      this.restaurantService.getRestaurantInfos(this.cart.restaurantId).then((result: any) => {
+          if (result) {
+              this.restaurantData = result.result;
+          }
+      }, (err) => {
+          // this.loading.dismiss();
+          // this.presentToast(err);
+      });
+    }
 
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
 }

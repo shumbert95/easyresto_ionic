@@ -34,6 +34,7 @@ export class Search {
     public currentRestaurant: any;
     public showDetails: boolean = false;
     searchText: string = '';
+    public cart: any;
 
 
     @ViewChild('map') mapElement: ElementRef;
@@ -46,6 +47,7 @@ export class Search {
         this.initMap();
         this.getCategories();
         this.getMoments();
+        this.cart = this.getCart();
     }
 
     formattedAddress(address, postalCode, city) {
@@ -138,6 +140,13 @@ export class Search {
         for (let i = 0; i < this.markers.length; i++) {
             this.markers[i].setMap(map);
         }
+    }
+
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
+    ionViewWillEnter() {
+        this.cart = this.getCart();
     }
 
     closeModale() {

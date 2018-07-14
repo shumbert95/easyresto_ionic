@@ -15,9 +15,11 @@ export class HistoryPage {
 
   public userReservations: any;
   public loading: any;
+  public cart: any;
 
     constructor(public app: App, public navCtrl: NavController, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
     this.getReservations();
+    this.cart = this.getCart();
   }
 
   showLoader(){
@@ -32,6 +34,13 @@ export class HistoryPage {
         this.navCtrl.push(Restaurant, {
             restaurantId: restaurantId
         })
+    }
+
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
+    ionViewWillEnter() {
+        this.cart = this.getCart();
     }
 
     manageFavorite(reservationId) {

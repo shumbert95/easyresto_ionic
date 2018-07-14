@@ -37,5 +37,5 @@
             </ion-item>
         </ion-list>
     </div>
-    <button ion-button class="show-cart-btn" full *ngIf="cart.totalPrice > 0">Voir le panier {{cart.totalPrice}}€</button>
+    <add-to-cart [cart]="cart"></add-to-cart>
 </ion-content>
