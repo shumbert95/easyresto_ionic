@@ -1,9 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-<<<<<<< HEAD
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
-=======
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
->>>>>>> Update inte detail restau + page cart
 import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
 
 
@@ -22,7 +18,7 @@ import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
 })
 export class CartPage {
 
-  cart: any;
+  public cart: any;
   loading: any;
     public restaurantData: any;
 
@@ -30,6 +26,7 @@ export class CartPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private restaurantService: RestaurantProvider, private toastCtrl: ToastController) {
     this.cart = this.getCart();
     this.getRestaurantData();
+    console.log(this.cart);
   }
 
     formattedAddress() {
