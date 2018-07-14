@@ -30,10 +30,10 @@ export class ReservationPage {
     ionViewWillEnter() {
         this.cart = this.getCart();
     }
-    onInputChange() {
-      if (!this.nbParticipants instanceof int ) {
-      }
-    }
+    // onInputChange() {
+    //   if (!this.nbParticipants instanceof int ) {
+    //   }
+    // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReservationPage');
