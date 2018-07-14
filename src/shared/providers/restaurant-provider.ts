@@ -10,6 +10,20 @@ export class RestaurantProvider {
 
     constructor(public http: Http) {}
 
+    getContentInfos(restaurantId, contentId) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            this.http.get(apiUrl+'restaurants/'+restaurantId+'/contents/'+contentId, {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
+
     getRestaurantInfos(id) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
