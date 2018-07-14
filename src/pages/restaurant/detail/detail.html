@@ -1,14 +1,6 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>{{restaurantData.name}}</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-    <div #map id="map"></div>
+<ion-content>
+  <app-header title="{{restaurantData?.name}}"></app-header>
+  <div #map id="map"></div>
   <h2>Description</h2>
   <p>{{restaurantData.description}}</p>
   <h2>Horaires</h2>

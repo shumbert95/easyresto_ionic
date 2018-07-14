@@ -22,7 +22,7 @@ import { CartPage } from "../pages/cart/cart";
 import { FavoritesPage } from "../pages/favorites/favorites";
 import { Search } from "../pages/search/search";
 import { DetailPage } from "../pages/restaurant/detail/detail";
-
+import { ContentDetailsPage } from "../pages/content-details/content-details";
 
 // Providers
 
@@ -51,6 +51,7 @@ import {SearchModule} from "../pages/search/search.module";
     EditProfilePage,
     HistoryPage,
     FavoritesPage,
+    ContentDetailsPage,
     DetailPage
   ],
   imports: [
@@ -78,6 +79,7 @@ import {SearchModule} from "../pages/search/search.module";
     Home,
     HistoryPage,
     Search,
+    ContentDetailsPage,
     FavoritesPage,
     DetailPage
   ],
