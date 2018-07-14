@@ -80,6 +80,14 @@ export class Search {
                 center: {lat: location.coords.latitude, lng: location.coords.longitude},
                 zoom: 12
             });
+            let placeLoc = new google.maps.LatLng(parseFloat(this.latitude),parseFloat(this.longitude));
+
+            var userMarker = new google.maps.Marker({
+                map: this.map,
+                position: placeLoc,
+                label: "M",
+                title: "Moi !"
+            });
 
             this.searchService.search(location.coords.latitude, location.coords.longitude, this.categoriesFilters,this.momentsFilters, this.searchText).then((data: any) => {
                 for (let i = 0; i < data.result.length; i++) {
@@ -135,6 +143,8 @@ export class Search {
                 this.showDetails = true;
                 this.cart = null;
             }));
+
+        
     }
 
     setMapOnAll(map) {
