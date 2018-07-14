@@ -15,26 +15,27 @@
             <span>Lieu et horaires</span>
             <span (click)="detailsPage(restaurantData)" >Voir les informations <ion-icon  name="arrow-forward"></ion-icon></span>
         </div>
-        <div class="menu">
-            <ion-list class="menu">
-                <ion-item *ngFor="let tab of restaurantMenu">
-                    <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
-                    <ion-item *ngFor="let content of tab.content" class="content-item {{content.type == 1 ? 'meal' : 'category'}}">
-                        <ng-container *ngIf="content.type == 1">
-                            <div class="content-img">
-                                <ion-thumbnail><img src="https://lehanout-apero.com/wp-content/uploads/2017/02/Produit-H-Burger.jpg" /></ion-thumbnail>
-                            </div>
-                            <div class="content-infos"  (click)="toProduct(content.id)">
-                                <div class="content-name">{{content.name}}</div>
-                                <p class="content-price">{{content.price}} €</p>
-                            </div>
-                        </ng-container>
-                        <ng-container *ngIf="content.type == 2">
-                            <p>{{content.name}}</p>
-                        </ng-container>
-                    </ion-item>
-                </ion-item>
-            </ion-list>
-        </div>
     </div>
+    <div class="menu">
+        <ion-list class="menu">
+            <ion-item *ngFor="let tab of restaurantMenu">
+                <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
+                <ion-item *ngFor="let content of tab.content" class="content-item {{content.type == 1 ? 'meal' : 'category'}}">
+                    <ng-container *ngIf="content.type == 1">
+                        <div class="content-img">
+                            <ion-thumbnail><img src="https://lehanout-apero.com/wp-content/uploads/2017/02/Produit-H-Burger.jpg" /></ion-thumbnail>
+                        </div>
+                        <div class="content-infos"  (click)="toProduct(content.id)">
+                            <div class="content-name">{{content.name}}</div>
+                            <p class="content-price">{{content.price}} €</p>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="content.type == 2">
+                        <p>{{content.name}}</p>
+                    </ng-container>
+                </ion-item>
+            </ion-item>
+        </ion-list>
+    </div>
+    <button ion-button class="show-cart-btn" full *ngIf="cart.totalPrice > 0">Voir le panier {{cart.totalPrice}}€</button>
 </ion-content>

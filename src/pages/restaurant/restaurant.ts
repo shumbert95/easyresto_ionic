@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import {NavController, NavParams, LoadingController, ToastController, Events} from 'ionic-angular';
 import { RestaurantProvider } from '../../shared/providers/restaurant-provider';
-import { ClientProvider } from "../../shared/providers/client-provider";
 import { DetailPage } from "./detail/detail";
 import {ContentDetailsPage} from "../content-details/content-details";
 
@@ -15,81 +14,100 @@ import {ContentDetailsPage} from "../content-details/content-details";
  */
 
 @Component({
-  selector: 'page-restaurant',
-  templateUrl: 'restaurant.html',
+    selector: 'page-restaurant',
+    templateUrl: 'restaurant.html',
 })
 export class Restaurant {
-  public restaurantId;
-  public restaurantData: any;
-  public restaurantMenu: any;
-  loading: any;
+    public restaurantId;
+    public restaurantData: any;
+    public restaurantMenu: any;
+    public cart: any;
+    loading: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public clientService: ClientProvider, public restaurantProvider: RestaurantProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
-      this.restaurantId = navParams.get("restaurantId");
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public restaurantProvider: RestaurantProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, private events: Events, private zone: NgZone) {
+        this.restaurantId = navParams.get("restaurantId");
+        this.cart = this.getCart();
+    }
 
-  showLoader() {
-      this.loading = this.loadingCtrl.create({
-          content: 'Chargement...'
-      });
+    showLoader() {
+        this.loading = this.loadingCtrl.create({
+            content: 'Chargement...'
+        });
 
-      this.loading.present();
-  }
+        this.loading.present();
+    }
 
-  ionViewDidLoad() {
-      this.showLoader();
-      this.restaurantProvider.getRestaurantInfos(this.restaurantId).then((result: any) => {
-          if (result) {
-            this.restaurantData = result.result;
-          }
-          this.restaurantData.addressFormatted = this.formattedAddress();
-      }, (err) => {
-          this.loading.dismiss();
-          this.presentToast(err);
-      });
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
 
-      this.restaurantProvider.getRestaurantMenu(this.restaurantId).then((result: any) => {
-          if (result.result) {
-            this.restaurantMenu = result.result;
-            console.log(result);
-          }
-          this.loading.dismiss()
-      }, (err) => {
-          this.loading.dismiss();
-          this.presentToast(err);
-      });
-  }
+    ionViewDidLoad() {
+        this.showLoader();
+        this.restaurantProvider.getRestaurantInfos(this.restaurantId).then((result: any) => {
+            if (result) {
+                this.restaurantData = result.result;
+            }
+            this.restaurantData.addressFormatted = this.formattedAddress();
+        }, (err) => {
+            this.loading.dismiss();
+            this.presentToast(err);
+        });
 
-  presentToast(msg) {
+        this.restaurantProvider.getRestaurantMenu(this.restaurantId).then((result: any) => {
+            if (result.result) {
+                this.restaurantMenu = result.result;
+            }
+            this.loading.dismiss();
+        }, (err) => {
+            this.loading.dismiss();
+            this.presentToast(err);
+        });
+    }
 
-      let msgText = msg.status == 401 ? 'L\'email et/ou le mot de passe est/sont incorrect(s)' : msg;
-      let toast = this.toastCtrl.create({
-          message: msgText,
-          duration: 3000,
-          position: 'bottom',
-          dismissOnPageChange: true
-      });
+    presentToast(msg) {
 
-      toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
-      });
+        let msgText = msg.status == 401 ? 'L\'email et/ou le mot de passe est/sont incorrect(s)' : msg;
+        let toast = this.toastCtrl.create({
+            message: msgText,
+            duration: 3000,
+            position: 'bottom',
+            dismissOnPageChange: true
+        });
 
-      toast.present();
-  }
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
 
-  formattedAddress() {
-    return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''
-  }
+        toast.present();
+    }
 
-  toProduct(contentId) {
-      this.navCtrl.push(ContentDetailsPage, {
-          contentId: contentId
-      });
-  }
+    formattedAddress() {
+        return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''
+    }
 
-  detailsPage(restaurant){
-    this.navCtrl.push(DetailPage, {
-        restaurantData: restaurant
-    });
-  }
+    toProduct(contentId){
+        this.events.subscribe('custom-user-events', (paramsVar) => {
+            this.cart = this.getCart();
+            console.log(this.cart);
+            this.events.unsubscribe('custom-user-events'); // unsubscribe this event
+        });
+
+        this.navCtrl.push(ContentDetailsPage, {
+            restaurantId: this.restaurantId,
+            contentId: contentId
+        }); // Push your "OtherPage"
+    }
+    // toProduct(contentId) {
+    //     this.navCtrl.push(ContentDetailsPage, {
+    //         restaurantId: this.restaurantId,
+    //         contentId: contentId,
+    //         callback: this.getData()
+    //     });
+    // }
+
+    detailsPage(restaurant){
+        this.navCtrl.push(DetailPage, {
+            restaurantData: restaurant
+        });
+    }
 }

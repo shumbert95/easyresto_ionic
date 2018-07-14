@@ -31,6 +31,7 @@ export class Login {
                 this.loading.dismiss();
                 this.data = result;
                 localStorage.setItem('token', this.data.token);
+                localStorage.setItem('cart', JSON.stringify({'restaurantId': null, order: [], totalPrice: 0}));
                 this.navCtrl.setRoot('Home');
             }
 

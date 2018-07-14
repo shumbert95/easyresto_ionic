@@ -1,5 +1,4 @@
 page-restaurant {
-
   .content-item{
 
     padding: 0px 16px 0px 16px;
@@ -48,6 +47,12 @@ page-restaurant {
 
   .content-item:first-child(){
     padding-top: 16px;
+  }
+
+  .show-cart-btn {
+    position: fixed;
+    z-index: 2;
+    bottom: 52px;
   }
 
 }
