@@ -37,6 +37,7 @@ import {ComponentsModule} from "../shared/components/components.module";
 import {HeaderComponent} from "../shared/components/header/header";
 import {Home} from "../pages/home/home";
 import {SearchModule} from "../pages/search/search.module";
+import {ReservationPage} from "../pages/reservation/reservation";
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {SearchModule} from "../pages/search/search.module";
     FavoritesPage,
     ContentDetailsPage,
     DetailPage,
+    ReservationPage,
     FiltersPage
   ],
   imports: [
@@ -84,6 +86,7 @@ import {SearchModule} from "../pages/search/search.module";
     ContentDetailsPage,
     FavoritesPage,
     DetailPage,
+    ReservationPage,
     FiltersPage
   ],
   providers: [

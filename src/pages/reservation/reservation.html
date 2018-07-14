@@ -1,0 +1,12 @@
+<ion-content>
+  <app-header title="Commande"></app-header>
+
+  <ion-item>
+    <ion-label><ion-icon name="nbParticipants"></ion-icon></ion-label>
+    <ion-input type="text" class="" placeholder="Nombre de participants ..." [(ngModel)]='nbParticipants' (ionChange)='onInputChange()'></ion-input>
+  </ion-item>
+  <button *ngIf="nbParticipants > 0" ion-button color="light" icon-right (click)="picker.open()">
+    <ion-datetime #picker pickerFormat="HH:mm" [(ngModel)]="myDate"  [hourValues]="hourValues" minuteValues="0,30" placeholder="Date"></ion-datetime>
+    <ion-icon name="calendar"></ion-icon>
+  </button>
+</ion-content>
