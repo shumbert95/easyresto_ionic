@@ -1,0 +1,48 @@
+page-favorites {
+
+    .restaurant-item{
+
+        padding: 0px 16px 0px 16px;
+
+        .item-inner{
+
+            padding-right: 0px;
+
+            .label.label-md{
+                display: flex;
+                margin-right: 0px;
+        
+                .restaurant-infos{
+                    width: 100%;
+                    margin-left: 20px;
+                    overflow: hidden;
+        
+                    .restaurant-name{
+                        margin-bottom: 10px;
+                    }
+        
+                    p{
+                        font-size: 1.3rem;
+                    }
+        
+                    .restaurant-orders{
+                        text-align: right;
+                    }
+    
+                }
+                
+            }
+
+        }
+
+    }
+    
+    .item-md.item-block .item-inner{
+        padding-right: 0px;
+    }
+
+    .restaurant-item:first-child(){
+        padding-top: 16px;
+    }
+
+}

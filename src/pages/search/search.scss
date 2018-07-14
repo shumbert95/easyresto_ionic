@@ -1,0 +1,64 @@
+#map {
+  height:90%;
+  z-index: 1;
+}
+.filtersButton{
+  z-index:3;
+}
+
+.detailsModale {
+  height: 15%;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  vertical-align: middle;
+
+  .card-close {
+    float: right;
+    margin-right: 5px;
+    font-size: 20px;
+  }
+  .go-to-page {
+    float: right;
+    font-size: 30px;
+    position: relative;
+    left: 10px;
+    top: 35%;
+  }
+  .card-image{
+    max-width:50%;
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+  }
+  .card-address {
+    font-size: 0.8em;
+    display: inline-block;
+    max-width:40%;
+    .icon-pin {
+      font-size: 1.1em;
+      margin-right:2px;
+    }
+  }
+
+  .card-title {
+    font-size: 1.0em;
+    width: 100%;
+    font-weight: bold;
+    width: auto;
+    margin-bottom: 2px;
+    color: black;
+  }
+
+  .card-tags {
+    color: black;
+    display: inline-block;
+    max-width: 40%;
+    margin-bottom: 5px;
+
+    ion-badge {
+      font-size: 0.7em;
+    }
+  }
+
+}

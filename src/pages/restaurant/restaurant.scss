@@ -1,0 +1,51 @@
+page-restaurant {
+  .content-item{
+
+    padding: 0px 16px 0px 16px;
+
+    .item-inner{
+
+      padding-right: 0px;
+
+      .label.label-md{
+        display: flex;
+        margin-right: 0px;
+
+        .content-img {
+          display: inline-block;
+        }
+
+        .content-infos{
+          width: 100%;
+          margin-left: 20px;
+          overflow: hidden;
+          display: inline-block;
+
+          .content-name{
+            margin-bottom: 10px;
+          }
+
+          p{
+            font-size: 1.3rem;
+          }
+
+          .content-orders{
+            text-align: right;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  .content-item:first-child(){
+    padding-top: 16px;
+  }
+}

@@ -1,17 +1,47 @@
-<app-header title="Login" menu="false"></app-header>
+<ion-content class="login-content">
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col>
+      <h1>Easy Resto</h1>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <form (ngSubmit)="doLogin()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
 
-<ion-content padding>
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="_username" [(ngModel)]="registerCredentials._username" required></ion-input>
+            </ion-item>
 
-  <h3>Welcome to your first Ionic app!</h3>
+            <ion-item>
+              <ion-input type="password" placeholder="Mot de passe" name="_password" [(ngModel)]="registerCredentials._password" required></ion-input>
+            </ion-item>
 
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p>
-    <button ion-button color="primary" menuToggle>Toggle Menu</button>
-  </p>
+            <ion-row>
+              <ion-col class="signup-col">
+                <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Se connecter</button>
+              </ion-col>
+            </ion-row>
+          </ion-list>
+        </ion-col>
+      </ion-row>
 
+      <!-- <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Se connecter</button>
+        </ion-col>
+      </ion-row> -->
+    </form>
+    <!-- <button ion-button class="register-btn" block clear (click)="register()">S'inscrire</button> -->
+    <button ion-button class="register-btn" block clear (click)="register()">S'inscrire</button>
+
+  </div>
+
+  <div class="credentials">
+     <p>© 2018 Easy Resto - Tous droits réservés</p>
+  </div>
+  
 </ion-content>

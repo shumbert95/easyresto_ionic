@@ -1,0 +1,63 @@
+<ion-content>
+	  <app-header title="Mes informations"></app-header>
+	  
+	<div class="edit-profile-box">
+
+		<form (ngSubmit)="doEditProfile()" #registerForm="ngForm" >
+
+			<ion-row>
+				<ion-col>
+					<ion-list inset>
+
+						<ion-item>
+							<ion-input type="text" placeholder="Email" name="email" [(ngModel)]="profile.email"></ion-input>
+						</ion-item>
+			
+						<ion-item>
+							<ion-label>Civilité</ion-label>
+							<ion-select name="civility" [(ngModel)]="profile.civility">
+							<ion-option *ngIf="profile?.civility == 1" value="1" selected>Mr.</ion-option>
+							<ion-option *ngIf="profile?.civility != 1" value="1">Mr.</ion-option>
+							<ion-option *ngIf="profile?.civility == 2" value="2" selected>Mme.</ion-option>
+							<ion-option *ngIf="profile?.civility != 2" value="2">Mme.</ion-option>
+							</ion-select>
+						</ion-item>
+			
+						<ion-item>
+							<ion-input type="text" placeholder="Prénom" name="firstName" [(ngModel)]="profile.firstName"></ion-input>
+						</ion-item>
+			
+						<ion-item>
+							<ion-input type="text" placeholder="Nom" name="lastName" [(ngModel)]="profile.lastName"></ion-input>
+						</ion-item>
+			
+						<ion-item>
+							<ion-input type="text" placeholder="Téléphone" name="phoneNumber" [(ngModel)]="profile.phoneNumber"></ion-input>
+						</ion-item>
+			
+						<ion-item>
+							<ion-input type="text" placeholder="Code Postal" name="postalCode" [(ngModel)]="profile.postalCode"></ion-input>
+						</ion-item>
+			
+						<ion-item>
+							<ion-input type="password" placeholder="Mot de passe" name="password" [(ngModel)]="profile.password"></ion-input>
+						</ion-item>
+			
+						<ion-item>
+							<ion-input type="password" placeholder="Confirmation"></ion-input>
+						</ion-item>
+
+					</ion-list>
+				</ion-col>
+			</ion-row>
+
+			<ion-row>
+				<ion-col class="validate-col">
+					<button ion-button class="validate-btn" full type="submit">Valider</button>
+				</ion-col>
+			</ion-row>
+
+		</form>
+
+	</div>
+</ion-content>

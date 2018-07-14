@@ -1,0 +1,19 @@
+<ion-content>
+  <app-header title="{{contentData?.name}}"></app-header>
+  <form (ngSubmit)="addToCart()" #addToCartForm="ngForm">
+    <ion-row>
+      <ion-col>
+        <ion-icon name="remove-circle" (click)="decreaseQuantity()"></ion-icon>
+          {{quantity}}
+        <ion-icon name="add-circle" (click)="increaseQuantity()"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="add-to-cart-col">
+        <button ion-button class="submit-btn" full type="submit">Ajouter au panier {{calculatedPrice}} €</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>
