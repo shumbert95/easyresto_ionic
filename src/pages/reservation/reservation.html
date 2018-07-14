@@ -2,11 +2,16 @@
   <app-header title="Commande"></app-header>
 
   <ion-item>
-    <ion-label><ion-icon name="nbParticipants"></ion-icon></ion-label>
-    <ion-input type="text" class="" placeholder="Nombre de participants ..." [(ngModel)]='nbParticipants' ></ion-input>
+    <ion-label><ion-icon name="people"></ion-icon></ion-label>
+    <ion-input type="number" min="1" class="" placeholder="Nombre de participants ..." [(ngModel)]='nbParticipants' (ionChange)="onNbParticipantsChange"></ion-input>
   </ion-item>
-  <button *ngIf="nbParticipants > 0" ion-button color="light" icon-right (click)="picker.open()">
-    <ion-datetime #picker pickerFormat="HH:mm" [(ngModel)]="myDate"  [hourValues]="hourValues" minuteValues="0,30" placeholder="Date"></ion-datetime>
-    <ion-icon name="calendar"></ion-icon>
-  </button>
+  <ion-item *ngIf="nbParticipants > 0">
+    <ion-label><ion-icon name="calendar"></ion-icon></ion-label>
+    <ion-datetime displayFormat="DDD. D MMM. YYYY" placeholder="Choisissez une date ..." [yearValues]="yearValues" cancelText="Annuler" doneText="Terminé"  [min]="minDate" [dayShortNames]="dayShortNames" [monthShortNames]="monthShortNames" pickerFormat="DD MMM YYYY" [(ngModel)]="myDate_day" (ionChange)="onDateUpdate()"></ion-datetime>
+  </ion-item>
+
+  <ion-item *ngIf="myDate_day != null">
+    <ion-label><ion-icon name="time"></ion-icon></ion-label>
+    <ion-datetime #picker_hour pickerFormat="HH:mm" [(ngModel)]="myDate_hour"  [hourValues]="hourValues" cancelText="Annuler" doneText="Terminé" minuteValues="0,30" placeholder="Choisissez une heure..."></ion-datetime>
+  </ion-item>
 </ion-content>
