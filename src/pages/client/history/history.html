@@ -43,18 +43,21 @@
 
         <ion-row>
             <ion-col text-right>
-                    <div *ngIf="reservation.hasNote; else noteTemplate">
+                    <div *ngIf="reservation.hasNote; else noteTemplate" class="">
                         Merci d'avoir noté
                     </div>
                     <ng-template #noteTemplate>
-                        <ion-select #N (ionChange)="manageNote(reservation.restaurant.id,reservation.id,N.value)">
-                            <ion-option selected disabled>Note</ion-option>
-                            <ion-option value=1>1</ion-option>
-                            <ion-option value=2>2</ion-option>
-                            <ion-option value=3>3</ion-option>
-                            <ion-option value=4>4</ion-option>
-                            <ion-option value=5>5</ion-option>
-                        </ion-select>
+                        <ion-item>
+                            <ion-label>Notez ce restaurant</ion-label>
+                            <ion-select #N (ionChange)="manageNote(reservation.restaurant.id,reservation.id,N.value)">
+                                <ion-option selected disabled>Note</ion-option>
+                                <ion-option value=1>1</ion-option>
+                                <ion-option value=2>2</ion-option>
+                                <ion-option value=3>3</ion-option>
+                                <ion-option value=4>4</ion-option>
+                                <ion-option value=5>5</ion-option>
+                            </ion-select>
+                        </ion-item>
                     </ng-template>
             </ion-col>
         </ion-row>      
