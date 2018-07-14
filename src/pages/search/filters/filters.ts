@@ -60,13 +60,10 @@ export class FiltersPage {
   }
 
   isChecked(filterId,typeFilter){
-    console.log("am i in ?");
     if(typeFilter==1){
-      console.log(this.categoriesFilters.indexOf(filterId) >= 0);
       return this.categoriesFilters.indexOf(filterId) >= 0;
     }
     if(typeFilter==2){
-      console.log(this.momentsFilters.indexOf(filterId) >= 0);
       return this.momentsFilters.indexOf(filterId) >= 0;
     }
   }

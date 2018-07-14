@@ -20,18 +20,29 @@
         <ion-list class="menu">
             <ion-item *ngFor="let tab of restaurantMenu">
                 <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
-                <ion-item *ngFor="let content of tab.content" class="content-item {{content.type == 1 ? 'meal' : 'category'}}">
-                    <ng-container *ngIf="content.type == 1">
+                <ion-item *ngFor="let content of tab.content" class="content-item">
+                    <ng-container *ngIf="content.availability > 0">
                         <div class="content-img">
                             <ion-thumbnail><img src="https://lehanout-apero.com/wp-content/uploads/2017/02/Produit-H-Burger.jpg" /></ion-thumbnail>
                         </div>
                         <div class="content-infos"  (click)="toProduct(content.id)">
                             <div class="content-name">{{content.name}}</div>
                             <p class="content-price">{{content.price}} €</p>
+                            <ion-badge *ngFor="let tag of content.tags">{{tag.name}}</ion-badge>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="content.type == 2">
-                        <p>{{content.name}}</p>
+                    <ng-container *ngIf="content.availability == 0">
+                        <div class="filter">
+                            <span class="availability-error">Produit indisponible</span>
+                            <div class="content-img">
+                                <ion-thumbnail><img src="https://lehanout-apero.com/wp-content/uploads/2017/02/Produit-H-Burger.jpg" /></ion-thumbnail>
+                            </div>
+                            <div class="content-infos">
+                                <div class="content-name">{{content.name}}</div>
+                                <p class="content-price">{{content.price}} €</p>
+                                <ion-badge *ngFor="let tag of content.tags">{{tag.name}}</ion-badge>
+                            </div>
+                        </div>
                     </ng-container>
                 </ion-item>
             </ion-item>

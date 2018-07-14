@@ -25,14 +25,21 @@ export class DetailPage {
   map: GoogleMap;
   public latitude;
   public longitude;
+  public cart: any;
   public markers = [];
 
   @ViewChild('map') mapElement: ElementRef;
   constructor(public navCtrl: NavController, public navParams: NavParams, public restaurantProvider: RestaurantProvider,public loadingCtrl: LoadingController,private toastCtrl: ToastController) {
     this.restaurantData = navParams.get("restaurantData");   
-    console.log(this.restaurantData);
-
+    this.cart = this.getCart();
   }
+
+    getCart() {
+        return JSON.parse(localStorage.cart);
+    }
+    ionViewWillEnter() {
+        this.cart = this.getCart();
+    }
 
   showLoader() {
     this.loading = this.loadingCtrl.create({
