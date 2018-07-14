@@ -21,7 +21,7 @@ page-history {
         padding: 0px;
     }
 
-    .item{
+    .item-wrapper{
         border-bottom: solid 1px #dedede;
         margin-bottom: 10px;
     }
@@ -43,6 +43,16 @@ page-history {
     .total span:last-child{
         font-weight: bold;
         font-size: 1.5rem;
+    }
+
+    .col{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    hasnote{
+        padding-right: 32px;
+        margin-bottom: 10px;
     }
 
 }
