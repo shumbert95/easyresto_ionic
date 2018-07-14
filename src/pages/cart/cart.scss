@@ -8,4 +8,32 @@ page-cart {
     bottom: 52px;
     width: 100%;
   }
+
+  .restaurant-infos {
+    margin-bottom: 0;
+    .restaurant-name{
+      font-size : 2rem;
+      padding: 0px;
+    }
+  }
+
+  .label-md{
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+
+  .item-detail,
+  .total{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .total{
+    margin-right: 16px;
+  }
+
+  .total span:last-child{
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
 }

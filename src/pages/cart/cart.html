@@ -3,26 +3,19 @@
   <ion-item class="restaurant-infos">
     <img class="restaurant-img" src="{{restaurantData?.picture}}"/>
     <h1 class="restaurant-name">{{restaurantData?.name}}</h1>
-    <div class="restaurant-location">
+    <p class="restaurant-location">
       <i class="zmdi zmdi-pin"></i><span class="restaurant-address">{{restaurantData?.formattedAddress}}</span>
-    </div>
+    </p>
   </ion-item>
   <ion-item class="products">
-    <div class="reservation-content">
       <ion-list>
           <ion-item *ngFor="let content of cart.order" class="test">
-            <div class="item-detail">
-              <p class="content-name">{{content.name}}</p>
-              <span class="content-price">{{content.totalPrice}} €</span>
-            </div>
+            <ion-badge color="light">{{content.quantity}}</ion-badge><span class="content-name">{{content.name}}</span> <span class="content-price">{{content.price}}€</span>
           </ion-item>
       </ion-list>
-
-
-    </div>
   </ion-item>
   <ion-item class="summary">
-    <p></p>
+    <p class="total">Total: <span class="price">{{cart.totalPrice}}€</span></p>
   </ion-item>
   <button ion-button class="checkout-step-1-btn" full (click)="toStep1()">Passer commande</button>
 </ion-content>
