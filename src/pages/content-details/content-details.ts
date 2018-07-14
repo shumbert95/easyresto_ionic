@@ -67,6 +67,7 @@ export class ContentDetailsPage {
         this.cart.totalPrice += (this.contentData.price * this.quantity);
         this.cart.totalPrice = parseFloat(this.cart.totalPrice.toFixed(2));
         this.setCart();
+        console.log(this.navCtrl.parent);
         this.navCtrl.pop().then(() => {
             this.events.publish('custom-user-events');
         });
@@ -94,7 +95,10 @@ export class ContentDetailsPage {
                 {
                     text: 'Ajouter',
                     handler: () => {
-                        localStorage.cart.restaurantId = this.restaurantId;
+                        this.cart.order = [];
+                        this.cart.totalPrice = 0;
+                        this.cart.restaurantId = this.restaurantId;
+                        console.log(this.cart);
                         this.addToCart();
                     }
                 }
