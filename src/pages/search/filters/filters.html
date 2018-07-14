@@ -17,11 +17,12 @@
 
     <h2>Moments</h2>
     <ng-container *ngIf="moments">
-        <ion-list>
-            <button ion-item *ngFor="let moment of moments">
+        <ion-list class="moments">
+            <button ion-button *ngFor="let moment of moments">
                 <ion-label>{{moment.name}}</ion-label>
-                <ion-checkbox *ngIf="isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)" checked></ion-checkbox>
-                <ion-checkbox *ngIf="!isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)"></ion-checkbox>
+                
+                <!-- <ion-checkbox *ngIf="isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)" checked></ion-checkbox>
+                <ion-checkbox *ngIf="!isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)"></ion-checkbox> -->
             </button>
         </ion-list>
     </ng-container>

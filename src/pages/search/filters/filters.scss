@@ -1,3 +1,18 @@
 page-filters {
 
+    ion-toolbar ion-icon{
+        color: #FFFFFF;
+    }
+
+    ion-list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .button-md{
+            width: calc(50% - (5 * 2px));
+        }
+
+    }
+
 }
