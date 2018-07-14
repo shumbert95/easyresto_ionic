@@ -39,7 +39,12 @@
                   <p>Samedi : <span class="schedule">{{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}</span></p>
               </div>
             </ion-item-group>
+
+            <div *ngIf="cart">
+                <div class="margin-bottom"></div>
+            </div>    
         </div>
+    
 
     </div> 
       <add-to-cart [cart]="cart"></add-to-cart>
