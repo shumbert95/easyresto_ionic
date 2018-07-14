@@ -17,6 +17,9 @@
       </div>
     </ion-item>
   </ion-list>
-  <p class="favorites-empty" *ngIf="!hasFavorites">Vous n'avez actuellement aucun favoris.</p>
+  <div class="favorites-empty-container">
+      <ion-icon name="outlet" color="primary"></ion-icon>
+      <p class="favorites-empty" *ngIf="!hasFavorites">Vous n'avez actuellement aucun favoris.</p>
+  </div>
   <add-to-cart [cart]="cart"></add-to-cart>
 </ion-content>
