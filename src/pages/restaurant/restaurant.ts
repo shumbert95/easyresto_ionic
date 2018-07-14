@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import { RestaurantProvider } from '../../shared/providers/restaurant-provider';
 import { ClientProvider } from "../../shared/providers/client-provider";
 import { DetailPage } from "./detail/detail";
+import {ContentDetailsPage} from "../content-details/content-details";
 
 
 
@@ -78,6 +79,12 @@ export class Restaurant {
 
   formattedAddress() {
     return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''
+  }
+
+  toProduct(contentId) {
+      this.navCtrl.push(ContentDetailsPage, {
+          contentId: contentId
+      });
   }
 
   detailsPage(restaurant){
