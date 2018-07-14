@@ -4,7 +4,7 @@
 
         <div class="img-wrapper">
             <img src="{{reservation?.restaurant.picture}}"/>    
-            <ion-icon name="heart-outline" (click)="manageFavorite(reservation.id)" [name]="favorisIcon"></ion-icon>   
+            <ion-icon name="heart-outline" (click)="manageFavorite(reservation.restaurant.id)" [name]="reservation?.restaurant.favoriteIcon"></ion-icon>
         </div>
       
         <!-- <ion-card-header></ion-card-header> -->
