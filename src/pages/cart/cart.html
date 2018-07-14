@@ -1,7 +1,11 @@
 <ion-content>
   <app-header title="Panier"></app-header>
-  <ion-item>
+  <ion-item class="restaurant-infos">
     <img class="restaurant-img" src="{{restaurantData?.picture}}"/>
+    <h1 class="restaurant-name">{{restaurantData?.name}}</h1>
+    <div class="restaurant-location">
+      <div #map id="map"></div>
+    </div>
   </ion-item>
   <ion-item class="products">
 
