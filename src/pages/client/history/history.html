@@ -13,15 +13,11 @@
             </p>
             <div class="reservation-content">
                 <ion-list>
-                    <ion-item *ngFor="let seat of reservation.seat">
-                        <span class="content-qty"><b>{{seat.name}}</b></span>
-                        <ion-list>
+                    <ion-item *ngFor="let seat of reservation.seats">
                             <ion-item *ngFor="let content of seat.content">
-                                <span class="content-qty">{{content.quantity}}</span>
                                 <span class="content-name">{{content.name}}</span>
                                 <span class="content-price">{{content.totalPrice}} €</span>
                             </ion-item>
-                        </ion-list>
                     </ion-item>
                 </ion-list>
                 
