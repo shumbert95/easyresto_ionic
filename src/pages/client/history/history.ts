@@ -15,6 +15,7 @@ export class HistoryPage {
 
   public userReservations: any;
   public loading: any;
+  public favorisIcon: string = 'heart-outline';
 
     constructor(public app: App, public navCtrl: NavController, public clientService: ClientProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
     this.getReservations();
@@ -36,18 +37,21 @@ export class HistoryPage {
 
     manageFavorite(reservationId) {
       this.showLoader();
+
       this.userReservations.forEach((reservation) => {
         if (reservation.id == reservationId) {
             if (reservation.restaurant.favorite == true) {
                 this.clientService.removeFromFavorites(reservation.restaurant.id).then((data) => {
                     this.loading.dismiss();
                     this.presentToast('Ce restaurant a été supprimé de vos favoris.');
+                    this.favorisIcon = 'heart-outline';
                     this.userReservations = this.getReservations();
                 });
             } else {
                 this.clientService.addToFavorites(reservation.restaurant.id).then((data) => {
                     this.loading.dismiss();
                     this.presentToast('Ce restaurant a été ajouté à vos favoris.');
+                    this.favorisIcon = 'heart';
                     this.userReservations = this.getReservations();
                 });
             }

@@ -1,7 +1,14 @@
 <ion-content>
     <app-header title="Mes commandes"></app-header>
     <ion-card *ngFor="let reservation of userReservations">
-        <img src="{{reservation?.restaurant.picture}}"/>
+
+        <div class="img-wrapper">
+            <img src="{{reservation?.restaurant.picture}}"/>    
+            <ion-icon name="heart-outline" (click)="manageFavorite(reservation.id)" [name]="favorisIcon"></ion-icon>   
+        </div>
+      
+        <!-- <ion-card-header></ion-card-header> -->
+
         <ion-card-content (click)="toRestaurant(reservation.restaurant.id)">
             <ion-card-title>
                 {{reservation.restaurant.name}}
@@ -13,17 +20,24 @@
             </p>
             <div class="reservation-content">
                 <ion-list>
-                    <ion-item *ngFor="let seat of reservation.seats">
-                            <ion-item *ngFor="let content of seat.content">
-                                <span class="content-name">{{content.name}}</span>
-                                <span class="content-price">{{content.totalPrice}} €</span>
+                    <div *ngFor="let seat of reservation.seats">
+                        <div class="item-wrapper">
+                            <ion-item *ngFor="let content of seat.content" class="test">
+                                <div class="item-detail">
+                                    <p class="content-name">{{content.name}}</p>
+                                    <span class="content-price">{{content.totalPrice}} €</span>
+                                </div>
                             </ion-item>
-                    </ion-item>
+                        </div>
+                    </div>
+
+                    <div class="total">
+                        <span>Total :</span>
+                        <span>{{reservation.total}} €</span>
+                    </div>
                 </ion-list>
                 
-                <div class="total">
-                    Total: {{reservation.total}} €
-                </div>
+                
             </div>
         </ion-card-content>
 
@@ -43,9 +57,13 @@
                         </ion-select>
                     </ng-template>
             </ion-col>
-        </ion-row>
+        </ion-row>      
+
         <div class="star">
-            <ion-icon name="star" (click)="manageFavorite(reservation.id)">Favoris</ion-icon>
+
+            <!-- <ion-icon name="heart-outline" (click)="manageFavorite(reservation.id)"></ion-icon>  -->
+            <!-- <ion-icon name="star-outline"></ion-icon> -->
+            <!-- <ion-icon name="star" (click)="manageFavorite(reservation.id)">Favoris</ion-icon> -->
         </div>
     </ion-card>
 
