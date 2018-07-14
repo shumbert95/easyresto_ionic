@@ -5,7 +5,6 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 >>>>>>> Update inte detail restau + page cart
 import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
-import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/google-maps";
 
 
 /**
@@ -15,14 +14,6 @@ import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/goog
  * Ionic pages and navigation.
  */
 
-declare let google;
-let map: any;
-let infowindow: any;
-let options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-};
 
 @IonicPage()
 @Component({
@@ -33,10 +24,6 @@ export class CartPage {
 
   cart: any;
   loading: any;
-    map: GoogleMap;
-    public latitude;
-    public longitude;
-    public markers = [];
     public restaurantData: any;
 
     @ViewChild('map') mapElement: ElementRef;
@@ -45,10 +32,15 @@ export class CartPage {
     this.getRestaurantData();
   }
 
+    formattedAddress() {
+        return this.restaurantData.address ? this.restaurantData.address + ', ' + this.restaurantData.postalCode + ', ' + this.restaurantData.city : ''
+    }
+
     getRestaurantData() {
       this.restaurantService.getRestaurantInfos(this.cart.restaurantId).then((result: any) => {
           if (result) {
               this.restaurantData = result.result;
+              this.restaurantData.formattedAddress = this.formattedAddress();
           }
       }, (err) => {
           this.loading.dismiss();
@@ -56,34 +48,22 @@ export class CartPage {
       });
     }
 
-    initMap() {
-        navigator.geolocation.getCurrentPosition((location) => {
-            let userLat = String(location.coords.latitude);
-            let userLng = String(location.coords.longitude);
-            this.map = new google.maps.Map(this.mapElement.nativeElement, {
-                center: {lat: this.latitude, lng: this.longitude},
-                zoom: 15
-            });
-            let restaurantLoc = new google.maps.LatLng(parseFloat(this.latitude),parseFloat(this.longitude));
-            let marker = new google.maps.Marker({
-                map: this.map,
-                position: restaurantLoc,
-                title: "Restau !"
-            });
 
-            let userLoc = new google.maps.LatLng(parseFloat(userLat),parseFloat(userLng));
+    presentToast(msg) {
 
-            let userMarker = new google.maps.Marker({
-                map: this.map,
-                position: userLoc,
-                label: "M",
-                title: "Moi !"
-            });
-        }, (error) => {
-            console.log(error);
-        }, options);
+        let msgText = msg.status == 401 ? 'L\'email et/ou le mot de passe est/sont incorrect(s)' : msg;
+        let toast = this.toastCtrl.create({
+            message: msgText,
+            duration: 3000,
+            position: 'bottom',
+            dismissOnPageChange: true
+        });
 
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
 
+        toast.present();
     }
 
     getCart() {
