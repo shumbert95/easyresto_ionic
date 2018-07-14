@@ -8,6 +8,7 @@
     <ion-card *ngIf="showDetails && currentRestaurant"  (click)="toRestaurant(currentRestaurant.id)" class="detailsModale">
         <img class="card-image" src="{{currentRestaurant.picture}}" />
         <ion-icon class="card-close" name="close" (click)="closeModale()"></ion-icon>
+        <i class="zmdi zmdi-chevron-right go-to-page"></i>
         <div class="card-title">{{currentRestaurant.name}}</div>
         <div class="card-tags">
             <ion-badge *ngFor="let category of currentRestaurant.categories">{{category.name}}</ion-badge>
@@ -15,7 +16,6 @@
         <div class="card-address">
         <span><i class="zmdi zmdi-pin icon-pin"></i>{{formattedAddress(currentRestaurant.address, currentRestaurant.postalCode, currentRestaurant.city)}}</span>
         </div>
-        <ion-icon name="arrow-forward" class="go-to-page"></ion-icon>
     </ion-card>
 </ion-content>
   
