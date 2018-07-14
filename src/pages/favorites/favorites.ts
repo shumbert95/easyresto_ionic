@@ -66,12 +66,12 @@ export class FavoritesPage {
     getFavorites(){
         this.showLoader();
         this.clientService.getFavorites().then((data: any) => {
-            console.log(data);
             this.loading.dismiss();
-            if (data.result.length) {
-                console.log(data.result);
-                this.userFavorites = data.result;
-                this.hasFavorites = true;
+            if (data.result.length && data.result[0] != []) {
+                if (!(data.result[0] instanceof Array)) {
+                    this.userFavorites = data.result;
+                    this.hasFavorites = true;
+                }
             }
         }, (err) => {
             this.loading.dismiss();
