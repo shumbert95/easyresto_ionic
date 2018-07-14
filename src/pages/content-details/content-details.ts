@@ -60,7 +60,7 @@ export class ContentDetailsPage {
     addToCart() {
         if (!this.cart.restaurantId || this.cart.restaurantId == this.restaurantId) {
             this.cart.restaurantId = this.restaurantId;
-            this.cart.order.push({'contentId': this.contentId, 'quantity': this.quantity, 'name': this.contentData.name, 'price': this.contentData.price});
+            this.cart.order.push({'contentId': this.contentId, 'quantity': this.quantity, 'name': this.contentData.name, 'price': this.contentData.price, 'picture': this.contentData.picture});
         } else {
             this.presentConfirm();
         }

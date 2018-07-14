@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, Events} from 'ionic-angular';
 import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
 import {ReservationPage} from "../reservation/reservation";
+import {Search} from "../search/search";
 
 
 /**
@@ -24,7 +25,7 @@ export class CartPage {
     public restaurantData: any;
 
     @ViewChild('map') mapElement: ElementRef;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private restaurantService: RestaurantProvider, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, private events: Events, public navParams: NavParams, private restaurantService: RestaurantProvider, private toastCtrl: ToastController) {
     this.cart = this.getCart();
     this.getRestaurantData();
   }
@@ -69,5 +70,10 @@ export class CartPage {
 
     toStep1() {
       this.navCtrl.push(ReservationPage);
+    }
+
+    emptyCart() {
+        localStorage.setItem('cart', JSON.stringify({'restaurantId': null, order: [], totalPrice: 0}));
+        this.navCtrl.pop();
     }
 }
