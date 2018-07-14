@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Description
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary" showWhen="ios">Cancel</span>
+          <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content padding>
+
+  <h2>Catégories</h2>
+  <ng-container *ngIf="categories">
+      <ion-list>
+          <button ion-item *ngFor="let category of categories">
+              <ion-label>{{category.name}}</ion-label>
+              <ion-checkbox *ngIf="isChecked(category.id,1)" (click)="updateFilters(category.id,1)" checked></ion-checkbox>
+              <ion-checkbox *ngIf="!isChecked(category.id,1)" (click)="updateFilters(category.id,1)"></ion-checkbox>
+          </button>
+      </ion-list>
+  </ng-container>
+
+  <h2>Moments</h2>
+  <ng-container *ngIf="moments">
+      <ion-list>
+          <button ion-item *ngFor="let moment of moments">
+              <ion-label>{{moment.name}}</ion-label>
+              <ion-checkbox *ngIf="isChecked(moment.id,2)" (click)="updateFilters(moment.id,1)" checked></ion-checkbox>
+              <ion-checkbox *ngIf="!isChecked(moment.id,2)" (click)="updateFilters(moment.id,1)"></ion-checkbox>
+          </button>
+      </ion-list>
+  </ng-container>
+  <button ion-button class="submit-btn" full (click)="applyFilters()">Appliquer</button>
+
+</ion-content>

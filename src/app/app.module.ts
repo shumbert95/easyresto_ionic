@@ -21,6 +21,7 @@ import { HistoryPage } from "../pages/client/history/history";
 import { CartPage } from "../pages/cart/cart";
 import { FavoritesPage } from "../pages/favorites/favorites";
 import { Search } from "../pages/search/search";
+import { FiltersPage } from "../pages/search/filters/filters";
 import { DetailPage } from "../pages/restaurant/detail/detail";
 import { ContentDetailsPage } from "../pages/content-details/content-details";
 
@@ -52,7 +53,8 @@ import {SearchModule} from "../pages/search/search.module";
     HistoryPage,
     FavoritesPage,
     ContentDetailsPage,
-    DetailPage
+    DetailPage,
+    FiltersPage
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import {SearchModule} from "../pages/search/search.module";
     Search,
     ContentDetailsPage,
     FavoritesPage,
-    DetailPage
+    DetailPage,
+    FiltersPage
   ],
   providers: [
     StatusBar,
