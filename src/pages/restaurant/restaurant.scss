@@ -48,4 +48,26 @@ page-restaurant {
   .content-item:first-child(){
     padding-top: 16px;
   }
+
+  .infos,
+  .more-infos{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  h1{
+    font-weight: 100;
+  }
+
+  .more-infos{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 5px;
+  }
+
+  .more-infos p:last-child{
+    color: #7957d5;
+  }
+
 }

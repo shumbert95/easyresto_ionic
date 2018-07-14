@@ -2,4 +2,14 @@ page-detail {
     #map {
         height:40%;
     }
+
+    .detail-container{
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .adress{
+        display: flex;
+        justify-content: space-between;
+    }
 }
