@@ -73,7 +73,7 @@ export class RestaurantProvider {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.get(apiUrl+'restaurants/categories', {headers: headers})
+            this.http.get(apiUrl+'categories', {headers: headers})
                 .subscribe(res => {
                     if (res){
                         resolve(res.json());
@@ -90,7 +90,7 @@ export class RestaurantProvider {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.get(apiUrl+'restaurants/moments', {headers: headers})
+            this.http.get(apiUrl+'moments', {headers: headers})
                 .subscribe(res => {
                     if (res){
                         resolve(res.json());

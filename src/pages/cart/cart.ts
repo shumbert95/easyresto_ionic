@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
+import {ReservationPage} from "../reservation/reservation";
 
 
 /**
@@ -26,7 +27,6 @@ export class CartPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private restaurantService: RestaurantProvider, private toastCtrl: ToastController) {
     this.cart = this.getCart();
     this.getRestaurantData();
-    console.log(this.cart);
   }
 
     formattedAddress() {
@@ -65,5 +65,9 @@ export class CartPage {
 
     getCart() {
         return JSON.parse(localStorage.cart);
+    }
+
+    toStep1() {
+      this.navCtrl.push(ReservationPage);
     }
 }
