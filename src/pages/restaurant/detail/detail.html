@@ -1,31 +1,41 @@
 <ion-content>
   <app-header title="{{restaurantData?.name}}"></app-header>
   <div #map id="map"></div>
-  <h2>Description</h2>
-  <p>{{restaurantData.description}}</p>
-  <h2>Horaires</h2>
-  <ion-item-group *ngFor="let day of restaurantSchedule">
-    <div *ngIf="day.name === 'Dim'">
-      Dimanche : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-    <div *ngIf="day.name === 'Lun'">
-      Lundi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-    <div *ngIf="day.name === 'Mar'">
-      Mardi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-    <div *ngIf="day.name === 'Mer'">
-      Mercredi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-    <div *ngIf="day.name === 'Jeu'">
-      Jeudi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-    <div *ngIf="day.name === 'Ven'">
-      Vendredi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-    <div *ngIf="day.name === 'Sam'">
-      Samedi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
-    </div>
-  </ion-item-group>
-  <add-to-cart [cart]="cart"></add-to-cart>
+
+  <div class="detail-container">
+      <h2>Informations</h2>
+      <p>{{restaurantData.description}}</p>
+      <p><ion-icon name="pin" color="primary"></ion-icon> {{restaurantData?.addressFormatted}}</p>
+      <div class="adress">
+          <p><ion-icon name="call" color="primary"></ion-icon> {{restaurantData?.phone}}</p>
+          <p></p><a href="{{restaurantData?.website">Voir le site web</a><p>
+      </div>
+      
+      <h2>Horaires</h2>
+      <ion-item-group *ngFor="let day of restaurantSchedule">
+        <div *ngIf="day.name === 'Dim'">
+          Dimanche : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+        <div *ngIf="day.name === 'Lun'">
+          Lundi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+        <div *ngIf="day.name === 'Mar'">
+          Mardi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+        <div *ngIf="day.name === 'Mer'">
+          Mercredi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+        <div *ngIf="day.name === 'Jeu'">
+          Jeudi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+        <div *ngIf="day.name === 'Ven'">
+          Vendredi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+        <div *ngIf="day.name === 'Sam'">
+          Samedi : {{day.timeSteps[0]}} - {{day.timeSteps[day.timeSteps.length -1 ]}}
+        </div>
+      </ion-item-group>
+      <add-to-cart [cart]="cart"></add-to-cart>
+  </div>
+  
 </ion-content>

@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {HomeModule} from "../pages/home/home.module";
 import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
+// import ColorHash from 'color-hash';
 
 // Pages
 import { Login } from '../pages/login/login';
