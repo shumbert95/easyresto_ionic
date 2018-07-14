@@ -1,10 +1,11 @@
-import { NavController, Platform, ModalController, } from 'ionic-angular';
+import { NavController, Platform, ModalController } from 'ionic-angular';
 import {Component, ViewChild, ElementRef, NgZone} from '@angular/core';
 import {SearchProvider} from "../../shared/providers/search-provider";
 import { RestaurantProvider } from "../../shared/providers/restaurant-provider";
 import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/google-maps";
 import { Restaurant } from "../restaurant/restaurant";
 import {Login} from "../login/login";
+import { FiltersPage } from './filters/filters';
 
 declare let google;
 let map: any;
@@ -36,7 +37,7 @@ export class Search {
 
 
     @ViewChild('map') mapElement: ElementRef;
-    constructor(public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider, private zone: NgZone) {
+    constructor(public modalCtrl: ModalController,public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider, private zone: NgZone) {
         if(!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') {
             this.navCtrl.setRoot(Login)
         } else {
@@ -65,6 +66,7 @@ export class Search {
                 console.log(err);
             });
         }
+        console.log("i'm in");
     }
 
     initMap() {
@@ -102,22 +104,7 @@ export class Search {
         })
     }
 
-    updateFilters(filterId,typeFilter){
-        if(typeFilter==1){
-            if (this.categoriesFilters.indexOf(filterId) == -1) {
-                this.categoriesFilters.push(filterId);
-            } else {
-                this.categoriesFilters.splice(this.categoriesFilters.indexOf(filterId), 1);
-            }
-        }
-        if(typeFilter==2){
-            if (this.momentsFilters.indexOf(filterId) == -1) {
-                this.momentsFilters.push(filterId);
-            } else {
-                this.momentsFilters.splice(this.momentsFilters.indexOf(filterId), 1);
-            }
-        }
-
+    updateFilters(){
         this.searchService.search(this.latitude, this.longitude, this.categoriesFilters,this.momentsFilters, this.searchText).then((data: any) => {
             console.log(data);
             if (typeof(data.result) !== 'undefined') {
@@ -156,6 +143,23 @@ export class Search {
     closeModale() {
         this.showDetails = false;
         console.log(this);
+    }
+
+    openFiltersModal(){
+        let modal = this.modalCtrl.create(FiltersPage,{ 
+            'categories': this.categories, 
+            'moments': this.moments, 
+            'categoriesFilters': this.categoriesFilters,
+            'momentsFilters' : this.momentsFilters
+        });
+        modal.present();
+        modal.onDidDismiss(data => {
+            if(data !== null){
+                this.categoriesFilters = data.categoriesFilters;
+                this.momentsFilters = data.momentsFilters;
+                this.updateFilters();
+            }
+        });
     }
 
     toRestaurant(restaurantId) {
