@@ -133,6 +133,7 @@ export class Search {
             (e) => this.zone.run(() => {
                 this.currentRestaurant = place;
                 this.showDetails = true;
+                this.cart = null;
             }));
     }
 
@@ -151,7 +152,7 @@ export class Search {
 
     closeModale() {
         this.showDetails = false;
-        console.log(this);
+        this.cart = this.getCart();
     }
 
     openFiltersModal(){

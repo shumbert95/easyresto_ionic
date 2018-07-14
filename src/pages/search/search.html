@@ -4,7 +4,10 @@
         <ion-label><ion-icon name="search"></ion-icon></ion-label>
         <ion-input type="text" class="" placeholder="Rechercher ..." [(ngModel)]='searchText' (ionChange)='onInputChange()'></ion-input>        
     </ion-item>
-    <button ion-button class="submit-btn" (click)="openFiltersModal({categories: categories})">Filtres</button>
+    <ion-fab middle right (click)="openFiltersModal({categories: categories})">
+        <button ion-fab mini><i class="zmdi zmdi-tune"></i>
+        </button>
+    </ion-fab>
     <div #map id="map"></div>
     <ion-card *ngIf="showDetails && currentRestaurant"  (click)="toRestaurant(currentRestaurant.id)" class="detailsModale">
         <img class="card-image" src="{{currentRestaurant.picture}}" />

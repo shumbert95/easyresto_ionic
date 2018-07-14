@@ -1,1 +1,1 @@
-<button ion-button class="show-cart-btn" full *ngIf="cart.totalPrice > 0" (click)="toCart()">Voir le panier {{cart.totalPrice}}€</button>
+<button ion-button class="show-cart-btn" full *ngIf="cart && cart.totalPrice > 0" (click)="toCart()">Voir le panier {{cart.totalPrice}}€</button>
