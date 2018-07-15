@@ -51,10 +51,12 @@ export class ContentDetailsPage {
 
     increaseQuantity() {
       this.quantity++;
+      this.calculatedPrice = this.calculatedPrice + this.contentData.price;
     }
 
     decreaseQuantity() {
         this.quantity > 1 ? this.quantity-- : 1;
+        this.calculatedPrice = this.calculatedPrice - this.contentData.price;
     }
 
     addToCart() {

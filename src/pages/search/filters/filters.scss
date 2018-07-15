@@ -1,3 +1,50 @@
 page-filters {
 
+    ion-toolbar ion-icon{
+        color: #FFFFFF;
+    }
+
+    ion-list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .button-md{
+            width: calc(50% - (5 * 2px));
+            height: auto;
+            padding-top: 35px;
+            padding-bottom: 30px;
+        }
+
+        .btn-container{
+            display: flex;
+            flex-direction: column;
+
+            div{
+                margin: auto;
+                margin-bottom: 8px;
+
+                ion-icon,
+                i{
+                    font-size: 2.5em;
+                }
+            }
+
+            .label-md{
+                margin: auto;
+                margin-top: 8px;
+            }
+        }
+
+    }
+
+    .moments{
+        border-bottom: solid 1px #dedede;
+        padding-bottom: 20px;
+
+        h2{
+            font-weight: 100;
+        }
+    }
+
 }

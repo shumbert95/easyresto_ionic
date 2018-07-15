@@ -195,7 +195,7 @@ export class Search {
         this.clientService.getProfile().then((data) => {
             console.log(data);
             if(data.result.user.phoneNumber === undefined || data.result.user.phoneNumber === null)
-                this.navCtrl.setRoot(EditProfilePage)
+                this.navCtrl.setRoot(EditProfilePage,({firstTime: true}))
 
         }, (err) => {
             console.log(err);

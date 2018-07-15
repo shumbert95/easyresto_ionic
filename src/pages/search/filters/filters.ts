@@ -22,6 +22,7 @@ export class FiltersPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController) {
     this.categories = this.navParams.get('categories');
     this.moments = this.navParams.get('moments');
+    console.log(this.moments);
     this.categoriesFilters = this.navParams.get('categoriesFilters');
     this.momentsFilters = this.navParams.get('momentsFilters');
     this.sortArray(this.categories);

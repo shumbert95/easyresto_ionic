@@ -3,6 +3,9 @@
   <form (ngSubmit)="addToCart()" #addToCartForm="ngForm">
     <ion-row>
       <ion-col>
+        <ion-thumbnail><img src="{{contentData?.picture}}" /></ion-thumbnail>
+        <h2>{{contentData?.name}}</h2>
+        <p>{{contentData?.description}}</p>
         <ion-icon name="remove-circle" (click)="decreaseQuantity()"></ion-icon>
           {{quantity}}
         <ion-icon name="add-circle" (click)="increaseQuantity()"></ion-icon>
