@@ -4,6 +4,8 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 let apiUrl = 'http://jeremyfsmoreau.fr/app_dev.php/';
+let apiUrls = 'https://jeremyfsmoreau.fr/app_dev.php/';
+
 
 @Injectable()
 export class AuthProvider {
@@ -16,6 +18,22 @@ export class AuthProvider {
             headers.append('Content-Type', 'application/json');
 
             this.http.post(apiUrl+'login_check', JSON.stringify(credentials), {headers: headers})
+                .subscribe(res => {
+                    resolve(res.json());
+                }, (err) => {
+                    reject(err);
+                });
+        }).catch(function(error){
+            return error;
+        });
+    }
+
+    loginFacebook(res) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            this.http.post(apiUrls+'login/facebook', JSON.stringify(res), {headers: headers})
                 .subscribe(res => {
                     resolve(res.json());
                 }, (err) => {

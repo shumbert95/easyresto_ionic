@@ -31,7 +31,7 @@ export class ReservationPage {
       this.cart = this.getCart();
       this.yearValues = [(new Date()).getFullYear(), new Date(new Date().setFullYear(new Date().getFullYear() + 1)).getFullYear()];
       this.minDate = new Date().toISOString();
-      this.getSchedule();
+      //this.getSchedule();
   }
 
     getCart() {
@@ -42,7 +42,7 @@ export class ReservationPage {
         this.cart = this.getCart();
     }
     onNbParticipantsChange() {
-      this.nbParticipants <= 0 ? this.NbParticipants = 1 : '';
+      this.nbParticipants <= 0 ? this.nbParticipants = 1 : '';
     }
 
   checkAvailability() {
@@ -60,7 +60,7 @@ export class ReservationPage {
       }
   }
 
-  getSchedule() {
+  /*getSchedule() {
       this.restaurantService.getRestaurantSchedule(this.cart.restaurantId).then((result: any) => {
           if (result) {
               this.restaurantSchedule = result.result;
@@ -69,7 +69,7 @@ export class ReservationPage {
           this.loading.dismiss();
           this.presentToast(err);
       });
-  }
+  }*/
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReservationPage');
