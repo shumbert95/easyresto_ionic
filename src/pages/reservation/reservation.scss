@@ -1,3 +1,13 @@
 page-reservation {
-
+  ion-input {
+    input {
+      text-align: right;
+    }
+  }
+  .pay {
+    position: fixed;
+    z-index: 2;
+    bottom: 52px;
+    width: 100%;
+  }
 }
