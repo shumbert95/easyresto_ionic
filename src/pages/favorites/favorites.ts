@@ -67,7 +67,7 @@ export class FavoritesPage {
         this.showLoader();
         this.clientService.getFavorites().then((data: any) => {
             this.loading.dismiss();
-            if (data.result.length && data.result[0] != []) {
+            if (data.result !== undefined && data.result.length && data.result[0] != []) {
                 if (!(data.result[0] instanceof Array)) {
                     this.userFavorites = data.result;
                     this.hasFavorites = true;

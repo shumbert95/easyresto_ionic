@@ -6,6 +6,8 @@ import {GoogleMaps, GoogleMap, GoogleMapsEvent, Marker} from "@ionic-native/goog
 import { Restaurant } from "../restaurant/restaurant";
 import {Login} from "../login/login";
 import { FiltersPage } from './filters/filters';
+import { ClientProvider } from '../../shared/providers/client-provider';
+import { EditProfilePage } from '../client/edit-profile/edit-profile';
 
 declare let google;
 let map: any;
@@ -38,12 +40,13 @@ export class Search {
 
 
     @ViewChild('map') mapElement: ElementRef;
-    constructor(public modalCtrl: ModalController,public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider, private zone: NgZone) {
+    constructor(public modalCtrl: ModalController,public clientService: ClientProvider,public navCtrl: NavController, public searchService: SearchProvider, public restaurantService: RestaurantProvider, private zone: NgZone) {
         if(!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') {
             this.navCtrl.setRoot(Login)
         } else {
             this.isLoggedIn = true;
         }
+        this.firstTimeLogged();
         this.initMap();
         this.getCategories();
         this.getMoments();
@@ -186,5 +189,16 @@ export class Search {
         this.navCtrl.push(Restaurant, {
             restaurantId: restaurantId
         })
+    }
+
+    firstTimeLogged(){     
+        this.clientService.getProfile().then((data) => {
+            console.log(data);
+            if(data.result.user.phoneNumber === undefined || data.result.user.phoneNumber === null)
+                this.navCtrl.setRoot(EditProfilePage)
+
+        }, (err) => {
+            console.log(err);
+        });
     }
 }

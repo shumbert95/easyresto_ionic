@@ -20,6 +20,10 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
+        <config-file parent="/resources" target="./res/values/strings.xml">
+            <string name="fb_app_id">1971361259822450</string>
+            <string name="fb_app_name">easyresto</string>
+        </config-file>
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -86,5 +90,12 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDPweSoTIOQZLaSLzObQHBGKiXOSjcx0fs" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
+        <variable name="APP_ID" value="1971361259822450" />
+        <variable name="APP_NAME" value="easyresto" />
+        <variable name="ANDROID_SDK_VERSION" value="4.+" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.1.50:8100" />
+    <allow-navigation href="http://192.168.1.50:8101" />
 </widget>
