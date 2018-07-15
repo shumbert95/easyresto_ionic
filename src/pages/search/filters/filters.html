@@ -15,14 +15,32 @@
 
 <ion-content padding>
 
-    <h2>Moments</h2>
+    <!-- <h2>Moments</h2> -->
     <ng-container *ngIf="moments">
         <ion-list class="moments">
-            <button ion-button *ngFor="let moment of moments">
-                <ion-label>{{moment.name}}</ion-label>
+            <button ion-button *ngFor="let moment of moments" >
                 
-                <!-- <ion-checkbox *ngIf="isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)" checked></ion-checkbox>
-                <ion-checkbox *ngIf="!isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)"></ion-checkbox> -->
+                <div class="btn-container">
+                    <div *ngIf="moment.name === 'Apéro'">
+                        <ion-icon name="beer"></ion-icon>
+                    </div>
+                    <div *ngIf="moment.name === 'Dîner'">
+                        <i class="zmdi zmdi-cutlery"></i>                        
+                    </div>
+                    <div *ngIf="moment.name === 'Midi'">
+                        <i class="zmdi zmdi-pizza"></i>                        
+                    </div>
+                    <div *ngIf="moment.name === 'Petit Déjeuner'">
+                        <i class="zmdi zmdi-coffee"></i>                        
+                    </div>
+
+                    <ion-label>{{moment.name}}</ion-label>
+
+                    <!-- <ion-checkbox *ngIf="isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)" checked></ion-checkbox>
+                    <ion-checkbox *ngIf="!isChecked(moment.id,2)" (click)="updateFilters(moment.id,2)"></ion-checkbox> -->
+
+                </div>
+               
             </button>
         </ion-list>
     </ng-container>
