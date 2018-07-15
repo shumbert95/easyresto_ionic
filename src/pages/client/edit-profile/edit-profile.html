@@ -9,13 +9,14 @@
 				<ion-col>
 					<ion-list inset>
 
-						<ion-item>
+						<ion-item *ngIf="facebookId == null">
 							<ion-input type="text" placeholder="Email" name="email" [(ngModel)]="profile.email"></ion-input>
 						</ion-item>
 			
 						<ion-item>
 							<ion-label>Civilité</ion-label>
 							<ion-select name="civility" [(ngModel)]="profile.civility">
+							<ion-option *ngIf="profile?.civility != 1 && profile?.civility != 2" selected disabled>Civility</ion-option>
 							<ion-option *ngIf="profile?.civility == 1" value="1" selected>Mr.</ion-option>
 							<ion-option *ngIf="profile?.civility != 1" value="1">Mr.</ion-option>
 							<ion-option *ngIf="profile?.civility == 2" value="2" selected>Mme.</ion-option>
