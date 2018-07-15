@@ -19,13 +19,15 @@
                 <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
                 <ion-item *ngFor="let content of tab.content" class="content-item">
                     <ng-container *ngIf="content.availability > 0">
-                        <div class="content-img" *ngIf="content.picture">
-                            <ion-thumbnail><img src="{{content.picture}}" /></ion-thumbnail>
-                        </div>
-                        <div class="content-infos"  (click)="toProduct(content.id)">
-                            <div class="content-name">{{content.name}}</div>
-                            <p class="content-price">{{content.price}} €</p>
-                            <ion-badge *ngFor="let tag of content.tags">{{tag.name}}</ion-badge>
+                        <div (click)="toProduct(content.id)">
+                            <div class="content-img" *ngIf="content.picture">
+                                <ion-thumbnail><img src="{{content.picture}}" /></ion-thumbnail>
+                            </div>
+                            <div class="content-infos">
+                                <div class="content-name">{{content.name}}</div>
+                                <p class="content-price">{{content.price}} €</p>
+                                <ion-badge *ngFor="let tag of content.tags">{{tag.name}}</ion-badge>
+                            </div>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="content.availability == 0">
