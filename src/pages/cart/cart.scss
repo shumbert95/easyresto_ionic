@@ -1,0 +1,115 @@
+page-cart {
+  #map {
+    height:30%;
+  }
+  .checkout-step-1-btn {
+    position: fixed;
+    z-index: 2;
+    bottom: 52px;
+    width: 100%;
+  }
+
+  .restaurant-infos {
+    margin-bottom: 0;
+    .restaurant-name{
+      font-size : 2rem;
+      padding: 0px;
+    }
+  }
+
+  .label-md{
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+
+  .item-detail,
+  .total{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .total{
+    margin-right: 16px;
+  }
+
+  .total span:last-child{
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  /*from restaurant*/
+  .content-item{
+
+    padding: 0px 16px 0px 16px;
+
+    .item-inner{
+
+      padding-right: 0px;
+
+      .label.label-md{
+        display: flex;
+        margin-right: 0px;
+
+        .content-img {
+          display: inline-block;
+        }
+
+        .content-infos{
+          width: 100%;
+          margin-left: 20px;
+          overflow: hidden;
+          display: inline-block;
+
+          .content-name{
+            margin-bottom: 10px;
+          }
+
+          p{
+            font-size: 1.3rem;
+          }
+
+          .content-orders{
+            text-align: right;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  .content-item:first-child(){
+    padding-top: 16px;
+  }
+
+  .infos,
+  .more-infos{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  h1{
+    font-weight: 100;
+  }
+
+  .more-infos{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 5px;
+  }
+
+  .more-infos p:last-child{
+    color: #7957d5;
+  }
+
+  .availability-error{
+    color: #ff3860;
+  }
+}

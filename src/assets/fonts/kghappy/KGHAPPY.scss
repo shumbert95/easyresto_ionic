@@ -1,0 +1,15 @@
+// KGHAPPY
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+$kghappy-font-path: $font-path !default;
+
+@font-face {
+  font-family: "KGHAPPY";
+  font-style: normal;
+  font-weight: 300;
+//   src: local("KGHAPPY"), url("#{$kghappy-font-path}/KGHAPPY.ttf") format("truetype");
+  src: url('../assets/fonts/opensans/700/opensans-bold-webfont.ttf');
+  
+}

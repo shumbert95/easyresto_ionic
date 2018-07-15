@@ -1,0 +1,25 @@
+<ion-content>
+  <app-header title="Mes favoris"></app-header>
+  <ion-list *ngIf="hasFavorites">
+    <ion-item class="restaurant-item" *ngFor="let favorite of userFavorites" (click)="toRestaurant(favorite.restaurant.id)">
+      <div class="restaurant-img">
+          <ion-thumbnail><img src="{{favorite.restaurant.picture}}" /></ion-thumbnail>
+      </div>
+      <div class="restaurant-infos">
+        <div class="restaurant-name">{{favorite.restaurant.name}}</div>
+        <p class="restaurant-address">{{favorite.restaurant.address}}, {{favorite.restaurant.postalCode}}, {{favorite.restaurant.city}}</p>
+        <div class="restaurant-tags">
+          <ion-badge *ngFor="let category of favorite.restaurant.categories" class="restaurant-tag">{{category.name}} </ion-badge>
+        </div>
+        <p class="restaurant-orders">
+          {{favorite.ordersCount}} Commande<span *ngIf="favorite.ordersCount > 1">s</span>
+        </p>
+      </div>
+    </ion-item>
+  </ion-list>
+  <div class="favorites-empty-container" *ngIf="!hasFavorites">
+      <ion-icon name="outlet" color="primary"></ion-icon>
+      <p class="favorites-empty">Vous n'avez actuellement aucun favoris.</p>
+  </div>
+  <add-to-cart [cart]="cart"></add-to-cart>
+</ion-content>
