@@ -8,6 +8,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {HomeModule} from "../pages/home/home.module";
 import { GooglePlacesAutocompleteComponentModule } from 'ionic2-google-places-autocomplete';
+import { Facebook } from '@ionic-native/facebook';
+
 // import ColorHash from 'color-hash';
 
 // Pages
@@ -98,7 +100,8 @@ import {ReservationPage} from "../pages/reservation/reservation";
     AuthProvider,
     ClientProvider,
     RestaurantProvider,
-    SearchProvider
+    SearchProvider,
+    Facebook
   ]
 })
 export class AppModule {

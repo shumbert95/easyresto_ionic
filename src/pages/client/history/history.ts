@@ -89,17 +89,15 @@ export class HistoryPage {
       this.showLoader();
       this.clientService.getReservations().then((data) => {
           this.loading.dismiss();
-          if (!data.result) {
-              this.clientService.logout();
-              this.navCtrl.setRoot(Login);
-          }
           this.userReservations = data.result;
+          if(this.userReservations !== undefined && this.userReservations !== null){
           for(let i = 0; i<this.userReservations.length; i++) {
               console.log(this.userReservations[i].restaurant.favorite);
              this.userReservations[i].restaurant.favorite ? this.userReservations[i].restaurant.favoriteIcon = 'heart' : this.userReservations[i].restaurant.favoriteIcon = 'heart-outline';
              console.log(this.userReservations[i].restaurant.favoriteIcon);
 
           }
+        }
       }, (err) => {
           this.loading.dismiss();
           this.presentToast(err);

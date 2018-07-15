@@ -24,4 +24,6 @@ export class Home {
             this.isLoggedIn = true;
         }
     }
+
+    
 }
