@@ -3,7 +3,7 @@ import { Headers } from '@angular/http';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = 'http://jeremyfsmoreau.fr/app_dev.php/';
+let apiUrl = 'https://jeremyfsmoreau.fr/app_dev.php/';
 
 @Injectable()
 export class RestaurantProvider {
@@ -120,12 +120,12 @@ export class RestaurantProvider {
         });
     }
 
-    confirmReservation(restaurantId, reservationId, paypalId) {
+    confirmReservation(restaurantId, reservationId, response) {
         return new Promise((resolve, reject) => {
             let headers = new Headers();
             headers.append('Content-Type', 'application/json');
             headers.append('Authorization', 'Bearer ' + localStorage.getItem("token"));
-            this.http.get(apiUrl + 'restaurants/' + restaurantId + '/reservations/' + reservationId + '/confirm/' + paypalId, {headers: headers})
+            this.http.post(apiUrl + 'restaurants/' + restaurantId + '/reservations/' + reservationId + '/paypalconfirm/' + response.id, response,{headers: headers})
                 .subscribe(res => {
                     if (res) {
                         resolve(res.json());

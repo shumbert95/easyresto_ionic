@@ -89,7 +89,7 @@ export class ReservationPage {
                     //     "intent": "sale"
                     //   }
                     // }
-                    this.restaurantService.confirmReservation(this.cart.restaurantId, this.cart.reservationId, result.response.id).then((result: any) => {
+                    this.restaurantService.confirmReservation(this.cart.restaurantId, this.cart.reservationId, result.response).then((result: any) => {
                         if (result) {
                             this.loading.dismiss();
                             this.nbSeats = result.result.availability;
