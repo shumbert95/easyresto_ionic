@@ -41,6 +41,7 @@ import {HeaderComponent} from "../shared/components/header/header";
 import {Home} from "../pages/home/home";
 import {SearchModule} from "../pages/search/search.module";
 import {ReservationPage} from "../pages/reservation/reservation";
+import {PayPal} from "@ionic-native/paypal";
 
 
 @NgModule({
@@ -101,7 +102,8 @@ import {ReservationPage} from "../pages/reservation/reservation";
     ClientProvider,
     RestaurantProvider,
     SearchProvider,
-    Facebook
+    Facebook,
+    PayPal
   ]
 })
 export class AppModule {

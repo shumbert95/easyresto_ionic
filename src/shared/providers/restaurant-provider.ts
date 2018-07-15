@@ -102,4 +102,82 @@ export class RestaurantProvider {
                 });
         });
     }
+
+    checkAvailability(date, hour, nbParticipants, restaurantId) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            this.http.get(apiUrl+'restaurants/'+restaurantId+'/check_availability?date_from'+date+' '+hour+'&nb_participants'+nbParticipants, {headers: headers})
+                .subscribe(res => {
+                    if (res){
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
+
+    confirmReservation(restaurantId, reservationId, paypalId) {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Authorization', 'Bearer ' + localStorage.getItem("token"));
+            this.http.get(apiUrl + 'restaurants/' + restaurantId + '/reservations/' + reservationId + '/confirm/' + paypalId, {headers: headers})
+                .subscribe(res => {
+                    if (res) {
+                        resolve(res.json());
+                    } else {
+                        resolve({'result': []});
+                    }
+                }, (err) => {
+                    reject(err);
+                });
+        });
+    }
+
+        createReservation(cart) {
+            let data = this.formatCart(cart);
+            return new Promise((resolve, reject) => {
+                let headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+                headers.append('Authorization', 'Bearer '+localStorage.getItem("token"));
+                this.http.post(apiUrl + 'restaurants/' + cart.restaurantId + '/reservations', JSON.stringify(data), {headers: headers})
+                    .subscribe(res => {
+                        if (res) {
+                            console.log(res);
+                            resolve(res.json());
+                        } else {
+                            resolve({'result': []});
+                        }
+                    }, (err) => {
+                        reject(err);
+                    });
+            });
+        }
+
+        formatCart(cart) {
+        console.log('test');
+            let meals = [];
+            for (let i = 0; i<cart.order.length; i++) {
+                for (let j = 0; j<cart.order[i].quantity; j++) {
+                    meals.push({id: cart.order[i].contentId});
+                }
+            }
+        console.log('toto');
+            return {
+                date: cart.date + 'T' + cart.timeStep.replace('h',':') + ':00.000Z',
+                timeStep: cart.timeStep.replace(':', 'h'),
+                seats: [
+                    {
+                        name: "Mobile",
+                        meals: meals,
+                    }
+                ],
+                nbParticipants: cart.nbParticipants
+            }
+        }
+
 }
