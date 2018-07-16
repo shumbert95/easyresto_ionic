@@ -15,6 +15,7 @@ export class ConfirmationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private restaurantProvider: RestaurantProvider) {
     this.cart = navParams.get("cart");
     this.getRestaurantInfos();
+    localStorage.setItem('cart', null);
   }
 
 
@@ -22,12 +23,10 @@ export class ConfirmationPage {
       this.restaurantProvider.getRestaurantInfos(this.cart.restaurantId).then((result: any) => {
           if (result) {
               this.restaurantData = result.result;
-              console.log(this.cart);
               this.restaurantData.formattedDate = this.formatDate(this.cart.date);
           }
       }, (err) => {
           // this.loading.dismiss();
-          this.presentToast(err);
       });
   }
 
