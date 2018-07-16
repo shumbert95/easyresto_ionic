@@ -3,7 +3,7 @@
   <form (ngSubmit)="addToCart()" #addToCartForm="ngForm">
     <ion-row>
       <ion-col class="product-detail">
-        <ion-thumbnail><img src="{{contentData?.picture}}" /></ion-thumbnail>
+        <img src="{{contentData?.picture}}" />
         <h2>{{contentData?.name}}</h2>
         <p>{{contentData?.description}}</p>
         <div class="product-quantity-container">
