@@ -1,25 +1,41 @@
 <ion-content>
   <app-header title="Panier"></app-header>
-  <ion-item class="restaurant-infos">
+  <div class="restaurant-infos">
     <img class="restaurant-img" src="{{restaurantData?.picture}}"/>
-    <h1 class="restaurant-name">{{restaurantData?.name}}</h1>
-    <p class="restaurant-location">
-      <i class="zmdi zmdi-pin"></i><span class="restaurant-address">{{restaurantData?.formattedAddress}}</span>
-    </p>
-  </ion-item>
+    <div class="infos-details">
+        <h1 class="restaurant-name">{{restaurantData?.name}}</h1>
+        <p class="restaurant-location">
+          <i class="zmdi zmdi-pin"></i><span class="restaurant-address">{{restaurantData?.formattedAddress}}</span>
+        </p>
+    </div>
+  </div>
   <ion-item class="products">
       <ion-list>
-          <ion-item *ngFor="let content of cart.order" class="test">
-            <div class="content-img" *ngIf="content.picture">
+          <ion-item *ngFor="let content of cart.order" class="products-detail">
+            <!-- <div class="content-img" *ngIf="content.picture">
                 <ion-thumbnail><img src="{{content.picture}}" /></ion-thumbnail>
-            </div>
-            <ion-badge color="light">{{content.quantity}}</ion-badge> x <span class="content-name">{{content.name}}</span> <span class="content-price">{{content.price}}€</span>
+            </div> -->
+            <div class="left-part"><ion-badge color="light">{{content.quantity}}</ion-badge> x <span class="content-name">{{content.name}}</span> </div><span class="content-price">{{content.price}}€</span>
           </ion-item>
       </ion-list>
   </ion-item>
   <ion-item class="summary">
-    <p class="total">Total: <span class="price">{{cart.totalPrice}}€</span></p>
+    <p class="total"><span><ion-icon name="trash" (click)="presentConfirm()" color="primary"></ion-icon> Total: </span> <span class="price">{{cart.totalPrice}}€</span></p>
   </ion-item>
-  <button ion-button color="light" full (click)="emptyCart()">Vider le panier</button>
+
+  <!-- <ion-row>
+    <ion-col class="empty-cart-col">     
+      <ion-icon name="trash" (click)="presentConfirm()" color="primary"></ion-icon>       
+        <button ion-button color="light" full (click)="emptyCart()">Vider le panier</button>
+    </ion-col>
+  </ion-row> -->
+  <!-- <button ion-button color="light" full (click)="emptyCart()">Vider le panier</button> -->
   <button ion-button class="checkout-step-1-btn" full (click)="toStep1()">Passer commande</button>
 </ion-content>
+
+
+<ion-row>
+    <ion-col class="add-to-cart-col">
+      <button ion-button class="submit-btn" full type="submit">Ajouter au panier {{calculatedPrice}} €</button>
+    </ion-col>
+  </ion-row>

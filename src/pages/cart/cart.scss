@@ -11,9 +11,32 @@ page-cart {
 
   .restaurant-infos {
     margin-bottom: 0;
+
+    .infos-details{
+      margin-left: 16px;
+      margin-right: 16px;
+      border-bottom: solid 1px #dedede;
+      margin-bottom: 20px;
+
+      i{
+        margin-right: 5px;
+        color: $violet;
+      }
+
+      .restaurant-address{
+        color: #666;
+      }
+    }
+
     .restaurant-name{
-      font-size : 2rem;
-      padding: 0px;
+      font-weight: 100;
+      font-size: 2.6rem;
+      margin-top: 2rem;
+
+    }
+
+    .restaurant-location{
+      margin-top: 0px;
     }
   }
 
@@ -29,7 +52,12 @@ page-cart {
   }
 
   .total{
-    margin-right: 16px;
+    font-weight: bold;
+    color: #000000;
+
+    ion-icon{
+      margin-right: 5px;
+    }
   }
 
   .total span:last-child{
@@ -94,10 +122,6 @@ page-cart {
     margin-right: 16px;
   }
 
-  h1{
-    font-weight: 100;
-  }
-
   .more-infos{
     display: flex;
     justify-content: space-between;
@@ -112,4 +136,60 @@ page-cart {
   .availability-error{
     color: #ff3860;
   }
+
+  .empty-cart-col{
+    margin: 20px 16px 50px 16px;
+  }
+
+  .products{
+
+    padding-right: 16px;
+
+    .label .label-md{
+      display: flex;
+      justify-content: space-between;
+      margin-right: 0px;
+    }
+
+    .list-md{
+      margin-bottom: 0px;
+
+      .item-md{
+        padding-left: 0px;   
+      }
+
+      // .item-md:last-child{
+      //   border-bottom: solid 1px #dedede; 
+      // }
+      
+    } 
+
+  }
+
+  .summary{
+      padding-right: 16px
+
+      // ion-icon{
+      //   font-size: 
+      // }
+  }
+
+  .item-md ion-thumbnail{
+    display: none;
+  }
+
+  .products-detail .label-md{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0px;
+  }
+
+  // .products > .item-inner{
+  //   border-bottom: 0px;
+  // }
+
+  .badge-md-light{
+    color: $violet;
+  }
+
 }
