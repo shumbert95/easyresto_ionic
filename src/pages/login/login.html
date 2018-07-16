@@ -25,6 +25,7 @@
                 <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Se connecter</button>
               </ion-col>
             </ion-row>
+
           </ion-list>
         </ion-col>
       </ion-row>
@@ -39,6 +40,12 @@
     <ion-row class="facebook-connect">
       <ion-col>
         <button ion-button class="submit-btn" full (click)="facebookAuth()"> <ion-icon name="logo-facebook"></ion-icon> Facebook</button>        
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+          <a href="" class="forget-password" color="primary">Mot de passe oublié ?</a>
       </ion-col>
     </ion-row>
 
