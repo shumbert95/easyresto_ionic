@@ -15,7 +15,7 @@ export class ConfirmationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private restaurantProvider: RestaurantProvider) {
     this.cart = navParams.get("cart");
     this.getRestaurantInfos();
-    localStorage.setItem('cart', null);
+    localStorage.setItem('cart', JSON.stringify({'restaurantId': 0, 'order': [], 'totalPrice': 0}));
   }
 
 
