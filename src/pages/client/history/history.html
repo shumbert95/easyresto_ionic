@@ -7,8 +7,6 @@
             <ion-icon name="heart-outline" (click)="manageFavorite(reservation.restaurant.id)" [name]="reservation?.restaurant.favoriteIcon"></ion-icon>
         </div>
       
-        <!-- <ion-card-header></ion-card-header> -->
-
         <ion-card-content (click)="toRestaurant(reservation.restaurant.id)">
             <ion-card-title>
                 {{reservation.restaurant.name}}
@@ -63,10 +61,6 @@
         </ion-row>      
 
         <div class="star">
-
-            <!-- <ion-icon name="heart-outline" (click)="manageFavorite(reservation.id)"></ion-icon>  -->
-            <!-- <ion-icon name="star-outline"></ion-icon> -->
-            <!-- <ion-icon name="star" (click)="manageFavorite(reservation.id)">Favoris</ion-icon> -->
         </div>
     </ion-card>
     <add-to-cart [cart]="cart"></add-to-cart>
