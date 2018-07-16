@@ -52,11 +52,16 @@ export class ContentDetailsPage {
     increaseQuantity() {
       this.quantity++;
       this.calculatedPrice = this.calculatedPrice + this.contentData.price;
+      this.calculatedPrice = parseFloat(this.calculatedPrice.toFixed(2));
     }
 
     decreaseQuantity() {
-        this.quantity > 1 ? this.quantity-- : 1;
-        this.calculatedPrice = this.calculatedPrice - this.contentData.price;
+        if(this.quantity > 1){
+            this.quantity--;
+            this.calculatedPrice = this.calculatedPrice - this.contentData.price;
+            this.calculatedPrice = parseFloat(this.calculatedPrice.toFixed(2));
+        }
+
     }
 
     addToCart() {

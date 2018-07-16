@@ -3,7 +3,7 @@ import { Headers } from '@angular/http';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = 'http://jeremyfsmoreau.fr/app_dev.php/';
+let apiUrl = 'https://jeremyfsmoreau.fr/app_dev.php/';
 let apiUrls = 'https://jeremyfsmoreau.fr/app_dev.php/';
 
 
