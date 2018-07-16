@@ -141,6 +141,20 @@ page-cart {
     margin: 20px 16px 50px 16px;
   }
 
+  .empty-cart{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px;
+    border-bottom: solid 1px #dedede;
+    padding-bottom: 20px;
+
+    .remove-card{
+      color: $violet;
+    }
+    
+  }
+
   .products{
 
     padding-right: 16px;
@@ -184,12 +198,16 @@ page-cart {
     margin-top: 0px;
   }
 
-  // .products > .item-inner{
-  //   border-bottom: 0px;
-  // }
-
   .badge-md-light{
     color: $violet;
+  }
+
+  .trash-btn{
+
+    ion-icon{
+      font-size: 1.5em;
+    }
+
   }
 
 }
