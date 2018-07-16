@@ -21,6 +21,13 @@ page-restaurant {
           overflow: hidden;
           display: inline-block;
 
+          .badge{
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: 5px;
+            margin-top: 5px;
+          }
+
           .content-name{
             margin-bottom: 10px;
           }
@@ -72,6 +79,10 @@ page-restaurant {
 
   .availability-error{
     color: #ff3860;
+  }
+
+  .menu .filter{
+    display: flex;
   }
 
 }
