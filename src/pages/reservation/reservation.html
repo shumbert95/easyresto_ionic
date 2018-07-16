@@ -15,9 +15,10 @@
     <ion-datetime #picker_hour pickerFormat="HH:mm" [(ngModel)]="myDate_hour"  [hourValues]="hourValues" cancelText="Annuler" doneText="Terminé" minuteValues="0,30" placeholder="Choisissez une heure..." (ionChange)="checkAvailability()"></ion-datetime>
   </ion-item>
 
+  <div class="places-availability">
     <ng-container *ngIf="nbSeats >= 0 && nbSeats < 10">
-         <i class="zmdi zmdi-mood"></i>
-         <ion-label>Il ne reste plus beaucoup de places ! Dépéchez vous !</ion-label>
+      <i class="zmdi zmdi-mood"></i>
+      <ion-label>Il ne reste plus beaucoup de places ! Dépéchez vous !</ion-label>
     </ng-container>
     <ng-container *ngIf="nbSeats > 10">
       <i class="zmdi zmdi-mood"></i>
@@ -27,5 +28,7 @@
       <i class="zmdi zmdi-mood-bad"></i>
       <ion-label>Il n'y a plus de places...</ion-label>
     </ng-container>
+  </div>
+    
    <button ion-button class="pay" *ngIf="nbSeats > 0" full (click)="pay()">Payer {{cart.totalPrice}}€</button>
 </ion-content>
