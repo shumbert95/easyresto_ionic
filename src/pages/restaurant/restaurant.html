@@ -15,11 +15,11 @@
     </div>
     <div class="menu">
         <ion-list class="menu">
-            <ion-item *ngFor="let tab of restaurantMenu">
+            <ion-item *ngFor="let tab of restaurantMenu" class="tab">
                 <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
                 <ion-item *ngFor="let content of tab.content" class="content-item">
                     <ng-container *ngIf="content.availability > 0">
-                        <div (click)="toProduct(content.id)">
+                        <div (click)="toProduct(content.id)" class="filter">
                             <div class="content-img" *ngIf="content.picture">
                                 <ion-thumbnail><img src="{{content.picture}}" /></ion-thumbnail>
                             </div>
