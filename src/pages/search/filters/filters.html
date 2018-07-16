@@ -18,19 +18,18 @@
     <!-- <h2>Moments</h2> -->
     <ng-container *ngIf="moments">
         <ion-list class="moments">
-            <button ion-button *ngFor="let moment of moments" >
-                
+            <button ion-button *ngFor="let moment of moments" (click)="updateFilters(moment.id, 2)">
                 <div class="btn-container">
-                    <div *ngIf="moment.name === 'Apéro'">
+                    <div *ngIf="moment.name === 'Apéro'"  [ngClass]="{ 'selected': moment.selected }">
                         <ion-icon name="beer"></ion-icon>
                     </div>
-                    <div *ngIf="moment.name === 'Dîner'">
+                    <div *ngIf="moment.name === 'Dîner'" (click)="updateFilters(moment.id, 2)">
                         <i class="zmdi zmdi-cutlery"></i>                        
                     </div>
-                    <div *ngIf="moment.name === 'Midi'">
+                    <div *ngIf="moment.name === 'Midi'" (click)="updateFilters(moment.id, 2)">
                         <i class="zmdi zmdi-pizza"></i>                        
                     </div>
-                    <div *ngIf="moment.name === 'Petit Déjeuner'">
+                    <div *ngIf="moment.name === 'Petit Déjeuner'" (click)="updateFilters(moment.id, 2)">
                         <i class="zmdi zmdi-coffee"></i>                        
                     </div>
 

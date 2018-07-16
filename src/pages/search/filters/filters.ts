@@ -18,15 +18,21 @@ export class FiltersPage {
   public momentsFilters;
   public categories;
   public moments;
+  public selectedMoments;
+  public a;
+  public b;
+  public c;
+  public d;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController) {
     this.categories = this.navParams.get('categories');
     this.moments = this.navParams.get('moments');
-    console.log(this.moments);
     this.categoriesFilters = this.navParams.get('categoriesFilters');
     this.momentsFilters = this.navParams.get('momentsFilters');
     this.sortArray(this.categories);
     this.sortArray(this.moments);
+    this.selectedMoments = [];
+
   }
 
   ionViewDidLoad() {
@@ -36,19 +42,24 @@ export class FiltersPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  updateFilters(filterId,typeFilter){
-    if(typeFilter==1){
+  updateFilters(filterId, typeFilter){
+    if(typeFilter===1){
         if (this.categoriesFilters.indexOf(filterId) == -1) {
             this.categoriesFilters.push(filterId);
         } else {
             this.categoriesFilters.splice(this.categoriesFilters.indexOf(filterId), 1);
         }
     }
-    if(typeFilter==2){
+    if(typeFilter===2){
+        this.moments.forEach(i =>  {
+            (i.id == filterId) ? i.selected = true : i.selected = false;
+        });
+        console.log(this.moments);
         if (this.momentsFilters.indexOf(filterId) == -1) {
             this.momentsFilters.push(filterId);
         } else {
             this.momentsFilters.splice(this.momentsFilters.indexOf(filterId), 1);
+            this.selectedMoments.splice(this.selectedMoments.indexOf(filterId), 1)
         }
     }
   }
