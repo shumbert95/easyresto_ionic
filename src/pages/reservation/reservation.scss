@@ -10,4 +10,30 @@ page-reservation {
     bottom: 52px;
     width: 100%;
   }
+
+  .places-availability{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+
+    i{
+      font-size: 5em;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .zmdi-mood{
+      color: #23d160;
+    }
+
+    .zmdi-mood-bad{
+      color: #ff3860;
+    }
+
+    .label-md{
+      margin: auto !important;
+      color: #666;
+    }
+  }
+
 }
