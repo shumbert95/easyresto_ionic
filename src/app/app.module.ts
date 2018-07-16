@@ -42,6 +42,7 @@ import {Home} from "../pages/home/home";
 import {SearchModule} from "../pages/search/search.module";
 import {ReservationPage} from "../pages/reservation/reservation";
 import {PayPal} from "@ionic-native/paypal";
+import {ConfirmationPage} from "../pages/confirmation/confirmation";
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {PayPal} from "@ionic-native/paypal";
     ContentDetailsPage,
     DetailPage,
     ReservationPage,
-    FiltersPage
+    FiltersPage,
+    ConfirmationPage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ import {PayPal} from "@ionic-native/paypal";
     FavoritesPage,
     DetailPage,
     ReservationPage,
-    FiltersPage
+    FiltersPage,
+    ConfirmationPage
   ],
   providers: [
     StatusBar,
