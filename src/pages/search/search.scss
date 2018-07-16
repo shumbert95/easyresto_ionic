@@ -13,6 +13,12 @@
     z-index: 2;
     vertical-align: middle;
 
+    display: flex;
+
+    .card-detail{
+        margin: 5px;
+    }
+
     .card-close {
         float: right;
         margin-right: 5px;
@@ -24,6 +30,7 @@
         position: relative;
         left: 10px;
         top: 35%;
+        color: $violet;
     }
     .card-image{
         max-width:50%;
@@ -34,10 +41,11 @@
     .card-address {
         font-size: 0.8em;
         display: inline-block;
-        max-width:40%;
+        max-width:68%;
         .icon-pin {
         font-size: 1.1em;
         margin-right:2px;
+        color: $violet;
         }
     }
 
@@ -52,7 +60,7 @@
 
     .card-tags {
         color: black;
-        display: inline-block;
+        // display: inline-block;
         max-width: 40%;
         margin-bottom: 5px;
 
