@@ -54,6 +54,10 @@ page-cart {
   .total{
     font-weight: bold;
     color: #000000;
+
+    ion-icon{
+      margin-right: 5px;
+    }
   }
 
   .total span:last-child{
@@ -141,7 +145,7 @@ page-cart {
 
     padding-right: 16px;
 
-    .label label-md{
+    .label .label-md{
       display: flex;
       justify-content: space-between;
       margin-right: 0px;
@@ -163,9 +167,11 @@ page-cart {
   }
 
   .summary{
-    .item-md{
       padding-right: 16px
-    }
+
+      // ion-icon{
+      //   font-size: 
+      // }
   }
 
   .item-md ion-thumbnail{

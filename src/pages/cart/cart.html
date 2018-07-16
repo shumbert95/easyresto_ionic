@@ -20,14 +20,15 @@
       </ion-list>
   </ion-item>
   <ion-item class="summary">
-    <p class="total">Total: <span class="price">{{cart.totalPrice}}€</span></p>
+    <p class="total"><span><ion-icon name="trash" (click)="presentConfirm()" color="primary"></ion-icon> Total: </span> <span class="price">{{cart.totalPrice}}€</span></p>
   </ion-item>
 
-  <ion-row>
-    <ion-col class="empty-cart-col">
+  <!-- <ion-row>
+    <ion-col class="empty-cart-col">     
+      <ion-icon name="trash" (click)="presentConfirm()" color="primary"></ion-icon>       
         <button ion-button color="light" full (click)="emptyCart()">Vider le panier</button>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
   <!-- <button ion-button color="light" full (click)="emptyCart()">Vider le panier</button> -->
   <button ion-button class="checkout-step-1-btn" full (click)="toStep1()">Passer commande</button>
 </ion-content>

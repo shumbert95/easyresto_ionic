@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, Events} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, Events, AlertController} from 'ionic-angular';
 import {RestaurantProvider} from "../../shared/providers/restaurant-provider";
 import {ReservationPage} from "../reservation/reservation";
 import {Search} from "../search/search";
@@ -25,7 +25,7 @@ export class CartPage {
     public restaurantData: any;
 
     @ViewChild('map') mapElement: ElementRef;
-  constructor(public navCtrl: NavController, private events: Events, public navParams: NavParams, private restaurantService: RestaurantProvider, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, private events: Events, public navParams: NavParams, private restaurantService: RestaurantProvider, private toastCtrl: ToastController, private alertCtrl: AlertController) {
     this.cart = this.getCart();
     this.getRestaurantData();
   }
@@ -76,4 +76,29 @@ export class CartPage {
         localStorage.setItem('cart', JSON.stringify({'restaurantId': null, order: [], totalPrice: 0}));
         this.navCtrl.pop();
     }
+
+    presentConfirm() {
+        let alert = this.alertCtrl.create({
+          title: 'Vider le panier',
+          message: 'Voulez-vous vraiment vider votre panier?',
+          buttons: [
+            {
+              text: 'Non',
+              role: 'cancel',
+              handler: () => {
+                console.log('annulé');
+              }
+            },
+            {
+              text: 'Oui',
+              handler: () => {
+                console.log('panier vidé');
+                localStorage.setItem('cart', JSON.stringify({'restaurantId': null, order: [], totalPrice: 0}));
+                this.navCtrl.pop();
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
 }
