@@ -1,0 +1,104 @@
+page-restaurant {
+  .content-item{
+
+    padding: 0px 16px 0px 16px;
+
+    .item-inner{
+
+      padding-right: 0px;
+
+      .label.label-md{
+        display: flex;
+        margin-right: 0px;
+
+        .content-img {
+          display: table;
+          width: 80px;
+          height: 80px;
+
+          ion-thumbnail{
+            text-align: center;
+            display: table-cell;
+
+            img{
+              max-width: 80px;
+              max-height: 80px;
+            }
+          }
+        }
+
+        .content-infos{
+          width: 100%;
+          margin-left: 20px;
+          overflow: hidden;
+          display: inline-block;
+
+          .badge{
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: 5px;
+            margin-top: 5px;
+          }
+
+          .content-name{
+            margin-bottom: 10px;
+          }
+
+          p{
+            font-size: 1.3rem;
+          }
+
+          .content-orders{
+            text-align: right;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  // .content-item:first-child{
+  //   padding-top: 16px;
+  // }
+
+  .infos,
+  .more-infos{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  h1{
+    font-weight: 100;
+  }
+
+  .more-infos{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 5px;
+  }
+
+  .more-infos p:last-child{
+    color: #7957d5;
+  }
+
+  .availability-error{
+    color: #ff3860;
+  }
+
+  .menu .filter{
+    display: flex;
+  }
+
+  .menu .tab .content-item:last-child .item-inner{
+    border-bottom: 0px;
+  }
+
+}

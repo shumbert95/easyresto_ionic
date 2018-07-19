@@ -1,0 +1,26 @@
+<ion-content>
+  <app-header title="{{contentData?.name}}"></app-header>
+  <form (ngSubmit)="addToCart()" #addToCartForm="ngForm">
+    <ion-row>
+      <ion-col class="product-detail">
+        <img src="{{contentData?.picture}}" />
+        <h2>{{contentData?.name}}</h2>
+        <p>{{contentData?.description}}</p>
+        <div class="product-quantity-container">
+          <div class="product-quantity">
+            <ion-icon name="remove" (click)="decreaseQuantity()" color="primary"></ion-icon>
+              {{quantity}}
+            <ion-icon name="add" (click)="increaseQuantity()" color="primary"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="add-to-cart-col">
+        <button ion-button class="submit-btn" full type="submit">Ajouter au panier {{calculatedPrice}} €</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

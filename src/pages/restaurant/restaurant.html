@@ -1,0 +1,57 @@
+<ion-content>
+    <app-header title="{{restaurantData?.name}}"></app-header>
+    <div class="header">
+        <img src="{{restaurantData?.picture}}" />
+        <div class="infos">
+            <h1>{{restaurantData?.name}}</h1>
+
+            {{restaurantData?.averageNote}} <ion-icon name="star" color="primary"></ion-icon><br><br>
+            <span *ngFor="let category of restaurantData?.categories"><ion-badge>{{category.name}}</ion-badge></span>
+        </div>
+        <div class="more-infos">
+            <p>Lieu et horaires</p>
+            <p (click)="detailsPage(restaurantData)" color="primary" >Voir les informations <ion-icon  name="arrow-forward"></ion-icon></p>
+        </div>
+    </div>
+    <div class="menu">
+        <ion-list class="menu">
+            <ion-item *ngFor="let tab of restaurantMenu" class="tab">
+                <p class="tab" id="tab-{{tab.id}}">{{tab.name}}</p>
+                <ion-item *ngFor="let content of tab.content" class="content-item">
+                    <ng-container *ngIf="content.availability > 0">
+                        <div (click)="toProduct(content.id)" class="filter">
+                            <div class="content-img" *ngIf="content.picture">
+                                <ion-thumbnail><img src="{{content.picture}}" /></ion-thumbnail>
+                            </div>
+                            <div class="content-infos">
+                                <div class="content-name">{{content.name}}</div>
+                                <p class="content-price">{{content.price}} €</p>
+                                <div class="badge">
+                                    <ion-badge *ngFor="let tag of content.tags">{{tag.name}}</ion-badge>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="content.availability <= 0">
+                        <div class="filter">
+                            <div class="content-img" *ngIf="content.picture">
+                                <ion-thumbnail><img src="{{content.picture}}" /></ion-thumbnail>
+                            </div>
+                            <div class="content-infos">
+                                <span class="availability-error" color="">Produit indisponible</span>
+                                <div class="content-name">{{content.name}}</div>
+                                <p class="content-price">{{content.price}} €</p>
+                                <div class="badge">
+                                    <ion-badge *ngFor="let tag of content.tags">{{tag.name}}</ion-badge>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </ng-container>
+                </ion-item>
+            </ion-item>
+        </ion-list>
+    </div>
+    <add-to-cart [cart]="cart"></add-to-cart>
+</ion-content>

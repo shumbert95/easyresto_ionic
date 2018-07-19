@@ -1,0 +1,33 @@
+<ion-content>
+
+    <app-header title="Mon compte"></app-header>
+
+    <ion-list class="avatar"> 
+        <ion-item>
+            <ion-avatar item-start>
+            <img src="../../assets/imgs/avatar-placeholder.png">
+            </ion-avatar>
+            <p>{{profile?.firstName}} {{profile?.lastName}}</p>
+        </ion-item>
+    </ion-list>
+
+    <!-- <h1 class="client-name">
+        {{profile?.firstName}} {{profile?.lastName}}
+    </h1> -->
+
+    <ion-list>
+        <ion-item (click)="toEdit()">
+        <ion-icon name="person" item-start color="primary"></ion-icon>
+        Mes informations
+        </ion-item>
+        <ion-item (click)="toFavorites()">
+        <ion-icon name="heart-outline" item-start color="primary"></ion-icon>
+        Mes favoris
+        </ion-item>
+        <ion-item (click)="logout()">
+        <ion-icon name="exit" item-start color="primary"></ion-icon>
+        Se déconnecter
+        </ion-item>
+    </ion-list>
+    <add-to-cart [cart]="cart"></add-to-cart>
+</ion-content>

@@ -1,0 +1,8 @@
+<ion-content>
+  <app-header title="Merci !"></app-header>
+  <img src="{{restaurantData?.picture}}" />
+  <p>{{restaurantData?.name}} vous remercie pour votre commande. Vous pouvez retrouver le récapitulatif dans votre historique à tout moment.</p><br>
+  <p>{{restaurantData?.name}} vous attend le : <br>
+    <span>{{restaurantData?.formattedDate}}</span> à <span>{{cart?.timeStep}}</span> <br>
+     Nombre de personnes : {{cart?.nbParticipants}} personnes</p>
+</ion-content>

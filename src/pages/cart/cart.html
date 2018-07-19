@@ -1,0 +1,37 @@
+<ion-content>
+  <app-header title="Panier"></app-header>
+  <div class="restaurant-infos">
+    <img class="restaurant-img" src="{{restaurantData?.picture}}"/>
+    <div class="infos-details">
+        <h1 class="restaurant-name">{{restaurantData?.name}}</h1>
+        <p class="restaurant-location">
+          <i class="zmdi zmdi-pin"></i><span class="restaurant-address">{{restaurantData?.formattedAddress}}</span>
+        </p>
+    </div>
+
+    <div class="empty-cart">
+      <span>Votre panier</span>
+      <span class="remove-card" (click)="presentConfirm()">Supprimer</span>
+    </div>
+
+  </div>
+  <ion-item class="products">
+      <ion-list>
+          <ion-item *ngFor="let content of cart.order" class="products-detail">
+            <div class="left-part"><ion-badge color="light">{{content.quantity}}</ion-badge> x <span class="content-name">{{content.name}}</span> </div><span class="content-price">{{content.price}}€</span>
+          </ion-item>
+      </ion-list>
+  </ion-item>
+  <ion-item class="summary">
+    <p class="total"><span>Total: </span> <span class="price">{{cart.totalPrice}}€</span></p>
+  </ion-item>
+
+  <button ion-button class="checkout-step-1-btn" full (click)="toStep1()">Commander</button>
+</ion-content>
+
+
+<ion-row>
+    <ion-col class="add-to-cart-col">
+      <button ion-button class="submit-btn" full type="submit">Ajouter au panier {{calculatedPrice}} €</button>
+    </ion-col>
+  </ion-row>

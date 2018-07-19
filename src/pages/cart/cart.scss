@@ -1,0 +1,213 @@
+page-cart {
+  #map {
+    height:30%;
+  }
+  .checkout-step-1-btn {
+    position: fixed;
+    z-index: 2;
+    bottom: 52px;
+    width: 100%;
+  }
+
+  .restaurant-infos {
+    margin-bottom: 0;
+
+    .infos-details{
+      margin-left: 16px;
+      margin-right: 16px;
+      border-bottom: solid 1px #dedede;
+      margin-bottom: 20px;
+
+      i{
+        margin-right: 5px;
+        color: $violet;
+      }
+
+      .restaurant-address{
+        color: #666;
+      }
+    }
+
+    .restaurant-name{
+      font-weight: 100;
+      font-size: 2.6rem;
+      margin-top: 2rem;
+
+    }
+
+    .restaurant-location{
+      margin-top: 0px;
+    }
+  }
+
+  .label-md{
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+
+  .item-detail,
+  .total{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .total{
+    font-weight: bold;
+    color: #000000;
+
+    ion-icon{
+      margin-right: 5px;
+    }
+  }
+
+  .total span:last-child{
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  /*from restaurant*/
+  .content-item{
+
+    padding: 0px 16px 0px 16px;
+
+    .item-inner{
+
+      padding-right: 0px;
+
+      .label.label-md{
+        display: flex;
+        margin-right: 0px;
+
+        .content-img {
+          display: inline-block;
+        }
+
+        .content-infos{
+          width: 100%;
+          margin-left: 20px;
+          overflow: hidden;
+          display: inline-block;
+
+          .content-name{
+            margin-bottom: 10px;
+          }
+
+          p{
+            font-size: 1.3rem;
+          }
+
+          .content-orders{
+            text-align: right;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  .content-item:first-child(){
+    padding-top: 16px;
+  }
+
+  .infos,
+  .more-infos{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .more-infos{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 5px;
+  }
+
+  .more-infos p:last-child{
+    color: #7957d5;
+  }
+
+  .availability-error{
+    color: #ff3860;
+  }
+
+  .empty-cart-col{
+    margin: 20px 16px 50px 16px;
+  }
+
+  .empty-cart{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px;
+    border-bottom: solid 1px #dedede;
+    padding-bottom: 20px;
+
+    .remove-card{
+      color: $violet;
+    }
+    
+  }
+
+  .products{
+
+    padding-right: 16px;
+
+    .label .label-md{
+      display: flex;
+      justify-content: space-between;
+      margin-right: 0px;
+    }
+
+    .list-md{
+      margin-bottom: 0px;
+
+      .item-md{
+        padding-left: 0px;   
+      }
+
+      // .item-md:last-child{
+      //   border-bottom: solid 1px #dedede; 
+      // }
+      
+    } 
+
+  }
+
+  .summary{
+      padding-right: 16px
+
+      // ion-icon{
+      //   font-size: 
+      // }
+  }
+
+  .item-md ion-thumbnail{
+    display: none;
+  }
+
+  .products-detail .label-md{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0px;
+  }
+
+  .badge-md-light{
+    color: $violet;
+  }
+
+  .trash-btn{
+
+    ion-icon{
+      font-size: 1.5em;
+    }
+
+  }
+
+}
